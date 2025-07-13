@@ -300,10 +300,10 @@ footer button:hover {
   }
 }
 .logo {
+  width: 100%;
   max-width: 200px;
   height: auto;
   display: block;
-  /* margin: 20px 40px; */
 }
 .legal-links {
   margin-top: 20px;
