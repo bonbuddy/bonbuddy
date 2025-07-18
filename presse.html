@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presse – BonBuddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Jost', sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #2a2a2a;
+    }
+    
+   
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .main-nav a {
+      text-decoration: none;
+      color: #2a2a2a;
+      font-weight: 600;
+    }
+    .main-nav a:hover {
+      color: #519e8a;
+    }
+    .nav-toggle {
+      display: none;
+      font-size: 1.5em;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .main-nav ul {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        padding: 20px;
+      }
+      .main-nav.open ul {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+      }
+    }
+    .content {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      color: #519e8a;
+      font-weight: 700;
+      text-align: center;
+    }
+    .presse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .presse-item {
+      border: 1px solid #eee;
+      padding: 20px;
+      border-radius: 8px;
+      background: #fafafa;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .presse-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .presse-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    .presse-item:hover img {
+      transform: scale(1.05);
+    }
+    .presse-item h2 {
+      font-size: 1.2em;
+      color: #519e8a;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .presse-item .meta {
+      color: #999;
+      font-size: 0.9em;
+      margin-bottom: 15px;
+    }
+    .presse-item p {
+      margin-bottom: 10px;
+    }
+    .presse-item a {
+      color: #519e8a;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+    .presse-item a:hover {
+      color: #2a2a2a;
+      text-decoration: underline;
+    }
+    footer {
+      background: #f8f8f8;
+      padding: 40px 20px;
+      margin-top: 40px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-links div h4 {
+      margin-bottom: 10px;
+      color: #519e8a;
+    }
+    .footer-links div a {
+      display: block;
+      color: #2a2a2a;
+      margin-bottom: 5px;
+      text-decoration: none;
+    }
+    .footer-links div a:hover {
+      color: #519e8a;
+    }
+    .legal-links {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9em;
+    }
+    .legal-links a {
+      color: #519e8a;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Startseite</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="app.html">Hol' dir die App!</a></li>
+          <li><a href="hilfe.html">FAQ</a></li>
+          <li><a href="partner.html">Für Partner</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Menü öffnen">☰</button>
+    </div>
+  </header>
+
+  <main class="content">
+    <h1 data-aos="fade-up">Pressewand <br><small style="font-weight: 400; color: #2a2a2a;">Was andere über BonBuddy sagen.</small></h1>
+    <div class="presse-grid" data-aos="fade-up" data-aos-delay="200">
+      
+      <!-- Beitrag 1 -->
+      <div class="presse-item">
+        <img src="fotos/kiepenkerl1.png" alt="Beitrag 1">
+        <h2>LÜDINGHAUSEN: Schüler entwickeln Schnäppchen-App</h2>
+        <div class="meta">Veröffentlicht: 06.06.2025</div>
+        <p></p>
+        <p><strong>Quelle:</strong> Radio Kiepenkerl</p>
+        <a href="https://www.radiokiepenkerl.de/artikel/schueler-erfinden-schnaeppchen-app-2347208.html">Zum Beitrag</a>
+      </div>
+      
+      <!-- Beitrag 2 -->
+      <div class="presse-item">
+        <img src="fotos/wn2.png" alt="Beitrag 2">
+        <h2>"BonBuddy" plant Einkaufstour</h2>
+        <div class="meta">Veröffentlicht: 27.06.2025</div>
+        <p></p>
+        <p><strong>Quelle:</strong> Westfälische Nachrichten</p>
+        <a href="https://e-paper.wn.de/titles/wnluedinghauser/11834/publications/5196/pages/14/articles/2301601/15/6">Zum Beitrag</a>
+      </div>
+      
+      <!-- Beitrag 3 -->
+      <div class="presse-item">
+        <img src="fotos/rn3.png" alt="Beitrag 3">
+        <h2>Vier Jungs (17) wollen das Einkaufen revolutionieren</h2>
+        <div class="meta">Veröffentlicht: 28.06.2025</div>
+        <p></p>
+        <p><strong>Quelle:</strong> Ruhr Nachrichten</p>
+        <a href="https://www.ruhrnachrichten.de/nordkirchen/jungs-17-schule-wettbewerb-app-einkaufen-preisgeld-selm-herbern-olfen-luedinghausen-euro-w1048071-2001712043/">Zum Beitrag</a>
+      </div>
+      
+      <!-- Beitrag 4 -->
+      <div class="presse-item">
+        <img src="fotos/kiepernkerl2.png" alt="Beitrag 4">
+        <h2>LÜDINGHAUSEN: Schüler auf <br>Platz 1</h2>
+        <div class="meta">Veröffentlicht: 17.06.2025</div>
+        <p></p>
+        <p><strong>Quelle:</strong> Radio Kiepenkerl</p>
+        <a href="https://www.ruhrnachrichten.de/nordkirchen/jungs-17-schule-wettbewerb-app-einkaufen-preisgeld-selm-herbern-olfen-luedinghausen-euro-w1048071-2001712043/">Zum Beitrag</a>
+      </div>
+      
+      <!-- Beitrag 5 -->
+      <div class="presse-item">
+        <img src="fotos/cani1.png" alt="Beitrag 5">
+        <h2>Gründergeist an der Schule: EF-Team beeindruckt mit App-Idee</h2>
+        <div class="meta">Veröffentlicht: 06.05.2025</div>
+        <p></p>
+        <p><strong>Quelle:</strong> Gymnasium Canisianum</p>
+        <a href="https://canisianum.de/gruendergeist-an-der-schule-ef-team-beeindruckt-mit-app-idee">Zum Beitrag</a>
+      </div>
+      
+      <!-- Beitrag 6 -->
+      <div class="presse-item">
+        <img src="fotos/kiepenkerl3.png" alt="Beitrag 6">
+        <h2>Radiobeitrag zu BonBuddy</h2>
+        <div class="meta">Veröffentlicht: 06.06.2025</div>
+        <p></p>
+        <p><strong>Quelle:</strong> Radio Kiepenkerl</p>
+        <a href="https://www.radiokiepenkerl.de/artikel/schueler-erfinden-schnaeppchen-app-2347208.html">Zum Beitrag</a>
+      </div>
+    </div>
+
+<h4>
+  Sie sind Pressevertreter:in und möchten über BonBuddy berichten? <br>
+  Gerne beantworten wir Ihre Fragen oder lassen Ihnen Bildmaterial zukommen. <br>
+  Sie erreichen uns per Mail an <a href="mailto:presse@bonbuddy.de">presse@bonbuddy.de</a>.
+</h4>
+  </main>
+
+
+   <div class="legal-links" data-aos="fade-up" data-aos-delay="200">
+      <a href="impressum.html">Impressum</a> |
+      <a href="datenschutz.html">Datenschutzerklärung</a>
+    </div>
+
+  <footer data-aos="fade-up">
+  <div class="footer-links">
+    <div>
+      <h4>BonBuddy</h4>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="app.html">Hol‘ dir die App</a>
+      <a href="partner.html">Für Partner</a>
+      <a href="gender-hinweis.html">Gender-Hinweis</a>
+    </div>
+    <div>
+      <h4>Kundenservice</h4>
+      <a href="hilfe.html">Hilfe-Center</a>
+      <a href="kontakt.html">Kontaktformular</a>
+      <a href="hilfe.html">FAQ</a>
+    </div>
+    <div>
+      <h4>Partnerportal</h4>
+      <a href="#">Für Einzelhändler</a>
+      <a href="#">Für Marken</a>
+      <a href="#">Registrieren</a>
+      <a href="#">Login</a>
+    </div>
+    <div>
+      <h4>Social Media</h4>
+      <a href="https://www.instagram.com/bonbuddy.de/">Instagram</a>
+      <a href="https://www.tiktok.com/@bonbuddy.de/">TikTok</a>
+      <a href="https://www.linkedin.com/company/bonbuddy-de/">LinkedIn</a>
+    </div>
+    <div>
+      <h4>Service</h4>
+      <a href="presse.html">Presse</a>
+    </div>
+  </div>
+  <div>
+      <!-- Begin Brevo Form -->
+       <div style="max-width: 600px; margin: 0 auto; padding: 10px;">
+    <iframe 
+        src="https://0d101a99.sibforms.com/serve/MUIFAPE2wYyzhp8ldZBcuqrukjA4pp2jzKSOHyM6ipt-FGMgCc67ZRGAYHRwH1gvN4orI-npAOVQzshdAaxw1SB5vVTvDFVDy6_Z3m3KivBRTwIc-qR7_DOpcEOMfUGK94k86wf8CunZO2U7xywT34tsLUG6uZQRULXZX6oZyuAfTR0iBY-KcF8Qw8s4a9Or4hW5-AS9pjd1DZe4" 
+        width="100%" 
+        height="400" 
+        frameborder="0" 
+        scrolling="auto" 
+        allowfullscreen
+        style="border: none; display: block; width: 100%; height: 400px;">
+    </iframe>
+</div>
+      <!-- End Brevo Form -->
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.main-nav');
+    navToggle.addEventListener('click', () => nav.classList.toggle('open'));
+  </script>
+</body>
+</html>
