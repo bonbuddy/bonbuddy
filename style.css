@@ -426,6 +426,28 @@ footer button:hover {
   font-weight: 600;
 }
 
+    @media (max-width: 768px) {
+      .main-nav {
+        width: 100%;
+        overflow-x: hidden;
+      }
+      .main-nav ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        width: 100%;
+      }
+      .main-nav li {
+        width: 100%;
+      }
+      .main-nav a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  
+
 .team-member a {
   display: block;
   font-size: 0.9rem;
