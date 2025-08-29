@@ -1,3 +1,5 @@
+
+
 :root {
   --primary-color: #519e8a;
   --text-color: #2a2a2a;
@@ -387,9 +389,12 @@ footer button:hover {
     background: #ffffff;
     position: absolute;
     top: 70px;
-    right: 20px;
+    left: 0;   /* fix: startet am linken Rand */
+    right: 0;  /* fix: endet am rechten Rand */
+    width: 100%; /* fix: volle Breite */
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-sizing: border-box; /* Padding wird eingerechnet */
   }
 
   .main-nav.open {
@@ -560,3 +565,4 @@ h1, h2, h3, h4, h5, h6 {
 h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
   color: var(--primary-color);
 }
+
