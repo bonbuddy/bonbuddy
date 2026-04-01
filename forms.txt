@@ -1,0 +1,4 @@
+Zeitstempel	Vorname	Nachname	E-Mail Adresse	Testgerät	Aus welchem Ort kommst du? (PLZ)	Wo kaufst du überwiegend ein?	Wie oft gehst du pro Woche einkaufen?	Wie bist du auf uns Aufmerksam geworden?	Spalte 9
+
+
+https://docs.google.com/forms/d/e/1FAIpQLSejj7aka3gVET0cvaOLopKcqrQD4fOTYZWnaVKnTFen6SAW7Q/viewform?usp=header

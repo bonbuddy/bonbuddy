@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+
+  <title>Beta-Teilnahmebedingungen – BonBuddy</title>
+  <meta name="description" content="Beta-Teilnahmebedingungen zur BonBuddy Beta." />
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #2A2A2A;
+      --muted: rgba(42,42,42,.75);
+      --muted2: rgba(42,42,42,.55);
+      --mint: #519E8A;
+      --mintSoft: rgba(81,158,138,.14);
+      --border: rgba(42,42,42,.12);
+      --shadow: 0 18px 60px rgba(42,42,42,.12);
+      --radius: 18px;
+      --max: 980px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a{ color: var(--mint); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 22px;
+    }
+
+    .back{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .back:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px rgba(42,42,42,.10);
+      border-color: rgba(81,158,138,.35);
+      text-decoration:none;
+    }
+
+    .brand{
+      font-weight: 700;
+      letter-spacing: .2px;
+      color: var(--text);
+    }
+    .brand .dot{
+      display:inline-block;
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: var(--mint);
+      margin-left: 8px;
+      box-shadow: 0 0 0 6px var(--mintSoft);
+      vertical-align: middle;
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+    }
+
+    h1{
+      font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+      line-height: 1.2;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+    .meta{
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    .meta strong{ color: var(--text); }
+
+    h2{
+      font-size: 1.14rem;
+      margin: 22px 0 8px;
+      letter-spacing: -0.01em;
+    }
+
+    p{ margin: 8px 0; }
+    ul{ margin: 8px 0 8px 18px; }
+    li{ margin: 4px 0; }
+
+    .callout{
+      margin-top: 18px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(81,158,138,.28);
+      background: linear-gradient(180deg, rgba(81,158,138,.10), rgba(81,158,138,.06));
+      color: var(--text);
+    }
+    .callout strong{ color: var(--text); }
+
+    .divider{
+      height:1px;
+      background: var(--border);
+      margin: 22px 0;
+    }
+
+    .footer{
+      margin-top: 18px;
+      color: var(--muted2);
+      font-size: .95rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+      background: rgba(42,42,42,.06);
+      padding: 2px 6px;
+      border-radius: 8px;
+    }
+
+    @media print{
+      .topbar, .footer a{ display:none !important; }
+      .card{ box-shadow:none; }
+      a{ color: var(--text); text-decoration:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="back" href="bonbuddy-beta.html" aria-label="Zurück zur Startseite">
+        <span aria-hidden="true">←</span>
+        <span>Zurück</span>
+      </a>
+
+      <div class="brand" aria-label="BonBuddy">
+        BonBuddy <span class="dot" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <main class="card" role="main">
+      <h1>Beta‑Teilnahmebedingungen „BonBuddy Beta 1“</h1>
+      <p class="meta">
+        Stand: <strong>15.02.2026</strong> · Version <strong>1.0</strong>
+      </p>
+
+      <div class="callout">
+        <strong>Hinweis:</strong> Diese Beta ist eine Testversion. Funktionen können fehlen, sich ändern oder Fehler enthalten.
+        Bitte nutze die Beta nicht für kritische Zwecke und sichere wichtige Informationen zusätzlich außerhalb der App.
+      </div>
+
+      <h2>1. Anbieter / Kontakt</h2>
+      <p>
+        Anbieter der BonBuddy Beta ist:
+      </p>
+      <ul>
+        <li><strong>BonBuddy (Bennett Rips)</strong></li>
+        <li>D-59348 Lüdinghausen Wolfsberger Straße 37 
+          
+        </li>
+        <li>E‑Mail: <a href="mailto:beta@bonbuddy.de">beta@bonbuddy.de</a></li>
+      </ul>
+      <p>
+        Impressum: <a href="www.bonbuddy.de/impressum">www.bonbuddy.de/impressum</a>
+      </p>
+
+      <h2>2. Gegenstand der Beta</h2>
+      <p>
+        (1) Die BonBuddy Beta ist eine <strong>Testversion</strong> der App „BonBuddy“. Ziel ist es,
+        Funktionen in einer frühen Phase zu testen, Feedback zu sammeln und technische Probleme zu erkennen.
+      </p>
+      <p>
+        (2) Die Beta ist zeitlich befristet. Du bekommst einen Zugang für ungefähr <strong>6 Wochen</strong>. Dies kann sich allerdings auch ändern. Zudem kann sich der Inhalt der Beta jederzeit ändern. 
+      </p>
+
+      <h2>3. Teilnahmevoraussetzungen</h2>
+      <p>(1) Teilnehmen dürfen natürliche Personen, die:</p>
+      <ul>
+        <li>mindestens <strong>16</strong> Jahre alt sind, und</li>
+        <li>ein <strong>kompatibles</strong> iOS‑ oder Android‑Gerät mit aktueller Software besitzen, und</li>
+        <li>in <strong>Lüdinghausen oder Seppenrade</strong> Wohnen oder regelmäßig einkaufen gehen, und</li>
+        <li>bereit sind, während der Beta <strong>Feedback</strong> zu geben.</li>
+      </ul>
+      <p>
+        (2) <strong>Hinweis Minderjährige:</strong> Wenn du unter 16 Jahre alt bist, darfst du nur teilnehmen,
+        wenn deine Erziehungsberechtigten der Teilnahme und der Verarbeitung deiner personenbezogenen Daten
+        im Zusammenhang mit der Beta zustimmen (siehe Datenschutzhinweise).
+      </p>
+      <p>
+        (3) Die Anzahl der Plätze ist begrenzt. Es besteht <strong>kein Anspruch</strong> auf Teilnahme.
+      </p>
+      <p>
+        (4) Die Teilnahme ist derzeit auf Personen aus <strong>Lüdihghausen</strong> ausgerichtet.
+      </p>
+
+      <h2>3.1 Verteilung über Drittplattformen (TestFlight / Google Play)</h2>
+<p>
+  Wir stellen die BonBuddy Beta je nach Gerät über Apple TestFlight (iOS) und/oder Google Play (Android) bereit.
+  Dafür können ein entsprechendes Konto (z. B. Apple ID / Google-Konto) und die Annahme der Bedingungen der Plattform erforderlich sein.
+</p>
+<p>
+  Apple bzw. Google verarbeiten im Rahmen der App-Verteilung ggf. Daten in eigener Verantwortung.
+  Details dazu findest du in unseren <a href="datenschutz.html">Datenschutzhinweisen</a>.
+</p>
+
+      <h2>4. Anmeldung, Auswahl und Zugang</h2>
+      <p>
+        (1) Die Anmeldung erfolgt über ein Online‑Formular über Google Forms. 
+      </p>
+      <p>
+        (2) Nach der Anmeldung Prüfen wir jede Einreichung um zu schauen, ob sie den Teilnahmebedingungen entspricht und es aus unserer sicht einen Beitrag zu den Zielen der Beta gibt.
+        Wenn deine Anmeldung alle Kriterien erfüllt und du in das Beta Programm aufgenommen wurdest wirst du via E-Mail (welche du in der Anmeldung angegeben hast) kontaktiert. Hier bekommst du alle weiteren Informationen, wie du teilnimmst.
+      </p>
+      <p>
+        (3) BonBuddy kann die Anmeldungen jederzeit auch nach erfolgter Zulassung ohne Angabe von Gründen ablehnen, z. B. bei begrenzten Kapazitäten
+        oder wenn Teilnahmevoraussetzungen nicht erfüllt sind.
+      </p>
+
+      <h2>5. Beta‑Charakter / Funktionsumfang</h2>
+      <p>(1) Die App befindet sich in Entwicklung. Das bedeutet insbesondere:</p>
+      <ul>
+        <li>Funktionen können unvollständig sein oder fehlen,</li>
+        <li>es kann zu Fehlern, Abstürzen, Leistungsproblemen und Datenverlust kommen,</li>
+        <li>Inhalte/Ergebnisse können abweichen oder ungenau sein.</li>
+      </ul>
+      <p>
+        (2) Bitte nutze die Beta nicht für kritische Zwecke und gehe davon aus, dass Daten jederzeit verloren gehen können.
+      </p>
+
+      <h2>6. Pflichten der Teilnehmenden</h2>
+      <p>(1) Teilnehmende verpflichten sich, die App nur im Rahmen der geltenden Gesetze und dieser Bedingungen zu nutzen.</p>
+      <p>(2) Zugangsdaten/Einladungen (z. B. TestFlight‑Einladung) sind vertraulich zu behandeln und nicht an Dritte weiterzugeben.</p>
+      <p>(3) Bitte melde gefundene Fehler nach Möglichkeit mit nachvollziehbarer Beschreibung (z. B. Screenshot, Schritte zur Reproduktion).</p>
+      <p>(4) Missbrauch (z. B. Manipulation, Reverse Engineering, automatisierte Zugriffe) ist strengstens untersagt!</p>
+      <p>(5) Inhalte der Beta wie Screenshots, unveröffentlichte Beta-Funktionen dürfen nicht geteilt oder veröffentlicht werden, solange BonBuddy der Veröffentlichung nicht schriftlich zugestimmt hat. Es gilt das Urheberrecht.</p>
+
+      <h2>7. Feedback‑Regelung</h2>
+      <p>
+        (1) Feedback kann per Formular, E-Mail oder funktion in der App oder Beta-Plattform übermittelt werden. 
+      </p>
+      <p>
+        (2) Du räumst dem Anbieter an deinem Feedback ein <strong>unentgeltliches, zeitlich und räumlich unbeschränktes,
+        übertragbares Nutzungsrecht</strong> ein, das Feedback zur Entwicklung, Verbesserung und Vermarktung der App zu verwenden.
+      </p>
+      <p>(3) Es besteht kein Anspruch auf Vergütung oder Nennung.</p>
+      <p>(4) Zudem wirst du per E-Mail in unterschiedlichen abständen benachrichtigt um Feedback abzugeben. Wir bitten diese Fragen möglichst zu beantworten, da dies zu einer gelingenden Beta Phase beisteuert.</p>
+      <p>(5) BonBuddy hällt sich das Recht vor Nutzer, welche kein qualitatives und produktives Feedback beisteuern von der Beta zu entfernen (zwecks begrenzter Plätze).</p>
+
+      <h2>8. Verfügbarkeit, Updates, Support</h2>
+      <p>(1) BonBuddy kann die Beta jederzeit aktualisieren, Funktionen verändern oder die Beta vorzeitig beenden.</p>
+      <p>(2) Es besteht kein Anspruch auf eine bestimmte Verfügbarkeit oder Support‑Reaktionszeit.</p>
+
+      <h2>9. Haftung</h2>
+      <p>
+        (1) Der Anbieter haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie bei Verletzung von Leben,
+        Körper oder Gesundheit.
+      </p>
+      <p>
+        (2) Im Übrigen ist die Haftung – soweit gesetzlich zulässig – ausgeschlossen.
+      </p>
+
+      <h2>10. Beendigung der Teilnahme</h2>
+      <p>(1) Du kannst deine Teilnahme jederzeit beenden, indem du die App deinstallierst und/oder dich abmeldest: <a href="mailto:beta@bonbuddy.de">beta@bonbuddy.de</a></p>
+      <p>(2) BonBuddy kann deine Teilnahme jederzeit beenden (z. B. bei Missbrauch, Kapazitätsgründen oder Ende der Beta).</p>
+
+      <h2>11. Datenschutz</h2>
+      <p>
+        Informationen zur Verarbeitung personenbezogener Daten findest du in den
+        <a href="datenschutz.html">Datenschutzhinweisen zur BonBuddy Beta</a>.
+      </p>
+
+      <h2>12. Schlussbestimmungen</h2>
+      <p>(1) Es gilt deutsches Recht unter Ausschluss des UN‑Kaufrechts, soweit zulässig.</p>
+      <p>(2) Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen unberührt.</p>
+      <p>Es gilt das deutsche Urheberrecht. Somit sind alle Teile der BonBuddy App Urheberrechtlich geschützt. © BonBuddy 2026</p>
+
+      <div class="divider" role="separator" aria-hidden="true"></div>
+
+      <div class="footer">
+        <span>© <span id="year"></span> BonBuddy</span>
+        <span>
+          <a href="bonbuddy-beta.html">Startseite</a> ·
+          <a href="datenschutz-beta.html">Datenschutz</a>
+        </span>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

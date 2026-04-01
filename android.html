@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+
+  <title>BonBuddy Beta – Anleitung Android (Google Play)</title>
+  <meta name="description" content="Schritt-für-Schritt Anleitung: BonBuddy Beta auf Android über Google Play installieren (nur für zugelassene Tester:innen)." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #FFFFFF;
+      --text: #2A2A2A;
+      --mint: #519E8A;
+      --mint-dark: #3f7c6c;
+      --muted: #5b5b5b;
+      --border: rgba(42,42,42,.12);
+      --shadow: 0 10px 25px rgba(42,42,42,.08);
+      --shadow-strong: 0 18px 45px rgba(42,42,42,.14);
+      --radius: 18px;
+
+      --max: 1100px;
+      --pad: clamp(18px, 3.2vw, 32px);
+
+      --h1: clamp(32px, 4.6vw, 56px);
+      --h2: clamp(22px, 2.4vw, 30px);
+      --p: 16px;
+
+      --primary-color: var(--mint);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: "Jost", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a.underline{ text-decoration: underline; text-underline-offset: 2px; }
+
+    .container{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    .hero{
+      padding: clamp(28px, 5vw, 56px) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brandline{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .logo{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--mint);
+      box-shadow: 0 10px 18px rgba(81,158,138,.18);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      letter-spacing: .5px;
+      flex: 0 0 auto;
+    }
+    .brandcopy{
+      display: grid;
+      line-height: 1.1;
+    }
+    .brandcopy strong{ font-size: 14px; }
+    .brandcopy span{ font-size: 12px; color: var(--muted); }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(81,158,138,.08);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 650;
+    }
+    .badge .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--mint);
+      box-shadow: 0 0 0 6px rgba(81,158,138,.16);
+      transform: scale(1);
+      animation: livePulse 1.35s ease-in-out infinite;
+    }
+    @keyframes livePulse{
+      0%   { transform: scale(1);    box-shadow: 0 0 0 6px rgba(81,158,138,.16); }
+      50%  { transform: scale(1.55); box-shadow: 0 0 0 10px rgba(81,158,138,.10); }
+      100% { transform: scale(1);    box-shadow: 0 0 0 6px rgba(81,158,138,.16); }
+    }
+
+    h1{
+      margin: 14px 0 10px;
+      font-size: var(--h1);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+    }
+    .sub{
+      margin: 0;
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 78ch;
+    }
+
+    section{
+      padding: clamp(26px, 4vw, 56px) 0;
+      border-top: 1px solid var(--border);
+    }
+    section.hero{ border-top: 0; }
+
+    .section-title{
+      display: grid;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    h2{
+      font-size: var(--h2);
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .section-lead{
+      margin: 0;
+      color: var(--muted);
+      max-width: 78ch;
+      font-size: var(--p);
+    }
+
+    .notice{
+      margin-top: 14px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px dashed rgba(81,158,138,.45);
+      background: rgba(81,158,138,.07);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Timeline */
+    .timeline{
+      margin-top: 18px;
+      position: relative;
+      padding-left: 38px;
+    }
+    .timeline::before{
+      content:"";
+      position: absolute;
+      left: 16px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: rgba(81,158,138,.22);
+      border-radius: 999px;
+    }
+
+    .t-step{
+      position: relative;
+      padding: 10px 0;
+    }
+
+    .t-node{
+      position: absolute;
+      left: -38px;
+      top: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background: rgba(81,158,138,.14);
+      border: 1px solid rgba(81,158,138,.30);
+      display: grid;
+      place-items: center;
+      color: var(--mint-dark);
+      font-weight: 900;
+    }
+
+    .t-card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+    .t-card strong{
+      display:block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+    .t-card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .t-card .mini{
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px dashed rgba(42,42,42,.14);
+      background: linear-gradient(180deg, rgba(81,158,138,.05), rgba(255,255,255,0));
+    }
+
+    details{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: #fff;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+    summary::-webkit-details-marker{ display: none; }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 26px 0 36px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 40px;
+    }
+    .footer-grid{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 900px){
+      .footer-grid{ grid-template-columns: 1fr; }
+    }
+    .foot-links{
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    @media (max-width: 900px){
+      .foot-links{ justify-content: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .badge .dot{ animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="top">
+    <section class="hero" aria-label="BonBuddy Beta Anleitung Android">
+      <div class="container">
+        <div class="brandline">
+          <div class="logo" aria-hidden="true">B</div>
+          <div class="brandcopy">
+            <strong>BonBuddy</strong>
+            <span>Anleitung – Android (Google Play)</span>
+          </div>
+        </div>
+
+        <div class="badge" role="note">
+          <span class="dot" aria-hidden="true"></span>
+          Nur für <strong>zugelassene Tester:innen</strong>
+        </div>
+
+        <h1>Android Installation über Google Play</h1>
+        <p class="sub">
+          Den Einladelink bekommst du erst nach <strong>Registrierung</strong> und <strong>Zulassung</strong> per E-Mail.
+          Diese Seite erklärt dir die Schritte – ohne Download-Link.
+        </p>
+
+        <div class="notice" role="note">
+          <strong>Wichtig:</strong> Im Play Store muss das <strong>Google-Konto</strong> angemeldet sein, mit dem du dich registriert hast.
+          <br>
+          Kontakt bei Problemen: <a class="underline" href="mailto:beta@bonbuddy.de">beta@bonbuddy.de</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Schritte Android Google Play">
+      <div class="container">
+        <div class="section-title">
+          <h2>Schritt für Schritt</h2>
+          <p class="section-lead">
+            Der Ablauf ist immer gleich: Link öffnen → Teilnahme bestätigen → kurz warten → installieren/aktualisieren.
+          </p>
+        </div>
+
+        <div class="timeline" role="list" aria-label="Android Installationsschritte">
+          <div class="t-step" role="listitem">
+            <div class="t-node" aria-hidden="true">1</div>
+            <div class="t-card">
+              <strong>Einlademail öffnen</strong>
+              <p>Öffne die E-Mail von BonBuddy auf deinem Android-Smartphone und tippe auf den Google-Play-Link.</p>
+            </div>
+          </div>
+
+          <div class="t-step" role="listitem">
+            <div class="t-node" aria-hidden="true">2</div>
+            <div class="t-card">
+              <strong>„Tester werden“ / „Beitreten“ bestätigen</strong>
+              <p>Auf der Play-Store-Seite die Teilnahme am Beta-Test bestätigen.</p>
+              <div class="mini">
+                Wenn du mehrere Google-Konten nutzt, prüfe oben im Play Store, ob das richtige Konto aktiv ist.
+              </div>
+            </div>
+          </div>
+
+          <div class="t-step" role="listitem">
+            <div class="t-node" aria-hidden="true">3</div>
+            <div class="t-card">
+              <strong>Kurz warten & Play Store neu öffnen</strong>
+              <p>Die Freischaltung kann ein paar Minuten dauern. Danach den Play Store neu öffnen.</p>
+            </div>
+          </div>
+
+          <div class="t-step" role="listitem">
+            <div class="t-node" aria-hidden="true">4</div>
+            <div class="t-card">
+              <strong>BonBuddy installieren oder aktualisieren</strong>
+              <p>Sobald die Beta aktiv ist, kannst du die App installieren (oder updaten), wie jede andere App auch.</p>
+              <div class="mini">
+                Updates kommen später ebenfalls über den Play Store.
+              </div>
+            </div>
+          </div>
+
+          <div class="t-step" role="listitem">
+            <div class="t-node" aria-hidden="true">5</div>
+            <div class="t-card">
+              <strong>Feedback geben</strong>
+              <p>Wenn dir Bugs oder falsche Daten auffallen: Screenshot + kurze Beschreibung schicken.</p>
+              <div class="mini">
+                E-Mail: <a class="underline" href="mailto:beta@bonbuddy.de">beta@bonbuddy.de</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice" role="note">
+          <strong>Hinweis:</strong> Wenn du den „Tester werden“-Bereich nicht siehst, liegt es meist am falschen Google-Konto oder daran,
+          dass der Link nicht direkt auf dem Smartphone geöffnet wurde.
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="FAQ Android Google Play">
+      <div class="container">
+        <div class="section-title">
+          <h2>FAQ</h2>
+          <p class="section-lead">Wenn’s klemmt, helfen diese Punkte fast immer.</p>
+        </div>
+
+        <details>
+          <summary>Ich sehe keinen „Tester werden“-Button.</summary>
+          <p>
+            Prüfe das aktive Google-Konto im Play Store und öffne den Link direkt auf dem Smartphone.
+            Wenn du unsicher bist: kurze Mail an <a class="underline" href="mailto:beta@bonbuddy.de">beta@bonbuddy.de</a>.
+          </p>
+        </details>
+
+        <details>
+          <summary>Ich bin beigetreten, aber kann noch nicht installieren.</summary>
+          <p>
+            Warte ein paar Minuten, schließe den Play Store komplett und öffne ihn neu.
+            Die Umstellung ist manchmal nicht sofort sichtbar.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <footer role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div><strong>BonBuddy Beta</strong></div>
+            <div style="margin-top: 8px;">
+              Kontakt: <a class="underline" href="mailto:beta@bonbuddy.de">beta@bonbuddy.de</a>
+            </div>
+          </div>
+
+          <div class="foot-links" aria-label="Rechtliches">
+            <a class="underline" href="https://www.bonbuddy.de" rel="noopener">Offizielle Website</a>
+            <a class="underline" href="https://www.bonbuddy.de/impressum" rel="noopener">Impressum</a>
+            <a class="underline" href="datenschutz-beta.html" rel="noopener">Datenschutz</a>
+            <a class="underline" href="beta-teilnahmebedingungen.html" rel="noopener">Teilnahmebedingungen</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
