@@ -103,38 +103,19 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
+
+    /* ── Marquee full-width fix ── */
+    .bekannt-aus {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .marquee-track-wrapper {
+      width: 100%;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
-
-<!-- Beta-Banner 
-<div style="
-  background: linear-gradient(90deg, #519e8a, #3b7a6a);
-  color: #ffffff;
-  text-align: center;
-  padding: 12px 20px;
-  font-family: 'Jost', sans-serif;
-  font-size: 1em;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  position: relative;
-  z-index: 1000;
-">
-  Jetzt für die Beta bewerben und BonBuddy als erstes testen!
-  <a href="#" style="
-    color: #ffffff;
-    background: rgba(255,255,255,0.2);
-    padding: 6px 16px;
-    border-radius: 4px;
-    margin-left: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    border: 1px solid #ffffff;
-    transition: background 0.3s;
-  " onmouseover="this.style.background='rgba(255,255,255,0.35)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
-    Jetzt bewerben →
-  </a>
-</div> -->
 
 <header class="site-header">
   <div class="nav-container">
@@ -175,48 +156,124 @@
   <div class="marquee-track-wrapper">
     <div class="marquee-track">
 
-      <!-- Erste Runde -->
-      <div class="marquee-item">
-        <img src="StartUpTeensLogo.png" alt="StartUpTeens">
-      </div>
+      <!-- Set 1 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
       <div class="marquee-dot"></div>
-      <div class="marquee-item">
-        <img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl">
-      </div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
       <div class="marquee-dot"></div>
-      <div class="marquee-item">
-        <img src="WNLogo.png" alt="Westfälische Nachrichten">
-      </div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
       <div class="marquee-dot"></div>
-      <div class="marquee-item">
-        <img src="yfnLogo.png" alt="YFN">
-      </div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
       <div class="marquee-dot"></div>
-      <div class="marquee-item">
-        <img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten">
-      </div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
       <div class="marquee-dot"></div>
 
-      <!-- Exakte Kopie für nahtloses Endlos-Looping -->
-      <div class="marquee-item">
-        <img src="StartUpTeensLogo.png" alt="StartUpTeens">
-      </div>
+      <!-- Set 2 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
       <div class="marquee-dot"></div>
-      <div class="marquee-item">
-        <img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl">
-      </div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
       <div class="marquee-dot"></div>
-      <div class="marquee-item">
-        <img src="WNLogo.png" alt="Westfälische Nachrichten">
-      </div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
       <div class="marquee-dot"></div>
-      <div class="marquee-item">
-        <img src="yfnLogo.png" alt="YFN">
-      </div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
       <div class="marquee-dot"></div>
-      <div class="marquee-item">
-        <img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten">
-      </div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+
+      <!-- Set 3 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+
+      <!-- Set 4 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+
+      <!-- Set 5 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+
+      <!-- Set 6 (mirror of first 5 for seamless -50% loop) -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+
+      <!-- Set 7 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+
+      <!-- Set 8 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+
+      <!-- Set 9 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+
+      <!-- Set 10 -->
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
       <div class="marquee-dot"></div>
 
     </div>
@@ -382,6 +439,45 @@
   navToggle.addEventListener('click', () => {
     nav.classList.toggle('open');
   });
+</script>
+
+<script>
+  // Dynamically clone marquee items until the track is at least 3× the viewport width,
+  // ensuring the strip always looks fully filled on any screen size.
+  (function () {
+    const track = document.querySelector('.marquee-track');
+    if (!track) return;
+
+    function fillMarquee() {
+      const vw = window.innerWidth;
+      // We need total track width >= 2 * vw so -50% always stays off-screen.
+      // Keep cloning the original children until we exceed that threshold.
+      const originalChildren = Array.from(track.children);
+      const originalCount = originalChildren.length;
+
+      // Remove any previously dynamically added clones (data-clone attr)
+      track.querySelectorAll('').forEach(el => el.remove());
+
+      // Measure current natural width after removing clones
+      let currentWidth = track.scrollWidth;
+      const target = vw * 4; // generous: 4× viewport
+
+      while (currentWidth < target) {
+        originalChildren.forEach(child => {
+          const clone = child.cloneNode(true);
+          clone.setAttribute('data-clone', '1');
+          track.appendChild(clone);
+        });
+        currentWidth = track.scrollWidth;
+        // Safety: break if no items (shouldn't happen)
+        if (track.children.length > originalCount * 200) break;
+      }
+    }
+
+    // Run on load and on resize
+    fillMarquee();
+    window.addEventListener('resize', fillMarquee);
+  })();
 </script>
 
 </body>
