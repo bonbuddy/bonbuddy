@@ -621,7 +621,7 @@ h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
   flex-direction: row;
   align-items: center;
   width: max-content;
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll 50s linear infinite;
   will-change: transform;
 }
 
