@@ -38,17 +38,17 @@
     .presse-header h1 {
       font-size: 3rem;
       margin-bottom: 10px;
-      /* Gesamte Überschrift in Grün */
+      /* Die gesamte Überschrift ist nun einheitlich in BonBuddy-Grün */
       color: var(--primary-color);
     }
 
     .presse-header h1 span {
-      /* Entfernung der speziellen Stile für das span */
+      /* Wir setzen die Farbe auch für das span explizit, falls noch Inline-Reste vorhanden sind */
       color: var(--primary-color);
       position: relative;
     }
 
-    /* Entfernung des Unterstrich-Effekts */
+    /* Der Unterstrich-Effekt wurde hier komplett entfernt */
     .presse-header h1 span::after {
       display: none;
     }
@@ -241,7 +241,7 @@
   </header>
 
   <header class="presse-header" data-aos="zoom-out">
-    <h1 data-aos="fade-up">Die <span>Pressewand</span></h1>
+    <h1 data-aos="fade-up">Die Pressewand</h1>
     <p data-aos="fade-up" data-aos-delay="100">Was die Medien über die Einkaufs-Revolution von BonBuddy berichten.</p>
   </header>
 
@@ -349,53 +349,46 @@
     </div>
   </main>
 
-  <footer>
-    <div class="footer-links">
-      <div>
-        <h4>BonBuddy</h4>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="app.html">Hol‘ dir die App</a>
-        <a href="partner.html">Für Partner</a>
-        <a href="gender-hinweis.html">Gender-Hinweis</a>
-      </div>
-      <div>
-        <h4>Kundenservice</h4>
-        <a href="hilfe.html">Hilfe-Center</a>
-        <a href="kontakt.html">Kontaktformular</a>
-        <a href="hilfe.html">FAQ</a>
-      </div>
-      <div>
-        <h4>Social Media</h4>
-        <a href="https://www.instagram.com/bonbuddy.de/">Instagram</a>
-        <a href="https://www.tiktok.com/@bonbuddy.de/">TikTok</a>
-        <a href="https://www.linkedin.com/company/bonbuddy-de/">LinkedIn</a>
-      </div>
-      <div>
-        <h4>Service</h4>
-        <a href="presse.html">Presse</a>
-      </div>
-    </div>
-    
-    <div style="max-width: 600px; margin: 40px auto 0; padding: 10px; border-top: 1px solid #ddd;">
-      <iframe width="540" height="305" src="https://0d101a99.sibforms.com/serve/MUIFALcOtSx5Ws9eMhZ65GGI7ngxfiHhXndGEZfZ-m0-rIvgEZ7tq5c-HAQ8YJC4UEUKS9b_jF88ACP1LkWgaln1Rw4iugHLnHoFSF_v1f6toIn1mpkRrcZb5fTIpLE5lJ7VUQybVYbuaUe4SltvdJJ5vL-P_pMq_ySOXdxEvQwozN12_K0jhGLngmYFR8fXikzKETIhVxDlNCy1" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin: 0 auto;max-width: 100%;"></iframe>
-    </div>
-  </footer>
+  
+<div id="footer-placeholder"></div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ 
-      duration: 1000, 
-      once: true,
-      easing: 'ease-out-back' 
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 600,
+    once: true,
+    easing: 'ease-out-back'
+  });
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  navToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    navToggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  });
+
+  // Footer laden
+  fetch('footer.html')
+    .then(r => r.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+      const scripts = document.getElementById('footer-placeholder').getElementsByTagName('script');
+      for (let s of scripts) {
+        const n = document.createElement('script');
+        if (s.src) n.src = s.src; else n.textContent = s.textContent;
+        document.body.appendChild(n);
+      }
     });
 
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.main-nav');
-    navToggle.addEventListener('click', () => {
-      nav.classList.toggle('open');
-      navToggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
-    });
-  </script>
+  // Optimierte Marquee Logik
+  window.addEventListener('load', function() {
+    const track = document.getElementById('marqueeTrack');
+    if (!track) return;
+    const content = track.innerHTML;
+    track.innerHTML = content + content + content;
+    track.style.animationPlayState = 'running';
+  });
+</script>
+
 </body>
 </html>

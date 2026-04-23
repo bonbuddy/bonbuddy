@@ -1,22 +1,22 @@
-<div class="legal-links">
-  <a href="impressum.html">Impressum</a> |
-  <a href="datenschutz.html">Datenschutzerklärung</a>
+<div class="legal-links" style="text-align: center; padding: 20px 0; font-family: sans-serif;">
+  <a href="impressum.html" style="text-decoration: none; color: inherit;">Impressum</a> |
+  <a href="datenschutz.html" style="text-decoration: none; color: inherit;">Datenschutzerklärung</a>
 </div>
 
-<footer data-aos="fade-up">
+<footer data-aos="fade-up" style="padding-bottom: 50px;">
   <div class="footer-links">
     <div>
       <h4>BonBuddy</h4>
-      <a href="#">Über uns</a>
-      <a href="#">Hol‘ dir die App</a>
-      <a href="#">Für Partner</a>
-      <a href="#">Gender-Hinweis</a>
+      <a href="ueber-uns.html">Über uns</a>
+      <a href="app.html">Hol‘ dir die App</a>
+      <a href="partner.html">Für Partner</a>
+      <a href="gender-hinweis.html">Gender-Hinweis</a>
     </div>
     <div>
       <h4>Kundenservice</h4>
-      <a href="#">Hilfe-Center</a>
-      <a href="#">Kontaktformular</a>
-      <a href="#">FAQ</a>
+      <a href="hilfe.html">Hilfe-Center</a>
+      <a href="kontakt.html">Kontaktformular</a>
+      <a href="hilfe.html">FAQ</a>
     </div>
     <div>
       <h4>Partnerportal</h4>
@@ -29,17 +29,44 @@
       <h4>Social Media</h4>
       <a href="https://www.instagram.com/bonbuddy.de/">Instagram</a>
       <a href="https://www.tiktok.com/@bonbuddy.de/">TikTok</a>
-      <a href="#">LinkedIn</a>
+      <a href="https://www.linkedin.com/company/bonbuddy-de/">LinkedIn</a>
     </div>
     <div>
       <h4>Service</h4>
-      <a href="#">Presse</a>
+      <a href="presse.html">Presse</a>
     </div>
   </div>
-  <form data-aos="fade-up">
-    <p><strong>Melde dich zu unserem Newsletter an, um auf dem Laufenden zu bleiben.</strong></p>
-    <input type="email" placeholder="name@email.de" required />
-    <button type="submit">Anmelden</button>
-    <p><small>Ich möchte deinen Newsletter erhalten und akzeptiere die Datenschutzerklärung.</small></p>
-  </form>
-</footer>   
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+  <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+    <div style="text-align: center; margin-bottom: 15px; max-width: 540px;">
+      <p><strong>Melde dich zu unserem Newsletter an, um auf dem Laufenden zu bleiben.</strong></p>
+    </div>
+    
+    <div style="width: 100%; display: flex; justify-content: center; overflow: hidden;">
+      <iframe 
+        width="540" 
+        height="350" 
+        src="https://0d101a99.sibforms.com/serve/MUIFALcOtSx5Ws9eMhZ65GGI7ngxfiHhXndGEZfZ-m0-rIvgEZ7tq5c-HAQ8YJC4UEUKS9b_jF88ACP1LkWgaln1Rw4iugHLnHoFSF_v1f6toIn1mpkRrcZb5fTIpLE5lJ7VUQybVYbuaUe4SltvdJJ5vL-P_pMq_ySOXdxEvQwozN12_K0jhGLngmYFR8fXikzKETIhVxDlNCy1" 
+        frameborder="0" 
+        scrolling="no" 
+        style="border: none; max-width: 100%; display: block;"
+      ></iframe>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
+  
+  // Navigation Toggle Logik (falls vorhanden)
+  const navToggle = document.querySelector('.nav-toggle');
+  if (navToggle) {
+    const nav = document.querySelector('.main-nav');
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+  }
+</script>

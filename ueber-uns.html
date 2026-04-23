@@ -88,56 +88,8 @@
     <p>Die Idee zu BonBuddy kam unserem Team 2025 im Rahmen des deutschen Gründerpreises für Schüler:innen. Im ersten Moment waren alle total elektrisiert von der Idee und ihren Verwendungsmöglichkeiten. BonBuddy macht günstiges, klimafreundliches und effizientes Einkaufen so einfach wie noch nie. Die Verbindung von Prospektangeboten, persönlichem Einkaufszettel und intelligenter Routenplanung ist etwas, was einen echten Mehrwert für die Verbraucherinnen und Verbraucher schafft.</p>
   </section>
 
-  <div class="legal-links">
-    <a href="impressum.html">Impressum</a> |
-    <a href="datenschutz.html">Datenschutzerklärung</a>
-  </div>
-
-  <footer data-aos="fade-up">
-    <div class="footer-links">
-      <div>
-        <h4>BonBuddy</h4>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="app.html">Hol' dir die App</a>
-        <a href="partner.html">Für Partner</a>
-        <a href="gender-hinweis.html">Gender-Hinweis</a>
-      </div>
-      <div>
-        <h4>Kundenservice</h4>
-        <a href="hilfe.html">Hilfe-Center</a>
-        <a href="kontakt.html">Kontaktformular</a>
-        <a href="hilfe.html">FAQ</a>
-      </div>
-      <div>
-        <h4>Partnerportal</h4>
-        <a href="#">Für Einzelhändler</a>
-        <a href="#">Für Marken</a>
-        <a href="#">Registrieren</a>
-        <a href="#">Login</a>
-      </div>
-      <div>
-        <h4>Social Media</h4>
-        <a href="https://www.instagram.com/bonbuddy.de/">Instagram</a>
-        <a href="https://www.tiktok.com/@bonbuddy.de/">TikTok</a>
-        <a href="https://www.linkedin.com/company/bonbuddy-de/">LinkedIn</a>
-      </div>
-      <div>
-        <h4>Service</h4>
-        <a href="presse.html">Presse</a>
-      </div>
-    </div>
-    <div style="max-width: 600px; margin: 0 auto; padding: 10px;">
-      <iframe 
-          src="https://0d101a99.sibforms.com/serve/MUIFAPE2wYyzhp8ldZBcuqrukjA4pp2jzKSOHyM6ipt-FGMgCc67ZRGAYHRwH1gvN4orI-npAOVQzshdAaxw1SB5vVTvDFVDy6_Z3m3KivBRTwIc-qR7_DOpcEOMfUGK94k86wf8CunZO2U7xywT34tsLUG6uZQRULXZX6oZyuAfTR0iBY-KcF8Qw8s4a9Or4hW5-AS9pjd1DZe4" 
-          width="100%" 
-          height="400" 
-          frameborder="0" 
-          scrolling="auto" 
-          allowfullscreen
-          style="border: none; display: block; width: 100%; height: 400px;">
-      </iframe>
-    </div>
-  </footer>
+  <!-- Hier wird nun zentral der Footer inkl. Impressum/Datenschutz aus der footer.html geladen -->
+  <div id="footer-placeholder"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
@@ -145,6 +97,14 @@
       duration: 800,
       once: true
     });
+
+    // Footer dynamisch aus footer.html laden
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(error => console.error('Fehler beim Laden des Footers:', error));
   </script>
 
   <script>

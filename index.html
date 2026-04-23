@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BonBuddy.de – Deine App zum Einkaufen mit Köpfchen</title>
   <link rel="icon" type="image/png" href="fotos/icon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
   <link rel="stylesheet" href="style.css" />
@@ -20,98 +20,76 @@
   </script>
 
   <style>
+    /* FIX FÜR WEISSEN BALKEN (Horizontal Scroll) */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Peppige Hover-Effekte für Karten */
+    .feature-card, .option-card, .testimonial {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .feature-card:hover, .option-card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    /* Marquee Styling & Animation Fix */
+    .bekannt-aus {
+      width: 100%;
+      overflow: hidden;
+      background: #fff;
+      padding: 40px 0;
+    }
+    .marquee-track-wrapper {
+      display: flex;
+      width: 100%;
+    }
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: scroll-marquee 40s linear infinite;
+    }
+    @keyframes scroll-marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-item img {
+      height: 40px;
+      width: auto;
+      margin: 0 30px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .marquee-dot {
+      width: 6px;
+      height: 6px;
+      background: #ccc;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    /* Mobile Korrekturen für Bilder */
+    @media (max-width: 768px) {
+      .hero-img img {
+        max-width: 100%;
+        height: auto;
+      }
+      .features, .options {
+        overflow: hidden;
+      }
+    }
+
+    /* Newsletter Formular Style */
     .sib-form {
       max-width: 400px;
       margin: 0 auto;
       font-family: 'Jost', sans-serif;
       color: #2a2a2a;
-    }
-    .sib-form .intro-text {
-      font-weight: 400;
-      font-size: 1em;
-      margin-bottom: 8px;
-      color: #2a2a2a;
-      text-align: center;
-    }
-    .sib-form h4 {
-      font-weight: 700;
-      font-size: 1.3em;
-      margin: 0 0 12px 0;
-      color: #2a2a2a;
-      text-align: center;
-    }
-    .sib-form h4 .required-star {
-      color: red;
-      margin-left: 4px;
-    }
-    .sib-form input[type="email"] {
-      padding: 10px 12px;
-      width: 100%;
-      max-width: 350px;
-      border-radius: 4px;
-      border: 2px solid #2a2a2a;
-      font-family: 'Jost', sans-serif;
-      font-weight: 400;
-      color: #2a2a2a;
-      font-size: 1em;
-      box-sizing: border-box;
-      margin-bottom: 6px;
-    }
-    .sib-form .email-hint {
-      font-size: 0.85em;
-      color: #666666;
-      margin-bottom: 12px;
-      font-weight: 400;
-      text-align: center;
-    }
-    .sib-form .checkbox-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      font-size: 0.9em;
-      color: #2a2a2a;
-      font-weight: 400;
-    }
-    .sib-form .checkbox-container input[type="checkbox"] {
-      margin-right: 8px;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #2a2a2a;
-      cursor: pointer;
-    }
-    .sib-form .checkbox-container label {
-      cursor: pointer;
-      user-select: none;
-    }
-    .sib-form .checkbox-container .required-star {
-      color: red;
-      margin-left: 4px;
-    }
-    .sib-form button[type="submit"] {
-      background: #519e8a;
-      color: #ffffff;
-      padding: 10px 0;
-      width: 100%;
-      max-width: 350px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: 'Jost', sans-serif;
-      font-weight: 700;
-      font-size: 1em;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    /* ── Marquee full-width fix ── */
-    .bekannt-aus {
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .marquee-track-wrapper {
-      width: 100%;
-      box-sizing: border-box;
     }
   </style>
 </head>
@@ -137,26 +115,22 @@
   </div>
 </header>
 
-<section class="hero" data-aos="fade-up">
+<section class="hero" data-aos="fade-down" data-aos-duration="1000">
   <div class="hero-text">
-    <h2>Clever einkaufen. Zeit <span>sparen</span>. Angebote nutzen.</h2>
-    <p>BonBuddy zeigt dir, wo du deine Einkaufsliste am günstigsten bekommst – und erstellt die optimale Route durch die Läden deiner Stadt.</p>
-    <a href="#" class="btn">Jetzt herunterladen!</a>
+    <h2 data-aos="zoom-in" data-aos-delay="200">Clever einkaufen. Zeit <span>sparen</span>. Angebote nutzen.</h2>
+    <p data-aos="fade-up" data-aos-delay="400">BonBuddy zeigt dir, wo du deine Einkaufsliste am günstigsten bekommst – und erstellt die optimale Route durch die Läden deiner Stadt.</p>
+    <a href="#" class="btn" data-aos="flip-up" data-aos-delay="600">Jetzt herunterladen!</a>
   </div>
-  <div class="hero-img" data-aos="fade-left">
+  <div class="hero-img" data-aos="fade-left" data-aos-delay="300">
     <img src="fotos/Startseite2Handys.png" alt="App Screenshot">
   </div>
 </section>
 
-<!-- =============================================
-     BEKANNT AUS – Infinite Marquee Slider
-     ============================================= -->
+<!-- BEKANNT AUS – Optimierter Slider -->
 <div class="bekannt-aus" data-aos="fade-up">
   <p class="bekannt-aus-label">Bekannt aus</p>
   <div class="marquee-track-wrapper">
-    <div class="marquee-track">
-
-      <!-- Set 1 -->
+    <div class="marquee-track" id="marqueeTrack">
       <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
       <div class="marquee-dot"></div>
       <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
@@ -167,134 +141,24 @@
       <div class="marquee-dot"></div>
       <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
       <div class="marquee-dot"></div>
-
-      <!-- Set 2 -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
-      <!-- Set 3 -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
-      <!-- Set 4 -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
-      <!-- Set 5 -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
-      <!-- Set 6 (mirror of first 5 for seamless -50% loop) -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
-      <!-- Set 7 -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
-      <!-- Set 8 -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
-      <!-- Set 9 -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
-      <!-- Set 10 -->
-      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
-      <div class="marquee-dot"></div>
-      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
-      <div class="marquee-dot"></div>
-
     </div>
   </div>
 </div>
-<!-- Ende BEKANNT AUS -->
 
 <section data-aos="fade-up">
   <h2>Das macht <span>BonBuddy einzigartig</span></h2>
   <div class="features">
-    <div class="feature-card" data-aos="zoom-in">
+    <div class="feature-card" data-aos="zoom-in-up" data-aos-delay="100">
       <img src="fotos/BB_Startseite_alleSortimenteundAngebote.png" alt="Icon">
       <h3>Alle Angebote & Sortimente</h3>
       <p>Alle aktuellen Angebote und Sortimente in deiner Stadt auf einen Blick.</p>
     </div>
-    <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+    <div class="feature-card" data-aos="zoom-in-up" data-aos-delay="200">
       <img src="fotos/BB_SmarterAlgo.png" alt="Icon">
       <h3>Smarter Algorithmus</h3>
       <p>Lernt dich kennen und schreibt so deine Einkaufsliste vollautomatisch.</p>
     </div>
-    <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+    <div class="feature-card" data-aos="zoom-in-up" data-aos-delay="300">
       <img src="fotos/BB_Routing.png" alt="Icon">
       <h3>Intelligente Routenplanung</h3>
       <p>Erstellt dir die schnellste oder günstigste Route durch verschiedene Läden.</p>
@@ -305,22 +169,22 @@
 <section data-aos="fade-up">
   <h2>Wähle aus drei <span>Optionen</span></h2>
   <div class="options">
-    <div class="option-card" data-aos="zoom-in">
+    <div class="option-card" data-aos="flip-left" data-aos-delay="100">
       <img src="fotos/BonBuddy-Icon Klimatipp.png" alt="Icon">
       <h3>Klima-Tipp</h3>
       <p>Beim Klima-Tipp wird der CO₂-Ausstoß deines Einkaufs berücksichtigt.</p>
       <a href="#" class="btn">Mehr zum Klima-Tipp</a>
     </div>
-    <div class="option-card" data-aos="zoom-in" data-aos-delay="100">
+    <div class="option-card" data-aos="flip-left" data-aos-delay="200">
       <img src="fotos/BonBuddy-Icon BonBuddy-Tipp.png" alt="Icon">
       <h3>BonBuddy-Tipp</h3>
       <p>Vereint das Beste aus allen Welten – günstig, schnell, wenige Läden.</p>
       <a href="#" class="btn">Mehr zum BonBuddy-Tipp</a>
     </div>
-    <div class="option-card" data-aos="zoom-in" data-aos-delay="200">
+    <div class="option-card" data-aos="flip-left" data-aos-delay="300">
       <img src="fotos/BonBuddy-Icon Preistipp.png" alt="Icon">
       <h3>Preis-Tipp</h3>
-      <p>Zeigt dir die günstigsten Preise für alle Produkte, auch abhängig vom Verkehrsmittel.</p>
+      <p>Zeigt dir die günstigsten Preise für alle Produkte.</p>
       <a href="#" class="btn">Mehr zum Preis-Tipp</a>
     </div>
   </div>
@@ -329,17 +193,17 @@
 <section data-aos="fade-up">
   <h2>Das sagen unsere <span>Beta-Tester:innen</span></h2>
   <div>
-    <div class="testimonial">
+    <div class="testimonial" data-aos="fade-right">
       <div class="testimonial-stars">★★★★★</div>
       <h3>Lukas (21)</h3>
       <p>Keinen Stress mehr am Monatsende! Als Student ist mein Budget natürlich immer etwas knapper. Seitdem ich BonBuddy verwende esse ich echt gesünder und günstiger, auch am Monatsende. So bleibt mir auch noch Geld für andere Ausgaben. Echt praktische App!</p>
     </div>
-    <div class="testimonial">
+    <div class="testimonial" data-aos="fade-left">
       <div class="testimonial-stars">★★★★★</div>
       <h3>Doris (67)</h3>
       <p>Auch als Rentnerin super! Ich hätte nicht gedacht, dass die App für mich als digitale Laiin so einfach zu bedienen ist. Die nutzerfreundliche Gestaltung der App macht es für mich sehr einfach günstiger einzukaufen. Ich kann euch nur ermutigen sich die App herunterzuladen!</p>
     </div>
-    <div class="testimonial">
+    <div class="testimonial" data-aos="fade-right">
       <div class="testimonial-stars">★★★★★</div>
       <h3>Susanne (44)</h3>
       <p>Ich bin beeindruckt! Klar denkt man sich immer: Noch so 'ne App? Die brauche ich wirklich nicht! Aber bei BonBuddy ist das anders. Mit der App löst ihr wirklich ein Problem, das mir im Alltag oft begegnet ist. Besonders beeindruckend ist die intelligente Einkaufsliste! Die App weiß schon vor mir, wann ich meinen Vorrat wieder auffüllen sollte!</p>
@@ -351,133 +215,58 @@
   <h2><span>BonBuddy</span> – Deine smarte Einkaufsplanung</h2>
   <p>BonBuddy ist die innovative Plattform für eine effiziente und nachhaltige Einkaufsplanung. Sie verbindet Endkunden mit lokalen Geschäften und optimiert den Einkaufsprozess durch intelligente Angebots- und Routenplanung. Mit BonBuddy kannst du deine Einkaufsliste einfach erstellen und die besten Angebote in deiner Umgebung finden. Basierend auf diesen Angeboten berechnet BonBuddy die optimale Route durch verschiedene Läden, sodass du Zeit und Geld sparst.</p>
   <ul class="advantages">
-    <li><strong>✅ Geld sparen:</strong> Nutze aktuelle Angebote und kaufe gezielt ein.</li>
-    <li><strong>✅ Zeit sparen:</strong> Erhalte eine optimierte Route für deinen Einkauf und lass' dir deine Einkaufsliste wie von selbst schreiben.</li>
-    <li><strong>✅ Nachhaltig handeln:</strong> Vermeide unnötige Wege und unterstütze lokale Geschäfte.</li>
+    <li data-aos="fade-left" data-aos-delay="100"><strong>✅ Geld sparen:</strong> Nutze aktuelle Angebote und kaufe gezielt ein.</li>
+    <li data-aos="fade-left" data-aos-delay="200"><strong>✅ Zeit sparen:</strong> Erhalte eine optimierte Route für deinen Einkauf und lass' dir deine Einkaufsliste wie von selbst schreiben.</li>
+    <li data-aos="fade-left" data-aos-delay="300"><strong>✅ Nachhaltig handeln:</strong> Vermeide unnötige Wege und unterstütze lokale Geschäfte.</li>
   </ul>
-  <p><strong>BonBuddy macht Einkaufen smarter für dich und die Umwelt! 🚀</strong></p>
+  <p data-aos="fade-up"><strong>BonBuddy macht Einkaufen smarter für dich und die Umwelt! 🚀</strong></p>
 </section>
 
-<section class="cta" data-aos="fade-up">
+<section class="cta" data-aos="zoom-in">
   <h2>Jetzt BonBuddy ausprobieren</h2>
   <p>Starte deinen Einkauf smarter, günstiger und nachhaltiger.</p>
   <a href="#" class="btn">Jetzt herunterladen!</a>
   <a href="#" class="btn secondary">Partner werden</a>
 </section>
 
-<div class="legal-links">
-  <a href="impressum.html">Impressum</a> |
-  <a href="datenschutz.html">Datenschutzerklärung</a>
-</div>
-
-<footer data-aos="fade-up">
-  <div class="footer-links">
-    <div>
-      <h4>BonBuddy</h4>
-      <a href="ueber-uns.html">Über uns</a>
-      <a href="app.html">Hol' dir die App</a>
-      <a href="partner.html">Für Partner</a>
-      <a href="gender-hinweis.html">Gender-Hinweis</a>
-    </div>
-    <div>
-      <h4>Kundenservice</h4>
-      <a href="hilfe.html">Hilfe-Center</a>
-      <a href="kontakt.html">Kontaktformular</a>
-      <a href="hilfe.html">FAQ</a>
-    </div>
-    <div>
-      <h4>Partnerportal</h4>
-      <a href="#">Für Einzelhändler</a>
-      <a href="#">Für Marken</a>
-      <a href="#">Registrieren</a>
-      <a href="#">Login</a>
-    </div>
-    <div>
-      <h4>Social Media</h4>
-      <a href="https://www.instagram.com/bonbuddy.de/">Instagram</a>
-      <a href="https://www.tiktok.com/@bonbuddy.de/">TikTok</a>
-      <a href="https://www.linkedin.com/company/bonbuddy-de/">LinkedIn</a>
-    </div>
-    <div>
-      <h4>Service</h4>
-      <a href="presse.html">Presse</a>
-    </div>
-  </div>
-  <div>
-    <div style="max-width: 600px; margin: 0 auto; padding: 10px;">
-      <iframe width="540" height="305" src="https://0d101a99.sibforms.com/serve/MUIFALcOtSx5Ws9eMhZ65GGI7ngxfiHhXndGEZfZ-m0-rIvgEZ7tq5c-HAQ8YJC4UEUKS9b_jF88ACP1LkWgaln1Rw4iugHLnHoFSF_v1f6toIn1mpkRrcZb5fTIpLE5lJ7VUQybVYbuaUe4SltvdJJ5vL-P_pMq_ySOXdxEvQwozN12_K0jhGLngmYFR8fXikzKETIhVxDlNCy1" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin-left: auto;margin-right: auto;max-width: 100%;"></iframe>
-    </div>
-    <script>
-      window.sib = { equeue: [], client_key: '4b6e0c16-6a0a-4a6f-8b6a-4b6e0c160000' };
-      (function() {
-        function asyncLoad(){
-          var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
-          s.src = 'https://sibforms.com/forms/end-form/build/main.js';
-          var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-        }
-        if(window.attachEvent){
-          window.attachEvent('onload', asyncLoad);
-        } else {
-          window.addEventListener('load', asyncLoad, false);
-        }
-      })();
-    </script>
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   AOS.init({
-    duration: 800,
-    once: true
+    duration: 600,
+    once: true,
+    easing: 'ease-out-back'
   });
-</script>
 
-<script>
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
   navToggle.addEventListener('click', () => {
     nav.classList.toggle('open');
+    navToggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
   });
-</script>
 
-<script>
-  // Dynamically clone marquee items until the track is at least 3× the viewport width,
-  // ensuring the strip always looks fully filled on any screen size.
-  (function () {
-    const track = document.querySelector('.marquee-track');
-    if (!track) return;
-
-    function fillMarquee() {
-      const vw = window.innerWidth;
-      // We need total track width >= 2 * vw so -50% always stays off-screen.
-      // Keep cloning the original children until we exceed that threshold.
-      const originalChildren = Array.from(track.children);
-      const originalCount = originalChildren.length;
-
-      // Remove any previously dynamically added clones (data-clone attr)
-      track.querySelectorAll('').forEach(el => el.remove());
-
-      // Measure current natural width after removing clones
-      let currentWidth = track.scrollWidth;
-      const target = vw * 4; // generous: 4× viewport
-
-      while (currentWidth < target) {
-        originalChildren.forEach(child => {
-          const clone = child.cloneNode(true);
-          clone.setAttribute('data-clone', '1');
-          track.appendChild(clone);
-        });
-        currentWidth = track.scrollWidth;
-        // Safety: break if no items (shouldn't happen)
-        if (track.children.length > originalCount * 200) break;
+  // Footer laden
+  fetch('footer.html')
+    .then(r => r.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+      const scripts = document.getElementById('footer-placeholder').getElementsByTagName('script');
+      for (let s of scripts) {
+        const n = document.createElement('script');
+        if (s.src) n.src = s.src; else n.textContent = s.textContent;
+        document.body.appendChild(n);
       }
-    }
+    });
 
-    // Run on load and on resize
-    fillMarquee();
-    window.addEventListener('resize', fillMarquee);
-  })();
+  // Optimierte Marquee Logik
+  window.addEventListener('load', function() {
+    const track = document.getElementById('marqueeTrack');
+    if (!track) return;
+    const content = track.innerHTML;
+    track.innerHTML = content + content + content;
+    track.style.animationPlayState = 'running';
+  });
 </script>
 
 </body>

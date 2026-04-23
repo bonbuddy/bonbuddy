@@ -231,70 +231,36 @@
       <label for="nachricht">Nachricht</label>
       <textarea name="nachricht" id="nachricht" rows="5" placeholder="Deine Nachricht" required></textarea>
 
-    <label>
-  <input type="checkbox" name="datenschutz" value="true" required>
-  Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a>.
-</label>
+      <label>
+        <input type="checkbox" name="datenschutz" value="true" required>
+        Ich akzeptiere die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a>.
+      </label>
 
       <button type="submit">Absenden</button>
     </form>
     <div id="meldung"></div>
   </main>
 
-  <div class="legal-links" data-aos="fade-up" data-aos-delay="200">
-    <a href="impressum.html">Impressum</a> |
-    <a href="datenschutz.html">Datenschutzerklärung</a>
-  </div>
-
-  <footer data-aos="fade-up">
-    <div class="footer-links">
-      <div>
-        <h4>BonBuddy</h4>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="app.html">Hol‘ dir die App</a>
-        <a href="partner.html">Für Partner</a>
-        <a href="gender-hinweis.html">Gender-Hinweis</a>
-      </div>
-      <div>
-        <h4>Kundenservice</h4>
-        <a href="hilfe.html">Hilfe-Center</a>
-        <a href="kontakt.html">Kontaktformular</a>
-        <a href="hilfe.html">FAQ</a>
-      </div>
-      <div>
-        <h4>Partnerportal</h4>
-        <a href="#">Für Einzelhändler</a>
-        <a href="#">Für Marken</a>
-        <a href="#">Registrieren</a>
-        <a href="#">Login</a>
-      </div>
-      <div>
-        <h4>Social Media</h4>
-        <a href="https://www.instagram.com/bonbuddy.de/">Instagram</a>
-        <a href="https://www.tiktok.com/@bonbuddy.de/">TikTok</a>
-        <a href="https://www.linkedin.com/company/bonbuddy-de/">LinkedIn</a>
-      </div>
-      <div>
-        <h4>Service</h4>
-        <a href="presse.html">Presse</a>
-      </div>
-    </div>
-    <div>
-      <!-- Begin Brevo Form -->
-       <div style="max-width: 600px; margin: 0 auto; padding: 10px;">
-   <iframe width="540" height="305" src="https://0d101a99.sibforms.com/serve/MUIFALcOtSx5Ws9eMhZ65GGI7ngxfiHhXndGEZfZ-m0-rIvgEZ7tq5c-HAQ8YJC4UEUKS9b_jF88ACP1LkWgaln1Rw4iugHLnHoFSF_v1f6toIn1mpkRrcZb5fTIpLE5lJ7VUQybVYbuaUe4SltvdJJ5vL-P_pMq_ySOXdxEvQwozN12_K0jhGLngmYFR8fXikzKETIhVxDlNCy1" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin-left: auto;margin-right: auto;max-width: 100%;"></iframe>
-</div>
-      <!-- End Brevo Form -->
-    </div>
-  </footer>
+  <!-- Hier wird nun zentral der Footer inkl. Impressum/Datenschutz aus der footer.html geladen -->
+  <div id="footer-placeholder"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
+    
     const navToggle = document.querySelector('.nav-toggle');
     const nav = document.querySelector('.main-nav');
     navToggle.addEventListener('click', () => nav.classList.toggle('open'));
 
+    // Footer dynamisch aus footer.html laden
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(error => console.error('Fehler beim Laden des Footers:', error));
+
+    // Formular absenden
     document.getElementById("kontaktForm").addEventListener("submit", function(e) {
       e.preventDefault();
       const formData = new FormData(this);
