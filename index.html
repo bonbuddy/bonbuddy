@@ -247,7 +247,7 @@
   });
 
   // Footer laden
-  fetch('footer.html')
+  fetch(`footer.html?v=${Date.now()}`)
     .then(r => r.text())
     .then(data => {
       document.getElementById('footer-placeholder').innerHTML = data;
