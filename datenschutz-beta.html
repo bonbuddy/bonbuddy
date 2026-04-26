@@ -1,8 +1,27 @@
 <!doctype html>
 <html lang="de">
 <head>
+
+<!-- Google Consent Mode v2 – Standard: alles verweigert -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'wait_for_update': 500
+  });
+</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFQWHP3ZHW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HFQWHP3ZHW');
+</script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -175,9 +194,82 @@
       a{ color: var(--text); text-decoration:none; }
     }
   </style>
+
+<style>
+#bb-cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 99999;
+  background: #fff;
+  border-top: 1px solid rgba(42,42,42,.12);
+  box-shadow: 0 -8px 32px rgba(42,42,42,.10);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: "Jost", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-size: 14px;
+  color: #2a2a2a;
+  line-height: 1.5;
+}
+#bb-cookie-banner.bb-hidden { display: none !important; }
+#bb-cookie-banner p { margin: 0; flex: 1; min-width: 200px; }
+#bb-cookie-banner a { color: #519E8A; text-underline-offset: 2px; }
+#bb-cookie-btns { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
+.bb-btn-accept {
+  background: #519E8A; color: #fff; border: none;
+  padding: 10px 20px; border-radius: 999px; font-size: 14px;
+  font-weight: 700; cursor: pointer; font-family: inherit;
+  transition: background .18s;
+}
+.bb-btn-accept:hover { background: #3f7c6c; }
+.bb-btn-decline {
+  background: transparent; color: #2a2a2a;
+  border: 1px solid rgba(42,42,42,.2); padding: 10px 20px;
+  border-radius: 999px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: border-color .18s;
+}
+.bb-btn-decline:hover { border-color: #519E8A; }
+</style>
 </head>
 
 <body>
+
+<!-- Cookie Banner -->
+<div id="bb-cookie-banner">
+  <p>
+    Wir verwenden <strong>Google Analytics</strong>, um zu verstehen, wie unsere Website genutzt wird.
+    Dazu werden Cookies gesetzt und Daten an Google (USA) übertragen.
+    Mehr dazu in unserer <a href="/datenschutz.html">Datenschutzerklärung</a>.
+  </p>
+  <div id="bb-cookie-btns">
+    <button class="bb-btn-decline" onclick="bbDeclineCookies()">Ablehnen</button>
+    <button class="bb-btn-accept" onclick="bbAcceptCookies()">Akzeptieren</button>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('bb_cookie_consent');
+  if(consent === 'accepted'){
+    gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
+    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+  } else if(consent === 'declined'){
+    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+  }
+})();
+function bbAcceptCookies(){
+  localStorage.setItem('bb_cookie_consent','accepted');
+  gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
+  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+}
+function bbDeclineCookies(){
+  localStorage.setItem('bb_cookie_consent','declined');
+  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+}
+</script>
+
   <div class="wrap">
     <div class="topbar">
       <a class="back" href="bonbuddy-beta.html" aria-label="Zurück zur Startseite">
