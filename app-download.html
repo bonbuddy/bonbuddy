@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+<!-- Google Consent Mode v2 – Standard: alles verweigert -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'wait_for_update': 500
+  });
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HFQWHP3ZHW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HFQWHP3ZHW');
+</script>
+
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="fotos/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BonBuddy – App Download</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+<style>
+#bb-cookie-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 99999;
+  background: #fff;
+  border-top: 1px solid rgba(42,42,42,.12);
+  box-shadow: 0 -8px 32px rgba(42,42,42,.10);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: "Jost", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-size: 14px;
+  color: #2a2a2a;
+  line-height: 1.5;
+}
+#bb-cookie-banner.bb-hidden { display: none !important; }
+#bb-cookie-banner p { margin: 0; flex: 1; min-width: 200px; }
+#bb-cookie-banner a { color: #519E8A; text-underline-offset: 2px; }
+#bb-cookie-btns { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
+.bb-btn-accept {
+  background: #519E8A; color: #fff; border: none;
+  padding: 10px 20px; border-radius: 999px; font-size: 14px;
+  font-weight: 700; cursor: pointer; font-family: inherit;
+  transition: background .18s;
+}
+.bb-btn-accept:hover { background: #3f7c6c; }
+.bb-btn-decline {
+  background: transparent; color: #2a2a2a;
+  border: 1px solid rgba(42,42,42,.2); padding: 10px 20px;
+  border-radius: 999px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: border-color .18s;
+}
+.bb-btn-decline:hover { border-color: #519E8A; }
+
+.coming-soon-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 20px 80px;
+  text-align: center;
+}
+
+.coming-soon-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  display: block;
+  line-height: 1;
+}
+
+.coming-soon-wrapper h1 {
+  font-size: 2.4em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.coming-soon-wrapper .lead {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.coming-soon-wrapper .note {
+  font-size: 1em;
+  color: #777;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: 'Jost', sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.social-btn-instagram {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
+}
+
+.social-btn-instagram:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(220,39,67,0.35);
+  text-decoration: none;
+  color: #fff;
+}
+
+.social-btn-tiktok {
+  background: #010101;
+  color: #fff;
+}
+
+.social-btn-tiktok:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.30);
+  text-decoration: none;
+  color: #fff;
+}
+
+.divider-line {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 40px auto;
+  max-width: 400px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #519E8A;
+  font-weight: 600;
+  font-size: 1em;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+  color: #3f7c6c;
+}
+</style>
+</head>
+<body>
+
+<!-- Cookie Banner -->
+<div id="bb-cookie-banner">
+  <p>
+    Wir verwenden <strong>Google Analytics</strong>, um zu verstehen, wie unsere Website genutzt wird.
+    Dazu werden Cookies gesetzt und Daten an Google (USA) übertragen.
+    Mehr dazu in unserer <a href="/datenschutz.html">Datenschutzerklärung</a>.
+  </p>
+  <div id="bb-cookie-btns">
+    <button class="bb-btn-decline" onclick="bbDeclineCookies()">Ablehnen</button>
+    <button class="bb-btn-accept" onclick="bbAcceptCookies()">Akzeptieren</button>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('bb_cookie_consent');
+  if(consent === 'accepted'){
+    gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
+    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+  } else if(consent === 'declined'){
+    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+  }
+})();
+function bbAcceptCookies(){
+  localStorage.setItem('bb_cookie_consent','accepted');
+  gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
+  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+}
+function bbDeclineCookies(){
+  localStorage.setItem('bb_cookie_consent','declined');
+  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+}
+</script>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="app.html" class="active">App</a></li>
+          <li><a href="partner.html">Partner</a></li>
+          <li><a href="hilfe.html">Hilfe</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Menü öffnen">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="coming-soon-wrapper">
+
+      <span class="coming-soon-icon" data-aos="zoom-in">🚀</span>
+
+      <h1 data-aos="fade-up" data-aos-delay="100">
+        Wir arbeiten mit <span>Hochdruck</span> daran!
+      </h1>
+
+      <p class="lead" data-aos="fade-up" data-aos-delay="200">
+        Die BonBuddy App ist noch nicht zum Download verfügbar – das ist kein Fehler!
+        Wir befinden uns gerade in der finalen Entwicklungsphase und geben alles,
+        damit du bald mit BonBuddy smarter einkaufen kannst.
+      </p>
+
+      <p class="note" data-aos="fade-up" data-aos-delay="300">
+        Sobald die App bereit ist, erfährst du es als Erstes auf unseren Social-Media-Kanälen.
+        Folge uns jetzt auf Instagram oder TikTok – damit du kein Update verpasst!
+      </p>
+
+      <div class="social-buttons" data-aos="fade-up" data-aos-delay="400">
+        <a href="https://www.instagram.com/bonbuddy.de/" class="social-btn social-btn-instagram" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.848s-.012 3.582-.07 4.848c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608C2.175 15.745 2.163 15.365 2.163 12s.012-3.582.07-4.848c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.333.014 7.053.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.053.014 8.333 0 8.741 0 12c0 3.259.014 3.667.072 4.947.085 1.856.601 3.698 1.942 5.039 1.341 1.341 3.183 1.857 5.039 1.942C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.856-.085 3.698-.601 5.039-1.942 1.341-1.341 1.857-3.183 1.942-5.039C23.986 15.667 24 15.259 24 12s-.014-3.667-.072-4.947c-.085-1.856-.601-3.698-1.942-5.039C20.645.673 18.803.157 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+          </svg>
+          Instagram folgen
+        </a>
+        <a href="https://www.tiktok.com/@bonbuddy.de/" class="social-btn social-btn-tiktok" target="_blank" rel="noopener">
+          <svg width="20" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
+          </svg>
+          TikTok folgen
+        </a>
+      </div>
+
+      <hr class="divider-line" data-aos="fade-up" data-aos-delay="500">
+
+      <a href="app.html" class="back-link" data-aos="fade-up" data-aos-delay="600">
+        ← Zurück zur App-Übersicht
+      </a>
+
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(error => console.error('Fehler beim Laden des Footers:', error));
+  </script>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.main-nav');
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
