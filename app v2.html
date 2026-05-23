@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+<!-- Google Consent Mode v2 – Standard: alles verweigert -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'wait_for_update': 500
+  });
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HFQWHP3ZHW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HFQWHP3ZHW');
+</script>
+
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" href="fotos/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BonBuddy – Die App</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+    overflow-x: clip; /* clip statt hidden – erlaubt overflow-x zu unterdrücken ohne Animations-Clipping */
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse 120% 90% at 50% 38%, #68b8a2 0%, #519e8a 42%, #3b7663 100%);
+    color: #fff;
+  }
+
+  /* ─── NAV ─── */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 26px 48px;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-link img.logo {
+    height: 30px;
+    opacity: 0.92;
+  }
+
+  .main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 38px;
+  }
+
+  .main-nav a {
+    color: rgba(255, 255, 255, 0.72);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: color 0.2s ease;
+  }
+
+  .main-nav a:hover,
+  .main-nav a.active {
+    color: #fff;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+  }
+
+  /* ─── 3D CANVAS ─── */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 110px 32px 90px;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 32px;
+  }
+
+  /* ─── FLIP HEADLINE ─── */
+  .flip-stage {
+    perspective: 1200px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flip-text {
+    display: block;
+    font-size: clamp(54px, 11.5vw, 136px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+    transform-origin: 50% 50%;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
+  .flip-text.anim-out {
+    animation: tumbleOut 0.36s cubic-bezier(0.55, 0, 1, 0.6) forwards;
+  }
+
+  .flip-text.anim-in {
+    animation: tumbleIn 0.4s cubic-bezier(0, 0.4, 0.45, 1) forwards;
+  }
+
+  @keyframes tumbleOut {
+    0%   { transform: rotateX(0deg);  opacity: 1; }
+    100% { transform: rotateX(78deg); opacity: 0; }
+  }
+
+  @keyframes tumbleIn {
+    0%   { transform: rotateX(-78deg); opacity: 0; }
+    100% { transform: rotateX(0deg);   opacity: 1; }
+  }
+
+  /* ─── SUBTITLE ─── */
+  .hero-sub {
+    font-size: clamp(15px, 1.8vw, 20px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.52);
+    letter-spacing: 0.015em;
+    max-width: 380px;
+    line-height: 1.6;
+  }
+
+  /* ─── COOKIE BANNER ─── */
+  #bb-cookie-banner {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 99999;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(42, 42, 42, .1);
+    box-shadow: 0 -8px 32px rgba(42, 42, 42, .08);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    color: #2a2a2a;
+    line-height: 1.5;
+  }
+  #bb-cookie-banner.bb-hidden { display: none !important; }
+  #bb-cookie-banner p { margin: 0; flex: 1; min-width: 200px; }
+  #bb-cookie-banner a { color: #519E8A; text-underline-offset: 2px; }
+  #bb-cookie-btns { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
+  .bb-btn-accept {
+    background: #519E8A; color: #fff; border: none;
+    padding: 10px 20px; border-radius: 999px; font-size: 14px;
+    font-weight: 700; cursor: pointer; font-family: inherit;
+    transition: background .18s;
+  }
+  .bb-btn-accept:hover { background: #3f7c6c; }
+  .bb-btn-decline {
+    background: transparent; color: #2a2a2a;
+    border: 1px solid rgba(42,42,42,.2); padding: 10px 20px;
+    border-radius: 999px; font-size: 14px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: border-color .18s;
+  }
+  .bb-btn-decline:hover { border-color: #519E8A; }
+
+  /* ─── FEATURE SECTION ─── */
+  .feature-section {
+    position: relative;
+    z-index: 1;
+    min-height: 200vh; /* extra scroll-Range für scroll-getriebene Phase */
+  }
+
+  /* Sticky-Wrapper: bleibt im Viewport während durch die extra 100vh gescrollt wird */
+  .feat-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Vertikaler Hintergrund-Schriftzug */
+  .feat-bg-text {
+    position: absolute;
+    left: -0.04em;
+    top: 50%;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: translateY(-50%) rotate(180deg);
+    font-size: clamp(110px, 18vw, 220px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.13);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity 1.4s ease 0.2s;
+  }
+  .feat-bg-text.visible { opacity: 1; }
+
+  .feat-layout {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    padding: 60px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* 3D-Phone Canvas */
+  #phone-canvas {
+    flex: 0 0 auto;
+    width: clamp(320px, 50%, 600px);
+    height: clamp(520px, 82vh, 880px);
+    display: block;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .feat-desc {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.9s ease 1.0s, transform 0.9s ease 1.0s;
+  }
+  .feat-desc.visible { opacity: 1; transform: translateX(0); }
+
+  .feat-desc p {
+    font-size: clamp(22px, 3vw, 40px);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.3;
+    max-width: 320px;
+    letter-spacing: -0.01em;
+    text-align: right;
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 768px) {
+    .site-header { padding: 20px 24px; }
+
+    .main-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(55, 120, 100, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      align-items: center;
+      justify-content: center;
+    }
+    .main-nav.open {
+      display: flex;
+    }
+    .main-nav.open ul {
+      flex-direction: column;
+      gap: 32px;
+      text-align: center;
+    }
+    .main-nav.open a {
+      font-size: 26px;
+      color: rgba(255,255,255,0.85);
+    }
+    .main-nav.open a:hover { color: #fff; }
+
+    .nav-toggle { display: block; }
+
+    /* Früchte-Canvas auf Mobile ausblenden – spart 13 MB Download + GPU */
+    #bg-canvas { display: none; }
+
+    .feature-section { min-height: 150vh; } /* kürzerer Scroll-Bereich auf Mobile */
+
+    .feat-layout {
+      flex-direction: column;
+      padding: 40px 20px 32px;
+      gap: 24px;
+    }
+    /* Phone auf Mobile groß und präsent */
+    #phone-canvas {
+      width: clamp(260px, 88vw, 440px);
+      height: clamp(440px, 62vh, 620px);
+    }
+    .feat-desc { justify-content: center; }
+    .feat-desc p { max-width: 100%; text-align: center; font-size: clamp(18px, 5vw, 26px); }
+    .feat-bg-text { font-size: clamp(72px, 22vw, 140px); }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- Cookie Banner -->
+<div id="bb-cookie-banner">
+  <p>
+    Wir verwenden <strong>Google Analytics</strong>, um zu verstehen, wie unsere Website genutzt wird.
+    Dazu werden Cookies gesetzt und Daten an Google (USA) übertragen.
+    Mehr dazu in unserer <a href="/datenschutz.html">Datenschutzerklärung</a>.
+  </p>
+  <div id="bb-cookie-btns">
+    <button class="bb-btn-decline" onclick="bbDeclineCookies()">Ablehnen</button>
+    <button class="bb-btn-accept" onclick="bbAcceptCookies()">Akzeptieren</button>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('bb_cookie_consent');
+  if(consent === 'accepted'){
+    gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
+    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+  } else if(consent === 'declined'){
+    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+  }
+})();
+function bbAcceptCookies(){
+  localStorage.setItem('bb_cookie_consent','accepted');
+  gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
+  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+}
+function bbDeclineCookies(){
+  localStorage.setItem('bb_cookie_consent','declined');
+  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+}
+</script>
+
+<header class="site-header">
+  <div class="nav-container">
+    <a href="index.html" class="logo-link">
+      <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="app.html" class="active">App</a></li>
+        <li><a href="partner.html">Partner</a></li>
+        <li><a href="hilfe.html">Hilfe</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen">☰</button>
+  </div>
+</header>
+
+<main class="hero">
+  <p class="hero-label">BonBuddy App</p>
+  <div class="flip-stage">
+    <span class="flip-text" id="flip-text">Beta läuft!</span>
+  </div>
+  <p class="hero-sub">Die App, die dein Einkaufen neu denkt.</p>
+</main>
+
+<section class="feature-section" id="stoebern-section">
+  <div class="feat-sticky">
+    <div class="feat-bg-text" id="stoebern-bg" aria-hidden="true">Stöbern</div>
+    <div class="feat-layout">
+      <canvas id="phone-canvas"></canvas>
+      <div class="feat-desc" id="stoebern-desc">
+        <p>Entdecke Angebote &amp; Empfehlungen</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Flip headline – wechselt im ~2-Sekunden-Takt
+  const phrases = ['Beta läuft!', 'Launch kommt.'];
+  let current = 0;
+  const el = document.getElementById('flip-text');
+
+  setInterval(() => {
+    el.classList.add('anim-out');
+
+    setTimeout(() => {
+      current = (current + 1) % phrases.length;
+      el.textContent = phrases[current];
+      el.classList.remove('anim-out');
+      void el.offsetWidth; // reflow erzwingen
+      el.classList.add('anim-in');
+      setTimeout(() => el.classList.remove('anim-in'), 400);
+    }, 360);
+  }, 2000);
+
+  // Stöbern-Section: Text-Elemente + Phone-Modul via Custom Events steuern
+  const stoebernTextIds = ['stoebern-bg', 'stoebern-desc'];
+
+  function triggerStoebern() {
+    stoebernTextIds.forEach(id => {
+      const el = document.getElementById(id);
+      el.classList.remove('visible');
+      void el.offsetWidth;
+      el.classList.add('visible');
+    });
+    window.dispatchEvent(new CustomEvent('phone-fly-in'));
+  }
+
+  function resetStoebern() {
+    stoebernTextIds.forEach(id => document.getElementById(id).classList.remove('visible'));
+    window.dispatchEvent(new CustomEvent('phone-reset'));
+  }
+
+  new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      triggerStoebern();
+    } else {
+      resetStoebern();
+    }
+  }, { threshold: 0.1 }).observe(document.getElementById('stoebern-section'));
+
+  // Mobile Nav
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('main-nav');
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    toggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  });
+</script>
+
+
+<!-- ─── 3D PHONE: scroll-getriebene Animation ─── -->
+<script type="module">
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+  const canvas = document.getElementById('phone-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
+  camera.position.z = 9;
+
+  scene.add(new THREE.AmbientLight(0xffffff, 2.2));
+  const key = new THREE.DirectionalLight(0xfff8f0, 3.5);
+  key.position.set(3, 8, 6);
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0xe8f0ff, 1.0);
+  rim.position.set(-5, -2, 3);
+  scene.add(rim);
+
+  function resize() {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false); // false = CSS-Größe nicht überschreiben
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(canvas);
+
+  // Nur Rotation & Z-Tiefe per Three.js animiert.
+  // Der Fly-in vom Bildschirmrand kommt per CSS translateX auf dem Canvas-Element.
+  const cur = { ry: 0.42, pz: 0 };
+  const tgt = { ry: 0.42, pz: 0 };
+  const lerp = (a, b, t) => a + (b - a) * t;
+  let phone = null;
+  let triggered = false;
+
+  new GLTFLoader().load('3dModels/Mockup1.glb', gltf => {
+    const model = gltf.scene;
+    const box = new THREE.Box3().setFromObject(model);
+    const sz  = box.getSize(new THREE.Vector3());
+    const ctr = box.getCenter(new THREE.Vector3());
+    const sc  = 4.8 / Math.max(sz.x, sz.y, sz.z); // 82% Canvas-Höhe → Zoom ohne Clipping
+    model.scale.setScalar(sc);
+    model.position.set(-ctr.x * sc, -ctr.y * sc, -ctr.z * sc);
+    phone = new THREE.Group();
+    phone.add(model);
+    scene.add(phone);
+    phone.position.z = cur.pz;
+    phone.rotation.y = cur.ry;
+    requestAnimationFrame(tick);
+  });
+
+  function tick() {
+    requestAnimationFrame(tick);
+    if (!phone) return;
+    cur.ry = lerp(cur.ry, tgt.ry, 0.055);
+    cur.pz = lerp(cur.pz, tgt.pz, 0.055);
+    phone.rotation.y = cur.ry;
+    phone.position.z = cur.pz;
+    renderer.render(scene, camera);
+  }
+
+  // Phase 1: Canvas-DOM per CSS vom Bildschirmrand hereinfahren (echter Screen-Edge-Start)
+  // Three.js Phone bleibt dabei zentriert – nur die 3D-Neigung wird gesetzt
+  window.addEventListener('phone-fly-in', () => {
+    cur.ry = 0.42; tgt.ry = 0.42;
+    cur.pz = 0;    tgt.pz = 0;
+    triggered = true;
+
+    // Sofort off-screen positionieren (kein Übergang)
+    canvas.style.transition = 'none';
+    canvas.style.transform  = 'translateX(-110vw)';
+    canvas.style.opacity    = '0';
+    canvas.offsetWidth; // Reflow erzwingen
+
+    // Dann mit Transition hereinfahren
+    canvas.style.transition = 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
+    canvas.style.transform  = 'translateX(0)';
+    canvas.style.opacity    = '1';
+  });
+
+  // Reset: Canvas sofort wieder raus, keine Transition
+  window.addEventListener('phone-reset', () => {
+    triggered = false;
+    cur.ry = 0.42; tgt.ry = 0.42;
+    cur.pz = 0;    tgt.pz = 0;
+    canvas.style.transition = 'none';
+    canvas.style.transform  = 'translateX(-110vw)';
+    canvas.style.opacity    = '0';
+  });
+
+  // Phase 2: scroll-getrieben → richtet sich gerade, kommt sanft näher (kein Clipping)
+  const section = document.getElementById('stoebern-section');
+  window.addEventListener('scroll', () => {
+    if (!triggered) return;
+    const rect  = section.getBoundingClientRect();
+    const range = section.offsetHeight - window.innerHeight;
+    if (range <= 0) return;
+    const p = Math.max(0, Math.min(1, -rect.top / range));
+    tgt.ry = 0.42 * (1 - p);  // richtet sich auf
+    tgt.pz = p * 0.6;          // sanfter Zoom – bei targetSize 4.8 kein Clipping
+  }, { passive: true });
+</script>
+
+<!-- ─── FRÜCHTE HINTERGRUND ─── -->
+<script type="module">
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+  const bgCanvas = document.getElementById('bg-canvas');
+  const bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, alpha: true, antialias: true });
+  bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  bgRenderer.setSize(window.innerWidth, window.innerHeight);
+  bgRenderer.outputColorSpace = THREE.SRGBColorSpace;
+
+  const bgScene = new THREE.Scene();
+  const bgCamera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+  bgCamera.position.z = 14;
+
+  // Lighting – warm ambient + zwei directional für schöne Schatten auf den Früchten
+  bgScene.add(new THREE.AmbientLight(0xffffff, 1.8));
+  const bgSun = new THREE.DirectionalLight(0xfffaf0, 3.0);
+  bgSun.position.set(5, 10, 8);
+  bgScene.add(bgSun);
+  const bgFill = new THREE.DirectionalLight(0xfff2e8, 0.6);
+  bgFill.position.set(-6, -4, 5);
+  bgScene.add(bgFill);
+
+  // Bildschirm-Grenzen in World-Space berechnen
+  function viewBounds() {
+    const h = 2 * Math.tan(THREE.MathUtils.degToRad(bgCamera.fov / 2)) * bgCamera.position.z;
+    return { h: h / 2, w: (h * bgCamera.aspect) / 2 };
+  }
+
+  // Modell auf Zielgröße normieren und in Wrapper-Group zentrieren
+  function prepareModel(gltf, targetSize) {
+    const model = gltf.scene;
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    const scale = targetSize / Math.max(size.x, size.y, size.z);
+    model.scale.setScalar(scale);
+    model.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
+    const wrapper = new THREE.Group();
+    wrapper.add(model);
+    return wrapper;
+  }
+
+  const fruits = [];
+
+  // Zufällige X-Position NUR im linken oder rechten Drittel – Mitte bleibt frei für den Text
+  function sideX(b) {
+    const side = Math.random() < 0.5 ? -1 : 1;
+    return side * (b.w * 0.38 + Math.random() * b.w * 0.68);
+  }
+
+  function spawnInstances(template, count) {
+    const b = viewBounds();
+    for (let i = 0; i < count; i++) {
+      const fruit = template.clone(true);
+      fruit.position.set(
+        sideX(b),
+        b.h + 1.5 + Math.random() * b.h * 1.8,
+        (Math.random() - 0.5) * 4
+      );
+      fruit.rotation.set(
+        Math.random() * Math.PI * 2,
+        Math.random() * Math.PI * 2,
+        Math.random() * Math.PI * 2
+      );
+      fruit.userData.vy    = 0.006 + Math.random() * 0.007;
+      fruit.userData.rx    = (Math.random() - 0.5) * 0.012;
+      fruit.userData.ry    = (Math.random() - 0.5) * 0.016;
+      fruit.userData.rz    = (Math.random() - 0.5) * 0.009;
+      bgScene.add(fruit);
+      fruits.push(fruit);
+    }
+  }
+
+  // Früchte nur auf Desktop laden – Mobile spart 13 MB + GPU-Last
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const isSlowConn = ['slow-2g', '2g'].includes(navigator.connection?.effectiveType);
+
+  if (isMobile || isSlowConn) {
+    // Kein Obst – Render-Loop gar nicht starten
+  } else {
+    let ready = 0;
+    const loader = new GLTFLoader();
+
+    // 600ms Verzögerung: Phone-GLB hat Ladevorrang
+    setTimeout(() => {
+      loader.load('3dModels/erdbeere.glb', gltf => {
+        spawnInstances(prepareModel(gltf, 1.5), 5);
+        if (++ready === 2) animate();
+      });
+      loader.load('3dModels/mango.glb', gltf => {
+        spawnInstances(prepareModel(gltf, 1.6), 5);
+        if (++ready === 2) animate();
+      });
+    }, 600);
+  }
+
+  const COLLISION_R = 1.05; // Kollisionsradius pro Frucht (halbe Zielgröße ~1.5)
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const b = viewBounds();
+
+    // Bewegung & Rotation
+    fruits.forEach(f => {
+      f.position.y -= f.userData.vy;
+      f.rotation.x += f.userData.rx;
+      f.rotation.y += f.userData.ry;
+      f.rotation.z += f.userData.rz;
+      if (f.position.y < -(b.h + 2)) {
+        f.position.y = b.h + 1.5 + Math.random() * 3;
+        f.position.x = sideX(b);
+      }
+    });
+
+    // Kollisionserkennung: Früchte dürfen sich nicht durchdringen
+    const minDist = COLLISION_R * 2;
+    for (let i = 0; i < fruits.length; i++) {
+      for (let j = i + 1; j < fruits.length; j++) {
+        const a = fruits[i], bFruit = fruits[j];
+        const dx = bFruit.position.x - a.position.x;
+        const dy = bFruit.position.y - a.position.y;
+        const dz = bFruit.position.z - a.position.z;
+        const distSq = dx * dx + dy * dy + dz * dz;
+        if (distSq < minDist * minDist && distSq > 0.0001) {
+          const dist = Math.sqrt(distSq);
+          const push = (minDist - dist) / dist * 0.5;
+          a.position.x      -= dx * push * 0.5;
+          a.position.y      -= dy * push * 0.5;
+          bFruit.position.x += dx * push * 0.5;
+          bFruit.position.y += dy * push * 0.5;
+        }
+      }
+    }
+
+    bgRenderer.render(bgScene, bgCamera);
+  }
+
+  window.addEventListener('resize', () => {
+    bgCamera.aspect = window.innerWidth / window.innerHeight;
+    bgCamera.updateProjectionMatrix();
+    bgRenderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
+
+</body>
+</html>
