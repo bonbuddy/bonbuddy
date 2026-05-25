@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { 'analytics_storage': 'denied', 'ad_storage': 'denied', 'wait_for_update': 500 });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HFQWHP3ZHW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HFQWHP3ZHW');
+</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BonBuddy.de – Deine App zum Einkaufen mit Köpfchen</title>
+<link rel="icon" type="image/png" href="fotos/icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+
+<style>
+/* ════════════════════════════════════════════════
+   BASE
+════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; width: 100%; }
+
+/* ── Cookie Banner ── */
+#bb-cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999;
+  background: #fff; border-top: 1px solid rgba(42,42,42,.1);
+  box-shadow: 0 -8px 32px rgba(42,42,42,.08); padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; font-family: 'Jost', sans-serif;
+  font-size: 14px; color: #2a2a2a; line-height: 1.5;
+}
+#bb-cookie-banner.bb-hidden { display: none !important; }
+#bb-cookie-banner p { margin: 0; flex: 1; min-width: 200px; }
+#bb-cookie-banner a { color: #519E8A; }
+#bb-cookie-btns { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
+.bb-btn-accept {
+  background: #519E8A; color: #fff; border: none;
+  padding: 10px 20px; border-radius: 999px; font-size: 14px;
+  font-weight: 700; cursor: pointer; font-family: inherit; transition: background .18s;
+}
+.bb-btn-accept:hover { background: #3f7c6c; }
+.bb-btn-decline {
+  background: transparent; color: #2a2a2a;
+  border: 1px solid rgba(42,42,42,.2); padding: 10px 20px;
+  border-radius: 999px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: border-color .18s;
+}
+.bb-btn-decline:hover { border-color: #519E8A; }
+
+/* ── HEADER OVERRIDE: Download-Button + Presse ── */
+.site-header { box-shadow: 0 1px 0 #eee; }
+.nav-cta {
+  background: #519e8a; color: #fff !important;
+  padding: 8px 20px; border-radius: 999px;
+  font-weight: 700 !important; font-size: 14px;
+  transition: background .18s !important;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: #3f7c6c !important; text-decoration: none !important; }
+@media (max-width: 768px) { .nav-cta { display: none; } }
+
+/* ── BEKANNT AUS ── */
+.bekannt-aus {
+  padding: 36px 0; background: #f8faf9;
+  border-top: 1px solid #e8f0ed; border-bottom: 1px solid #e8f0ed;
+  overflow: hidden;
+}
+.bekannt-aus-label {
+  text-align: center; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: #b0bfba;
+  margin-bottom: 16px;
+}
+.bekannt-aus-label::before, .bekannt-aus-label::after {
+  content: ''; display: inline-block; width: 32px; height: 1px;
+  background: #ccddd7; vertical-align: middle; margin: 0 10px;
+}
+.marquee-track-wrapper { position: relative; overflow: hidden; }
+.marquee-track-wrapper::before, .marquee-track-wrapper::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none;
+}
+.marquee-track-wrapper::before { left: 0; background: linear-gradient(to right, #f8faf9, transparent); }
+.marquee-track-wrapper::after  { right: 0; background: linear-gradient(to left, #f8faf9, transparent); }
+.marquee-track {
+  display: flex; align-items: center;
+  animation: marquee-scroll 50s linear infinite; width: max-content; will-change: transform;
+}
+@keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.marquee-item {
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 14px; padding: 8px 22px; background: #fff;
+  border: 1px solid #e0ede9; border-radius: 10px; height: 48px;
+}
+.marquee-item img { height: 24px; width: auto; max-width: 130px; object-fit: contain; filter: grayscale(1) opacity(.55); }
+.marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: #c5ddd7; margin: 0 6px; flex-shrink: 0; }
+
+/* ════════════════════════════════════════════════
+   SCROLL REVEAL (lightweight, kein AOS)
+════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ════════════════════════════════════════════════
+   GEMEINSAME SECTION-STYLES
+════════════════════════════════════════════════ */
+.v2-section {
+  padding: 88px 24px;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+.v2-section-full {
+  padding: 88px 24px;
+}
+.v2-eyebrow {
+  display: block;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #519e8a; margin-bottom: 14px;
+}
+.v2-headline {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 800; color: #1a2a26; line-height: 1.12;
+  letter-spacing: -0.025em; margin: 0 0 16px;
+}
+.v2-sub {
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  color: #6a8880; line-height: 1.7; max-width: 520px; margin: 0;
+}
+.v2-center { text-align: center; }
+.v2-center .v2-sub { margin: 0 auto; }
+hr.v2-divider { border: none; border-top: 1px solid #eef2f0; margin: 0; }
+
+/* ════════════════════════════════════════════════
+   SECTION: 3 SCHRITTE – super minimal
+════════════════════════════════════════════════ */
+.steps-minimal {
+  padding: 72px 24px 80px;
+  background: #fff;
+  border-bottom: 1px solid #eef2f0;
+}
+.steps-minimal-inner {
+  max-width: 1000px; margin: 0 auto; text-align: center;
+}
+.steps-minimal-inner .v2-headline { margin-bottom: 56px; }
+
+.steps-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: start;
+  gap: 0;
+}
+.step-min {
+  display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 16px;
+}
+.step-min-num {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #f0f7f4; border: 1.5px solid #c8e0d8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 800; color: #519e8a; flex-shrink: 0;
+}
+.step-min h3 {
+  font-size: 1rem; font-weight: 700; color: #1a2a26;
+  margin: 0; line-height: 1.3;
+}
+.step-min p {
+  font-size: 0.87rem; color: #7a9a94; line-height: 1.6; margin: 0; max-width: 220px;
+}
+.step-arrow-min {
+  padding-top: 14px;
+  color: #c8e0d8; font-size: 1.1rem; font-weight: 300; flex-shrink: 0; align-self: flex-start;
+}
+
+@media (max-width: 700px) {
+  .steps-row { grid-template-columns: 1fr; gap: 32px; }
+  .step-arrow-min { display: none; }
+  .step-min { align-items: flex-start; text-align: left; flex-direction: row; gap: 16px; }
+  .step-min-content { display: flex; flex-direction: column; gap: 6px; }
+  .step-min h3, .step-min p { text-align: left; }
+}
+
+/* ════════════════════════════════════════════════
+   SECTION: APP WIDGETS (das Herzstück)
+════════════════════════════════════════════════ */
+.widgets-section {
+  background: #f5f9f7;
+  padding: 88px 24px;
+  border-top: 1px solid #e8f0ed;
+  border-bottom: 1px solid #e8f0ed;
+}
+.widgets-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.widget-col-text {
+  display: flex; flex-direction: column; justify-content: center; gap: 24px;
+  padding-top: 12px;
+}
+.widget-col-cards {
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+/* App-Widget Card */
+.app-widget {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.07);
+  box-shadow: 0 4px 24px rgba(26, 74, 60, 0.07), 0 1px 4px rgba(0,0,0,0.04);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.app-widget:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(26, 74, 60, 0.11), 0 2px 8px rgba(0,0,0,0.05);
+}
+.widget-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid #f0f5f3;
+  display: flex; align-items: center; gap: 10px;
+}
+.widget-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, #519e8a, #3a7f6a);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.widget-title { font-size: 0.85rem; font-weight: 700; color: #1a2a26; }
+.widget-subtitle { font-size: 0.72rem; color: #9ab5ae; margin-top: 1px; }
+.widget-body { padding: 16px 20px 18px; }
+
+/* Price compare widget */
+.price-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 10px; margin-bottom: 6px;
+  font-size: 0.86rem;
+}
+.price-row:last-of-type { margin-bottom: 0; }
+.price-row.winner {
+  background: rgba(81,158,138,0.1); border: 1px solid rgba(81,158,138,0.22);
+}
+.price-row.other { background: #fafafa; border: 1px solid #f0f0f0; }
+.price-row .pr-rank {
+  font-size: 0.65rem; font-weight: 800; width: 18px; height: 18px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.price-row.winner .pr-rank { background: #519e8a; color: #fff; }
+.price-row.other .pr-rank { background: #eee; color: #aaa; }
+.price-row .pr-store { flex: 1; font-weight: 600; color: #1a2a26; }
+.price-row.other .pr-store { color: #7a9a94; }
+.price-row .pr-price { font-weight: 700; font-variant-numeric: tabular-nums; }
+.price-row.winner .pr-price { color: #519e8a; }
+.price-row.other .pr-price { color: #a0b5b0; }
+.price-row .pr-badge {
+  font-size: 0.62rem; font-weight: 800; letter-spacing: 0.04em;
+  background: #519e8a; color: #fff; padding: 2px 7px; border-radius: 999px;
+}
+.widget-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #f0f5f3;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.widget-savings { font-size: 0.8rem; color: #6a8880; }
+.widget-savings strong { color: #519e8a; }
+.widget-action {
+  font-size: 0.75rem; font-weight: 700; color: #519e8a;
+  background: rgba(81,158,138,0.1); padding: 5px 12px;
+  border-radius: 999px; cursor: pointer;
+}
+
+/* AI List widget */
+.ai-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 9px 0; border-bottom: 1px solid #f5f9f7;
+}
+.ai-item:last-of-type { border-bottom: none; }
+.ai-check-box {
+  width: 22px; height: 22px; border-radius: 6px;
+  background: rgba(81,158,138,0.12); border: 1.5px solid rgba(81,158,138,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #519e8a; flex-shrink: 0; margin-top: 1px;
+}
+.ai-item-name { font-size: 0.88rem; font-weight: 600; color: #1a2a26; }
+.ai-item-note {
+  font-size: 0.72rem; color: #9ab5ae; margin-top: 2px; display: flex; gap: 8px;
+}
+.ai-tag {
+  display: inline-block; font-size: 0.64rem; font-weight: 700;
+  padding: 1px 6px; border-radius: 4px; flex-shrink: 0;
+}
+.ai-tag.offer { background: rgba(240,180,40,0.15); color: #c08a00; }
+.ai-tag.low   { background: rgba(81,158,138,0.12); color: #2f7a66; }
+.ai-tag.auto  { background: rgba(100,100,220,0.1); color: #4444aa; }
+.ai-more {
+  font-size: 0.78rem; color: #9ab5ae; margin-top: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.ai-more::before {
+  content: ''; flex: 1; height: 1px; background: #eef2f0;
+}
+.ai-more::after {
+  content: ''; flex: 1; height: 1px; background: #eef2f0;
+}
+
+@media (max-width: 800px) {
+  .widgets-inner { grid-template-columns: 1fr; }
+  .widget-col-text { order: -1; }
+}
+
+/* ════════════════════════════════════════════════
+   SECTION: 3 OPTIONEN
+════════════════════════════════════════════════ */
+.options-section { padding: 88px 24px; background: #fff; }
+.options-inner { max-width: 1060px; margin: 0 auto; }
+.options-inner .v2-headline { margin-bottom: 8px; }
+.options-inner .v2-sub { margin-bottom: 48px; }
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.option-card-v2 {
+  border: 1.5px solid #e8f0ed;
+  border-radius: 20px;
+  padding: 32px 28px;
+  background: #fff;
+  display: flex; flex-direction: column; gap: 12px;
+  position: relative;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  cursor: default;
+}
+.option-card-v2:hover {
+  border-color: #519e8a;
+  box-shadow: 0 8px 32px rgba(81,158,138,0.1);
+  transform: translateY(-4px);
+}
+.option-card-v2.featured {
+  border-color: #519e8a;
+  background: linear-gradient(160deg, #f5fbf8 0%, #fff 100%);
+  box-shadow: 0 8px 32px rgba(81,158,138,0.12);
+}
+.option-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: #519e8a; color: #fff;
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em;
+  padding: 4px 14px; border-radius: 999px; white-space: nowrap;
+}
+.option-icon-wrap {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.option-card-v2:not(.featured) .option-icon-wrap { background: #f5f9f7; }
+.option-card-v2.featured .option-icon-wrap { background: rgba(81,158,138,0.15); }
+
+.option-card-v2 h3 {
+  font-size: 1.1rem; font-weight: 800; color: #1a2a26;
+  margin: 0; letter-spacing: -0.01em;
+}
+.option-tagline {
+  font-size: 0.8rem; font-weight: 600; color: #519e8a; margin: -4px 0 4px;
+}
+.option-card-v2 p {
+  font-size: 0.88rem; color: #6a8880; line-height: 1.65; margin: 0; flex: 1;
+}
+.option-detail {
+  font-size: 0.75rem; font-weight: 600; color: #b0c8c2;
+  border-top: 1px solid #f0f7f4; padding-top: 12px; margin-top: 4px;
+}
+.option-card-v2.featured .option-detail { color: #7ab5a8; }
+
+@media (max-width: 760px) {
+  .options-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+}
+
+/* ════════════════════════════════════════════════
+   SECTION: STATS STRIP
+════════════════════════════════════════════════ */
+.stats-strip {
+  background: #f5f9f7;
+  border-top: 1px solid #e8f0ed; border-bottom: 1px solid #e8f0ed;
+  padding: 56px 24px;
+}
+.stats-strip-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; justify-content: center; gap: clamp(32px, 8vw, 96px); flex-wrap: wrap;
+}
+.stat-v2 { text-align: center; }
+.stat-v2-num {
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-weight: 800; color: #1a2a26; letter-spacing: -0.04em; line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-v2-num em { font-style: normal; color: #519e8a; }
+.stat-v2-label { font-size: 0.82rem; color: #8aada7; font-weight: 600; }
+
+/* ════════════════════════════════════════════════
+   SECTION: TESTIMONIALS
+════════════════════════════════════════════════ */
+.testimonials-section { padding: 88px 24px; background: #fff; }
+.testimonials-inner { max-width: 1060px; margin: 0 auto; }
+.testimonials-inner .v2-headline { margin-bottom: 48px; }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.testi-card {
+  background: #f8fbfa; border: 1px solid #e8f0ed; border-radius: 16px;
+  padding: 28px 24px; display: flex; flex-direction: column; gap: 14px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.testi-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(26,74,60,0.08); }
+.testi-stars { color: #f0b429; font-size: 0.85rem; letter-spacing: 0.06em; }
+.testi-text {
+  font-size: 0.9rem; color: #3d5c56; line-height: 1.7; flex: 1;
+  font-style: italic;
+}
+.testi-author { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+.testi-avatar {
+  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, #519e8a, #3a7f6a);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.9rem; color: #fff;
+}
+.testi-name { font-size: 0.88rem; font-weight: 700; color: #1a2a26; }
+.testi-role { font-size: 0.75rem; color: #9ab5ae; }
+
+@media (max-width: 760px) {
+  .testimonials-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+}
+
+/* ════════════════════════════════════════════════
+   SECTION: CTA
+════════════════════════════════════════════════ */
+.cta-v2 {
+  background: linear-gradient(135deg, #2e6054 0%, #519e8a 60%, #68b8a2 100%);
+  padding: 110px 24px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-v2::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 110%, rgba(255,255,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-v2 h2 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 800; color: #fff; letter-spacing: -0.03em;
+  line-height: 1.08; margin: 0 0 14px; position: relative;
+}
+.cta-v2 > p {
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  color: rgba(255,255,255,0.65); margin: 0 0 40px; position: relative;
+}
+.cta-btns {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative;
+}
+.cta-btn-main {
+  background: #fff; color: #1a3530;
+  font-family: 'Jost', sans-serif; font-size: 0.97rem; font-weight: 700;
+  padding: 15px 34px; border-radius: 999px; text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.14); display: inline-block;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cta-btn-main:hover {
+  transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  text-decoration: none; color: #1a3530;
+}
+.cta-btn-ghost {
+  background: transparent; color: rgba(255,255,255,0.85);
+  font-family: 'Jost', sans-serif; font-size: 0.97rem; font-weight: 600;
+  padding: 15px 34px; border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,0.35); text-decoration: none; display: inline-block;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cta-btn-ghost:hover {
+  border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1);
+  text-decoration: none; color: #fff;
+}
+</style>
+</head>
+<body>
+
+<!-- Cookie Banner -->
+<div id="bb-cookie-banner">
+  <p>Wir verwenden <strong>Google Analytics</strong> um zu verstehen, wie unsere Website genutzt wird.
+  Mehr dazu in unserer <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+  <div id="bb-cookie-btns">
+    <button class="bb-btn-decline" onclick="bbDeclineCookies()">Ablehnen</button>
+    <button class="bb-btn-accept" onclick="bbAcceptCookies()">Akzeptieren</button>
+  </div>
+</div>
+<script>
+(function(){
+  var c = localStorage.getItem('bb_cookie_consent');
+  if(c === 'accepted'){ gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'}); document.getElementById('bb-cookie-banner').classList.add('bb-hidden'); }
+  else if(c === 'declined'){ document.getElementById('bb-cookie-banner').classList.add('bb-hidden'); }
+})();
+function bbAcceptCookies(){ localStorage.setItem('bb_cookie_consent','accepted'); gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'}); document.getElementById('bb-cookie-banner').classList.add('bb-hidden'); }
+function bbDeclineCookies(){ localStorage.setItem('bb_cookie_consent','declined'); document.getElementById('bb-cookie-banner').classList.add('bb-hidden'); }
+</script>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="nav-container">
+    <a href="index.html" class="logo-link">
+      <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="index-v2.html">Home</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="app-v2.html">App</a></li>
+        <li><a href="partner.html">Partner</a></li>
+        <li><a href="presse.html">Presse</a></li>
+        <li><a href="hilfe.html">Hilfe</a></li>
+        <li><a href="app-download.html" class="nav-cta">Herunterladen</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen">☰</button>
+  </div>
+</header>
+
+<!-- ── HERO (unverändert) ── -->
+<section class="hero">
+  <div class="hero-text">
+    <h2>Clever einkaufen. Zeit <span>sparen</span>. Angebote nutzen.</h2>
+    <p>BonBuddy zeigt dir, wo du deine Einkaufsliste am günstigsten bekommst – in einem Markt oder clever auf mehrere verteilt.</p>
+    <a href="app-download.html" class="btn">Jetzt herunterladen!</a>
+  </div>
+  <div class="hero-img">
+    <img src="fotos/Startseite2Handys.png" alt="App Screenshot">
+  </div>
+</section>
+
+<!-- ── BEKANNT AUS ── -->
+<div class="bekannt-aus">
+  <p class="bekannt-aus-label">Bekannt aus</p>
+  <div class="marquee-track-wrapper">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-item"><img src="StartUpTeensLogo.png" alt="StartUpTeens"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RadioKiepenkerlLogo.png" alt="Radio Kiepenkerl"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="WNLogo.png" alt="Westfälische Nachrichten"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="yfnLogo.png" alt="YFN"></div>
+      <div class="marquee-dot"></div>
+      <div class="marquee-item"><img src="RuhrNachrichtenLogo.png" alt="Ruhr Nachrichten"></div>
+      <div class="marquee-dot"></div>
+    </div>
+  </div>
+</div>
+
+<hr class="v2-divider">
+
+<!-- ══════════════════════════════════════════
+     3 SCHRITTE – minimal
+══════════════════════════════════════════ -->
+<div class="steps-minimal">
+  <div class="steps-minimal-inner">
+    <span class="v2-eyebrow reveal">So funktioniert's</span>
+    <h2 class="v2-headline reveal">In drei Schritten zu deinem günstigsten Einkauf.</h2>
+    <div class="steps-row">
+      <div class="step-min reveal reveal-delay-1">
+        <div class="step-min-num">01</div>
+        <div class="step-min-content">
+          <h3>Liste schreiben</h3>
+          <p>Selbst eintippen – oder schon nach wenigen Einkäufen das Schreiben von der KI übernehmen lassen.</p>
+        </div>
+      </div>
+      <div class="step-arrow-min reveal">→</div>
+      <div class="step-min reveal reveal-delay-2">
+        <div class="step-min-num">02</div>
+        <div class="step-min-content">
+          <h3>Alle Preise checken</h3>
+          <p>Alle Supermärkte in deiner Nähe – vollständiges Sortiment und tagesaktuelle Angebote.</p>
+        </div>
+      </div>
+      <div class="step-arrow-min reveal reveal-delay-2">→</div>
+      <div class="step-min reveal reveal-delay-3">
+        <div class="step-min-num">03</div>
+        <div class="step-min-content">
+          <h3>Deinen Weg wählen</h3>
+          <p>Schnell, clever oder maximal günstig – du entscheidest, wie du sparen willst.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     APP WIDGETS
+══════════════════════════════════════════ -->
+<div class="widgets-section">
+  <div class="widgets-inner">
+
+    <div class="widget-col-text reveal">
+      <span class="v2-eyebrow">Was die App wirklich macht</span>
+      <h2 class="v2-headline">Nicht nur Prospekte.<br>Das komplette Regal.</h2>
+      <p class="v2-sub">Andere Apps zeigen nur Flyer-Angebote. BonBuddy kennt <strong>über 25.000 Produkte</strong> aus deinen Supermärkten, mit tagesaktuellen Preisen. Der BonBuddy guckt sich dein Einkaufsverhalten, Antebote und andere Parameter an, um deine Liste nach wenigen Einkäufen für dich zu schreiben. <br> <strong>Das spart Zeit und Geld!</strong> </br></p>
+    </div>
+
+    <div class="widget-col-cards">
+
+      <!-- Widget 1: Preisvergleich -->
+      <div class="app-widget reveal reveal-delay-1">
+        <div class="widget-header">
+          <div class="widget-icon">🔍</div>
+          <div>
+            <div class="widget-title">Preisvergleich</div>
+            <div class="widget-subtitle">14 Produkte · gerade aktualisiert</div>
+          </div>
+        </div>
+        <div class="widget-body">
+          <div class="price-row winner">
+            <span class="pr-rank">1</span>
+            <span class="pr-store">REWE</span>
+            <span class="pr-price">38,40 €</span>
+            <span class="pr-badge">Günstigster</span>
+          </div>
+          <div class="price-row other">
+            <span class="pr-rank">2</span>
+            <span class="pr-store">Aldi Nord</span>
+            <span class="pr-price">41,10 €</span>
+          </div>
+          <div class="price-row other">
+            <span class="pr-rank">3</span>
+            <span class="pr-store">Lidl</span>
+            <span class="pr-price">43,85 €</span>
+          </div>
+          <div class="price-row other">
+            <span class="pr-rank">4</span>
+            <span class="pr-store">Edeka</span>
+            <span class="pr-price">45,20 €</span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <span class="widget-savings">Du sparst bis zu <strong>6,80 €</strong></span>
+          <span class="widget-action">Route starten</span>
+        </div>
+      </div>
+
+      <!-- Widget 2: KI-Liste -->
+      <div class="app-widget reveal reveal-delay-2">
+        <div class="widget-header">
+          <div class="widget-icon">✨</div>
+          <div>
+            <div class="widget-title">Einkaufsliste</div>
+            <div class="widget-subtitle">KI-Vorschlag · basiert auf deinen Einkäufen</div>
+          </div>
+        </div>
+        <div class="widget-body">
+          <div class="ai-item">
+            <div class="ai-check-box">✓</div>
+            <div>
+              <div class="ai-item-name">Vollmilch 3,5 %</div>
+              <div class="ai-item-note"><span class="ai-tag low">Fast leer</span> 1,09 € bei REWE</div>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-check-box">✓</div>
+            <div>
+              <div class="ai-item-name">Haferflocken kernig</div>
+              <div class="ai-item-note"><span class="ai-tag offer">Angebot bis Do.</span> –30 % bei Aldi</div>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-check-box">✓</div>
+            <div>
+              <div class="ai-item-name">Bananen</div>
+              <div class="ai-item-note"><span class="ai-tag auto">Jede Woche</span> 1,29 €/kg</div>
+            </div>
+          </div>
+          <div class="ai-more">+ 5 weitere KI-Vorschläge</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     3 OPTIONEN
+══════════════════════════════════════════ -->
+<div class="options-section">
+  <div class="options-inner">
+    <span class="v2-eyebrow reveal">Dein Weg</span>
+    <h2 class="v2-headline reveal">Drei Wege, immer eine Ersparnis.</h2>
+    <p class="v2-sub reveal">Du entscheidest, was dir wichtiger ist – BonBuddy rechnet den optimalen Weg aus.</p>
+
+    <div class="options-grid">
+
+      <div class="option-card-v2 reveal reveal-delay-1">
+        <div class="option-icon-wrap">⚡</div>
+        <h3>Schnell-Tipp</h3>
+        <div class="option-tagline">Ein Markt, sofort fertig</div>
+        <p>Der günstigste Supermarkt für deine gesamte Einkaufsliste. Kein Hin- und Herfahren – einmal hin, alles kaufen, fertig.</p>
+        <div class="option-detail">Ideal für: wenig Zeit</div>
+      </div>
+
+      <div class="option-card-v2 featured reveal reveal-delay-2">
+        <div class="option-badge">Empfohlen</div>
+        <div class="option-icon-wrap">★</div>
+        <h3>BonBuddy-Tipp</h3>
+        <div class="option-tagline">Clevere Balance</div>
+        <p>So wenige Märkte wie möglich, so viel Ersparnis wie sinnvoll. Der Algorithmus findet den sweet spot zwischen Aufwand und Preis.</p>
+        <div class="option-detail">Ideal für: den Alltag</div>
+      </div>
+
+      <div class="option-card-v2 reveal reveal-delay-3">
+        <div class="option-icon-wrap">💰</div>
+        <h3>Preis-Tipp</h3>
+        <div class="option-tagline">Maximale Ersparnis</div>
+        <p>Jedes Produkt dort kaufen, wo es am günstigsten ist. Mehrere Märkte, aber der maximale Preisvorteil für deinen gesamten Einkauf.</p>
+        <div class="option-detail">Ideal für: jeden Cent sparen</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     STATS
+══════════════════════════════════════════ -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="stat-v2 reveal">
+      <div class="stat-v2-num">25<em>k+</em></div>
+      <div class="stat-v2-label">Produkte im Sortiment</div>
+    </div>
+    <div class="stat-v2 reveal reveal-delay-1">
+      <div class="stat-v2-num">3</div>
+      <div class="stat-v2-label">Sparwege zur Wahl</div>
+    </div>
+    <div class="stat-v2 reveal reveal-delay-2">
+      <div class="stat-v2-num">5<em>+</em></div>
+      <div class="stat-v2-label">Supermärkte verglichen</div>
+    </div>
+    <div class="stat-v2 reveal reveal-delay-3">
+      <div class="stat-v2-num"><em>∞</em></div>
+      <div class="stat-v2-label">KI lernt mit</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<div class="testimonials-section">
+  <div class="testimonials-inner">
+    <h2 class="v2-headline reveal">Was Beta-Tester sagen.</h2>
+    <div class="testimonials-grid">
+
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">„Keinen Stress mehr am Monatsende! Seitdem ich BonBuddy verwende esse ich gesünder und günstiger. So bleibt mir auch noch Geld für andere Ausgaben."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">L</div>
+          <div>
+            <div class="testi-name">Lukas</div>
+            <div class="testi-role">Student, 21</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">„Ich hätte nicht gedacht, dass die App für mich als digitale Laiin so einfach zu bedienen ist. Sehr nutzerfreundlich und ich spare wirklich spürbar."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">D</div>
+          <div>
+            <div class="testi-name">Doris</div>
+            <div class="testi-role">Rentnerin, 67</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">„Besonders beeindruckend ist die intelligente Einkaufsliste! Die App weiß schon vor mir, wann ich meinen Vorrat wieder auffüllen sollte."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Susanne</div>
+            <div class="testi-role">Mutter, 44</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CTA
+══════════════════════════════════════════ -->
+<section class="cta-v2 reveal">
+  <h2>Bereit, weniger zu zahlen?</h2>
+  <p>Kostenlos herunterladen. Beim ersten Einkauf sparen.</p>
+  <div class="cta-btns">
+    <a href="app-download.html" class="cta-btn-main">App herunterladen</a>
+    <a href="partner.html" class="cta-btn-ghost">Partner werden</a>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  // ── Cookie ──
+  function bbAcceptCookies(){ localStorage.setItem('bb_cookie_consent','accepted'); gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'}); document.getElementById('bb-cookie-banner').classList.add('bb-hidden'); }
+  function bbDeclineCookies(){ localStorage.setItem('bb_cookie_consent','declined'); document.getElementById('bb-cookie-banner').classList.add('bb-hidden'); }
+
+  // ── Nav toggle ──
+  document.getElementById('nav-toggle').addEventListener('click', function() {
+    const nav = document.getElementById('main-nav');
+    nav.classList.toggle('open');
+    this.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  });
+
+  // ── Scroll reveal (leichtgewichtig, kein AOS) ──
+  (function() {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    const io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el) { io.observe(el); });
+  })();
+
+  // ── Marquee duplizieren ──
+  window.addEventListener('load', function() {
+    var t = document.getElementById('marqueeTrack');
+    if (!t) return;
+    t.innerHTML += t.innerHTML + t.innerHTML;
+  });
+
+  // ── Footer laden ──
+  fetch('footer.html?v=' + Date.now())
+    .then(function(r){ return r.text(); })
+    .then(function(html){
+      var ph = document.getElementById('footer-placeholder');
+      ph.innerHTML = html;
+      [].forEach.call(ph.getElementsByTagName('script'), function(s) {
+        var n = document.createElement('script');
+        if (s.src) n.src = s.src; else n.textContent = s.textContent;
+        document.body.appendChild(n);
+      });
+    });
+</script>
+</body>
+</html>
