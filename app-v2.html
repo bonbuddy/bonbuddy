@@ -340,9 +340,6 @@
 
     .nav-toggle { display: block; }
 
-    /* Früchte-Canvas auf Mobile ausblenden – spart 13 MB Download + GPU */
-    #bg-canvas { display: none; }
-
     .feature-section { min-height: 150vh; } /* kürzerer Scroll-Bereich auf Mobile */
 
     .feat-layout {
@@ -674,24 +671,22 @@ function bbDeclineCookies(){
     }
   }
 
-  // Früchte nur auf Desktop laden – Mobile spart 13 MB + GPU-Last
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
   const isSlowConn = ['slow-2g', '2g'].includes(navigator.connection?.effectiveType);
+  const fruitCount = isMobile ? 3 : 5;
 
-  if (isMobile || isSlowConn) {
-    // Kein Obst – Render-Loop gar nicht starten
-  } else {
+  if (!isSlowConn) {
     let ready = 0;
     const loader = new GLTFLoader();
 
     // 600ms Verzögerung: Phone-GLB hat Ladevorrang
     setTimeout(() => {
       loader.load('3dModels/erdbeere.glb', gltf => {
-        spawnInstances(prepareModel(gltf, 1.5), 5);
+        spawnInstances(prepareModel(gltf, 1.5), fruitCount);
         if (++ready === 2) animate();
       });
       loader.load('3dModels/mango.glb', gltf => {
-        spawnInstances(prepareModel(gltf, 1.6), 5);
+        spawnInstances(prepareModel(gltf, 1.6), fruitCount);
         if (++ready === 2) animate();
       });
     }, 600);
