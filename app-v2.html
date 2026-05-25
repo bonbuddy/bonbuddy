@@ -281,13 +281,56 @@
   }
 
   /* 3D-Phone Canvas */
-  #phone-canvas {
+  #phone-wrap {
+    position: relative;
     flex: 0 0 auto;
     width: clamp(320px, 50%, 600px);
     height: clamp(520px, 82vh, 880px);
-    display: block;
     opacity: 0;
     will-change: transform, opacity;
+  }
+
+  #phone-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ─── TAP-HIGHLIGHT ─── */
+  #tap-highlight {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  /*
+    Tap-Highlight Rechteck – hier anpassen:
+      x, y     = Position (% des Canvas, von links/oben)
+      width    = Breite des Kastens (%)
+      height   = Höhe des Kastens  (%)
+      rx       = Eckenradius in px
+    → Attribute direkt im <rect id="tap-rect"> im HTML ändern
+  */
+  #tap-rect {
+    fill: none;
+    stroke: #68d4b8;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    opacity: 0;
+  }
+
+  @keyframes tapDraw {
+    0%   { stroke-dashoffset: 600; opacity: 1; }
+    100% { stroke-dashoffset: 0;   opacity: 1; }
+  }
+
+  #tap-rect.animate {
+    animation: tapDraw 0.85s ease-out forwards;
   }
 
   .feat-desc {
@@ -309,6 +352,16 @@
     letter-spacing: -0.01em;
     text-align: right;
   }
+
+  .feat-text-flip { perspective: 800px; }
+
+  #stoebern-text {
+    transform-origin: 50% 50%;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+  #stoebern-text.txt-out { animation: tumbleOut 0.36s cubic-bezier(0.55, 0, 1, 0.6) forwards; }
+  #stoebern-text.txt-in  { animation: tumbleIn  0.4s  cubic-bezier(0, 0.4, 0.45, 1) forwards; }
 
   /* ─── MOBILE ─── */
   @media (max-width: 768px) {
@@ -348,7 +401,7 @@
       gap: 24px;
     }
     /* Phone auf Mobile groß und präsent */
-    #phone-canvas {
+    #phone-wrap {
       width: clamp(260px, 88vw, 440px);
       height: clamp(440px, 62vh, 620px);
     }
@@ -425,9 +478,22 @@ function bbDeclineCookies(){
   <div class="feat-sticky">
     <div class="feat-bg-text" id="stoebern-bg" aria-hidden="true">Stöbern</div>
     <div class="feat-layout">
-      <canvas id="phone-canvas"></canvas>
+      <div id="phone-wrap">
+        <canvas id="phone-canvas"></canvas>
+        <svg id="tap-highlight" aria-hidden="true">
+          <!-- ↓↓ HIER Position & Größe des Kastens anpassen ↓↓
+               x      = horizontal (% von links des Canvas)
+               y      = vertikal   (% von oben  des Canvas)
+               width  = Breite     (% des Canvas)
+               height = Höhe       (% des Canvas)
+               rx     = Eckenradius in px -->
+          <rect id="tap-rect" x="65.3%" y="19.3%" width="13%" height="4.5%" rx="8" />
+        </svg>
+      </div>
       <div class="feat-desc" id="stoebern-desc">
-        <p>Entdecke Angebote &amp; Empfehlungen</p>
+        <div class="feat-text-flip">
+          <p id="stoebern-text">Entdecke Angebote &amp; Empfehlungen</p>
+        </div>
       </div>
     </div>
   </div>
@@ -470,13 +536,24 @@ function bbDeclineCookies(){
     window.dispatchEvent(new CustomEvent('phone-reset'));
   }
 
+  let sectionInView = false;
+
   new IntersectionObserver(entries => {
+    sectionInView = entries[0].isIntersecting;
     if (entries[0].isIntersecting) {
       triggerStoebern();
     } else {
       resetStoebern();
     }
   }, { threshold: 0.1 }).observe(document.getElementById('stoebern-section'));
+
+  // Wenn die Seite aus dem Hintergrund zurückkommt und die Section noch sichtbar ist,
+  // direkt neu triggern – sonst bleibt das Phone nach App-Wechsel verschwunden
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && sectionInView) {
+      triggerStoebern();
+    }
+  });
 
   // Mobile Nav
   const toggle = document.getElementById('nav-toggle');
@@ -493,7 +570,29 @@ function bbDeclineCookies(){
   import * as THREE from 'three';
   import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-  const canvas = document.getElementById('phone-canvas');
+  const canvas    = document.getElementById('phone-canvas');
+  const phoneWrap = document.getElementById('phone-wrap');
+  const tapRect   = document.getElementById('tap-rect');
+  let tapShown    = false;
+
+  const stoebernText = document.getElementById('stoebern-text');
+  const featTexts    = ['Entdecke Angebote & Empfehlungen', 'Finde alle Angebote in deiner Umgebung'];
+  let featTextIdx    = 0;
+  let featTextBusy   = false;
+
+  function switchFeatText(idx) {
+    if (idx === featTextIdx || featTextBusy) return;
+    featTextBusy = true;
+    stoebernText.classList.add('txt-out');
+    setTimeout(() => {
+      featTextIdx = idx;
+      stoebernText.textContent = featTexts[idx];
+      stoebernText.classList.remove('txt-out');
+      void stoebernText.offsetWidth;
+      stoebernText.classList.add('txt-in');
+      setTimeout(() => { stoebernText.classList.remove('txt-in'); featTextBusy = false; }, 400);
+    }, 360);
+  }
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -562,28 +661,31 @@ function bbDeclineCookies(){
     triggered = true;
 
     // Sofort off-screen positionieren (kein Übergang)
-    canvas.style.transition = 'none';
-    canvas.style.transform  = 'translateX(-110vw)';
-    canvas.style.opacity    = '0';
-    canvas.offsetWidth; // Reflow erzwingen
+    phoneWrap.style.transition = 'none';
+    phoneWrap.style.transform  = 'translateX(-110vw)';
+    phoneWrap.style.opacity    = '0';
+    phoneWrap.offsetWidth; // Reflow erzwingen
 
     // Dann mit Transition hereinfahren
-    canvas.style.transition = 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
-    canvas.style.transform  = 'translateX(0)';
-    canvas.style.opacity    = '1';
+    phoneWrap.style.transition = 'transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
+    phoneWrap.style.transform  = 'translateX(0)';
+    phoneWrap.style.opacity    = '1';
   });
 
-  // Reset: Canvas sofort wieder raus, keine Transition
+  // Reset: Wrapper sofort wieder raus, Tap-Highlight verstecken
   window.addEventListener('phone-reset', () => {
     triggered = false;
+    tapShown  = false;
+    tapRect.classList.remove('animate');
     cur.ry = 0.42; tgt.ry = 0.42;
     cur.pz = 0;    tgt.pz = 0;
-    canvas.style.transition = 'none';
-    canvas.style.transform  = 'translateX(-110vw)';
-    canvas.style.opacity    = '0';
+    phoneWrap.style.transition = 'none';
+    phoneWrap.style.transform  = 'translateX(-110vw)';
+    phoneWrap.style.opacity    = '0';
   });
 
   // Phase 2: scroll-getrieben → richtet sich gerade, kommt sanft näher (kein Clipping)
+  // Bei p > 0.88 (Handy fast gerade) → Tap-Highlight einmal abspielen
   const section = document.getElementById('stoebern-section');
   window.addEventListener('scroll', () => {
     if (!triggered) return;
@@ -591,8 +693,24 @@ function bbDeclineCookies(){
     const range = section.offsetHeight - window.innerHeight;
     if (range <= 0) return;
     const p = Math.max(0, Math.min(1, -rect.top / range));
-    tgt.ry = 0.42 * (1 - p);  // richtet sich auf
-    tgt.pz = p * 0.6;          // sanfter Zoom – bei targetSize 4.8 kein Clipping
+    tgt.ry = 0.42 * (1 - p);
+    tgt.pz = p * 1.0;
+
+    if (p > 0.88) {
+      switchFeatText(1);
+      if (!tapShown) {
+        tapShown = true;
+        tapRect.classList.remove('animate');
+        void tapRect.offsetWidth;
+        tapRect.classList.add('animate');
+      }
+    } else if (p < 0.75) {
+      switchFeatText(0);
+      if (tapShown) {
+        tapShown = false;
+        tapRect.classList.remove('animate');
+      }
+    }
   }, { passive: true });
 </script>
 
