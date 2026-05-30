@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>BonBuddy Beta 1 – deine App zum Einkaufen mit Köpfchen</title>
+  <meta name="description" content="Jetzt live: BonBuddy Beta 1 in Lüdinghausen. Jetzt für die Beta anmelden." />
+  <meta property="og:title" content="BonBuddy Beta 1 – deine App zum Einkaufen mit Köpfchen" />
+  <meta property="og:description" content="Clever einkaufen. Zeit sparen. Angebote nutzen." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <style>
+    /* ── Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:      #ffffff;
+      --bg-alt:  #F5FAF8;
+      --text:    #1D1D1F;
+      --sub:     #6E6E73;
+      --mint:    #519E8A;
+      --mint-dk: #3f7c6c;
+      --border:  rgba(0,0,0,0.08);
+      --max:     1080px;
+      --pad:     clamp(20px, 4vw, 44px);
+      --radius:  20px;
+    }
+
+    body {
+      font-family: "Jost", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+
+    /* ══════════════════════════════════════════════
+       3D HERO
+    ══════════════════════════════════════════════ */
+    .hero-wrapper { height: 200vh; }
+
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      background: #519e8a;
+    }
+
+    /* Very subtle vignette — just a whisper */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, transparent 45%, rgba(0,0,0,0.18) 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── Hero left column (countdown + bg text) ── */
+    .hero-left {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-52%);
+      width: 55%;
+      padding-left: clamp(2.5rem, 8vw, 8rem);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ── Countdown ── */
+    .countdown {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(0.9rem, 2vw, 2rem);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* warm glow behind the numbers */
+    .countdown::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -12px;
+      transform: translateY(-50%);
+      width: calc(100% + 24px);
+      height: 320%;
+      background: radial-gradient(ellipse, rgba(255, 255, 255, 0.14) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .cd-unit { display: flex; flex-direction: column; align-items: flex-start; }
+
+    .cd-value {
+      font-size: clamp(1.9rem, 4vw, 3.6rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+      text-shadow:
+        0 0 28px rgba(255, 255, 255, 0.45),
+        0 0 60px rgba(255,190,50,0.18),
+        0 2px 10px rgba(0,0,0,0.35);
+    }
+
+    .cd-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-top: 0.3rem;
+    }
+
+    .cd-sep {
+      font-size: clamp(1.9rem, 4vw, 3.6rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.25);
+      line-height: 1;
+    }
+
+    /* ── "Are YOU Ready?" ghost text ── */
+    .hero-bg-text {
+      pointer-events: none;
+      user-select: none;
+      line-height: 0.87;
+      margin-top: 0.15em;
+      z-index: 1;
+    }
+
+    .hero-bg-text span {
+      display: block;
+      font-weight: 900;
+      font-size: clamp(4.5rem, 10.5vw, 10rem);
+      letter-spacing: -0.04em;
+      color: rgba(255,255,255,0.10);
+    }
+
+    .hero-bg-text span.you {
+      font-style: italic;
+      color: rgba(255,255,255,0.12);
+    }
+
+    /* ── 3D Phone ── */
+    #phone-container {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 42%;
+      height: 100%;
+      z-index: 3;
+      will-change: transform, opacity;
+    }
+
+    #three-canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+
+    /* ── Scroll hint ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 12;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      opacity: 0.72;
+      animation: bobDown 2s ease-in-out infinite;
+    }
+    .scroll-hint span { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; }
+    .scroll-hint svg { filter: drop-shadow(0 0 6px rgba(255,255,255,0.35)); }
+    @keyframes bobDown {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.72; }
+      50%       { transform: translateX(-50%) translateY(10px); opacity: 0.95; }
+    }
+
+
+    /* ══════════════════════════════════════════════
+       SCROLL ANIMATIONS
+    ══════════════════════════════════════════════ */
+    [data-a] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-a].in { opacity: 1; transform: none; }
+    [data-a][data-d="1"] { transition-delay: 0.08s; }
+    [data-a][data-d="2"] { transition-delay: 0.16s; }
+    [data-a][data-d="3"] { transition-delay: 0.24s; }
+    [data-a][data-d="4"] { transition-delay: 0.32s; }
+
+
+    /* ══════════════════════════════════════════════
+       CONTENT SECTIONS
+    ══════════════════════════════════════════════ */
+
+    /* ── Intro ── */
+    .s-intro {
+      padding: clamp(56px, 8vw, 96px) 0 clamp(40px, 6vw, 72px);
+      background: var(--bg);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(81,158,138,0.25);
+      background: rgba(81,158,138,0.08);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .badge .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 0 5px rgba(81,158,138,0.18);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 5px rgba(81,158,138,0.18); }
+      50%       { box-shadow: 0 0 0 9px rgba(81,158,138,0.08); }
+    }
+
+    .intro-h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 18px;
+      min-height: 1.2em; /* prevent layout jump during typewriter */
+    }
+
+    .intro-sub {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--sub);
+      max-width: 56ch;
+      margin-bottom: 28px;
+      line-height: 1.65;
+    }
+
+    .ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 28px; }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 11px 20px;
+      font-family: "Jost", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(110deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.26) 50%, rgba(255,255,255,0) 80%);
+      transform: translateX(-130%);
+      transition: transform 0.55s ease;
+      pointer-events: none;
+    }
+    @media (hover:hover) {
+      .btn:hover { transform: translateY(-2px); }
+      .btn:hover::after { transform: translateX(130%); }
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--mint); border-color: transparent; color: #fff; box-shadow: 0 8px 22px rgba(81,158,138,0.24); }
+    @media (hover:hover) { .btn-primary:hover { background: var(--mint-dk); box-shadow: 0 14px 36px rgba(81,158,138,0.3); } }
+    .btn-ghost { background: transparent; color: var(--text); }
+    @media (hover:hover) { .btn-ghost:hover { border-color: rgba(81,158,138,0.4); } }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      font-size: 13px;
+      color: var(--sub);
+    }
+    .meta-item { display: inline-flex; align-items: center; gap: 7px; }
+    .icon { width: 15px; height: 15px; flex-shrink: 0; }
+
+
+    /* ── Section shared ── */
+    .section {
+      padding: clamp(48px, 7vw, 88px) 0;
+    }
+    .section.alt { background: var(--bg-alt); }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--mint);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .section-h {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: var(--sub);
+      max-width: 52ch;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+
+    /* ── Features (3 cards) ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 860px) { .feature-grid { grid-template-columns: 1fr; gap: 12px; } }
+
+    .f-card {
+      padding: 28px 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(81,158,138,0.06) 0%, rgba(255,255,255,0) 100%);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    @media (hover:hover) {
+      .f-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.08); }
+    }
+
+    .f-icon {
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      background: rgba(81,158,138,0.14);
+      display: grid;
+      place-items: center;
+      color: var(--mint-dk);
+      margin-bottom: 18px;
+    }
+
+    .f-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .f-card p { font-size: 14px; color: var(--sub); line-height: 1.6; margin: 0; }
+
+
+    /* ── Testing (numbered list) ── */
+    .test-list { display: grid; gap: 14px; }
+
+    .test-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 22px 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .test-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: rgba(81,158,138,0.22);
+      line-height: 1;
+      flex-shrink: 0;
+      letter-spacing: -0.03em;
+      min-width: 2.5rem;
+    }
+
+    .test-item h3 { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+    .test-item p  { font-size: 14px; color: var(--sub); margin: 0; line-height: 1.55; }
+
+
+    /* ── Teilnahme (pill chips) ── */
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 860px) { .criteria-grid { grid-template-columns: 1fr; gap: 12px; } }
+
+    .crit-card {
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .crit-card strong { display: block; font-size: 15px; margin-bottom: 6px; }
+    .crit-card p { font-size: 14px; color: var(--sub); margin: 0; line-height: 1.55; }
+
+
+    /* ── Anmeldung ── */
+    .s-signup {
+      padding: clamp(48px, 7vw, 88px) 0;
+      background: var(--bg);
+    }
+    .form-embed {
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.07);
+    }
+    .form-embed iframe { width: 100%; height: 660px; border: none; display: block; }
+
+
+    /* ── FAQ ── */
+    .faq-list { display: grid; gap: 10px; }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 18px 20px;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: color 0.15s;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--mint);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    @media (hover:hover) { summary:hover { color: var(--mint); } }
+
+    .faq-body {
+      padding: 0 20px 18px;
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.65;
+    }
+
+    /* Notice bar */
+    .notice {
+      margin-top: 16px;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1px dashed rgba(81,158,138,0.35);
+      background: rgba(81,158,138,0.06);
+      font-size: 13px;
+      color: var(--sub);
+    }
+
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0 0;
+      color: var(--sub);
+      font-size: 13px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 32px;
+    }
+
+    .footer-nav-cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .footer-col a {
+      display: block;
+      color: var(--sub);
+      margin-bottom: 6px;
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+    @media (hover:hover) { .footer-col a:hover { color: var(--mint); } }
+
+    .footer-legal {
+      border-top: 1px solid var(--border);
+      padding: 18px 0 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--sub);
+    }
+    .footer-legal a { color: var(--sub); text-decoration: underline; text-underline-offset: 2px; }
+    .footer-legal-links { display: flex; gap: 16px; flex-wrap: wrap; }
+
+
+    /* ── Mobile hero layout ── */
+    @media (max-width: 768px) {
+      .hero-sticky {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-left {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        padding: 4.5rem 1.75rem 0.5rem;
+        flex-shrink: 0;
+        z-index: 5;
+      }
+
+      .hero-bg-text span {
+        font-size: clamp(3.2rem, 11vw, 5.5rem);
+      }
+
+      #phone-container {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        width: 100% !important;
+        flex: 1;
+        min-height: 0;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .scroll-hint { bottom: 1.4rem; }
+      .scroll-hint span { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-a] { transition: none; opacity: 1; transform: none; }
+      .btn, .btn::after { transition: none; }
+      .badge .dot { animation: none; }
+    }
+
+
+    /* ── Rollout / Freischaltung ── */
+    .rollout-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(20px, 4vw, 48px);
+      align-items: center;
+    }
+    @media (max-width: 860px) { .rollout-wrap { grid-template-columns: 1fr; } }
+
+    .rollout-steps { display: grid; gap: 22px; }
+    .rollout-step { display: flex; gap: 16px; align-items: flex-start; }
+    .rs-num {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(81,158,138,0.13);
+      color: var(--mint-dk);
+      font-weight: 800;
+      font-size: 13px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .rollout-step strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .rollout-step p { font-size: 14px; color: var(--sub); margin: 0; line-height: 1.55; }
+
+    .rollout-visual {
+      padding: 22px 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      display: grid;
+      gap: 14px;
+    }
+    .wave-row { display: flex; align-items: center; gap: 12px; }
+    .wave-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--sub);
+      width: 46px;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+    .wave-dots { display: flex; gap: 7px; flex: 1; }
+    .wdot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .wdot.active {
+      background: var(--mint);
+      box-shadow: 0 0 0 3px rgba(81,158,138,0.22);
+    }
+    .wdot.soon  { background: rgba(81,158,138,0.32); }
+    .wdot.later { background: rgba(81,158,138,0.10); border: 1px solid var(--border); }
+    .wave-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .wave-tag.live    { background: rgba(81,158,138,0.14); color: var(--mint-dk); }
+    .wave-tag.coming  { background: rgba(81,158,138,0.07); color: var(--sub); }
+    .wave-tag.later   { background: transparent; color: rgba(0,0,0,0.28); border: 1px solid var(--border); }
+    .wave-divider { height: 1px; background: var(--border); }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       3D HERO
+  ══════════════════════════════════════════ -->
+  <div class="hero-wrapper">
+    <div class="hero-sticky">
+
+      <div class="vignette"></div>
+
+      <!-- Left: Countdown stacked above ghost text -->
+      <div class="hero-left">
+        <div class="countdown" role="timer" aria-label="Countdown bis Beta-Start">
+          <div class="cd-unit">
+            <span class="cd-value" id="cd-days">00</span>
+            <span class="cd-label">Tage</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-value" id="cd-hours">00</span>
+            <span class="cd-label">Std.</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-value" id="cd-minutes">00</span>
+            <span class="cd-label">Min.</span>
+          </div>
+          <span class="cd-sep" aria-hidden="true">·</span>
+          <div class="cd-unit">
+            <span class="cd-value" id="cd-seconds">00</span>
+            <span class="cd-label">Sek.</span>
+          </div>
+        </div>
+
+        <div class="hero-bg-text" aria-hidden="true">
+          <span>Are</span>
+          <span class="you">YOU</span>
+          <span>Ready?</span>
+        </div>
+      </div>
+
+      <!-- Right: 3D Phone -->
+      <div id="phone-container" aria-hidden="true">
+        <canvas id="three-canvas"></canvas>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <svg width="20" height="28" viewBox="0 0 24 32" fill="none">
+          <path d="M5 5l7 7 7-7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 13l7 7 7-7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       INTRO
+  ══════════════════════════════════════════ -->
+  <section class="s-intro">
+    <div class="container">
+      <div class="badge" data-a>
+        <span class="dot" aria-hidden="true"></span>
+        Jetzt live: <strong>BonBuddy Beta 1</strong>
+      </div>
+
+      <h1 class="intro-h1" id="intro-h1" data-a data-d="1"></h1>
+
+      <p class="intro-sub" data-a data-d="2">
+        BonBuddy verbindet dich mit lokalen Angeboten und berechnet die optimale Einkaufsroute –
+        damit du Zeit und Geld sparst, ohne Kompromisse.
+      </p>
+
+      <div class="ctas" data-a data-d="3">
+        <a class="btn btn-primary" href="#anmeldung">Jetzt für Beta anmelden</a>
+        <a class="btn btn-ghost" href="#testen">Was wird getestet?</a>
+      </div>
+
+      <div class="meta-row" data-a data-d="4">
+        <span class="meta-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 22s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Standort: <strong>Lüdinghausen</strong>
+        </span>
+        <span class="meta-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 4h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 7h6M9 11h6M9 15h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          iOS &amp; Android
+        </span>
+        <span class="meta-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Dauer: <strong>~6 Wochen</strong>
+        </span>
+        <span class="meta-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <strong>Begrenzte Plätze</strong>
+        </span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FEATURES
+  ══════════════════════════════════════════ -->
+  <section class="section alt">
+    <div class="container">
+      <span class="eyebrow" data-a>Was BonBuddy kann</span>
+      <h2 class="section-h" data-a data-d="1">Smarter einkaufen.<br>Jeden Tag.</h2>
+      <p class="section-sub" data-a data-d="2">Drei Dinge, die deinen Einkaufsalltag wirklich verändern.</p>
+
+      <div class="feature-grid">
+        <div class="f-card" data-a data-d="1">
+          <div class="f-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="9" cy="6" r="1.5" fill="currentColor"/>
+              <circle cx="15" cy="12" r="1.5" fill="currentColor"/>
+              <circle cx="9" cy="18" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Smarte Routenplanung.</h3>
+          <p>BonBuddy berechnet die effizienteste Route durch deine lokalen Läden – basierend auf deiner echten Einkaufsliste.</p>
+        </div>
+
+        <div class="f-card" data-a data-d="2">
+          <div class="f-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 17l-4 2 1-4-3-3 4-.5L12 8l2 3.5 4 .5-3 3 1 4-4-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Echte lokale Angebote.</h3>
+          <p>Keine Werbung, keine Tricksereien. Nur aktuelle Preise und Angebote der Geschäfte in deiner Nähe.</p>
+        </div>
+
+        <div class="f-card" data-a data-d="3">
+          <div class="f-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Zeit und Geld sparen.</h3>
+          <p>Weniger Umwege, weniger Spontankäufe, mehr Überblick. Einkaufen mit Köpfchen statt nach Gefühl.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FREISCHALTUNG / ROLLOUT
+  ══════════════════════════════════════════ -->
+  <section class="section alt" id="freischaltung">
+    <div class="container">
+      <span class="eyebrow" data-a>Wie es läuft</span>
+      <h2 class="section-h" data-a data-d="1">Nicht alle auf einmal.</h2>
+      <p class="section-sub" data-a data-d="2">
+        Wir schalten Beta-Tester:innen schrittweise frei – je nachdem, wie gut das Profil zu unserem aktuellen Testbedarf passt.
+        Meld dich trotzdem jetzt an: Wer früh dabei ist, kommt auch früher dran.
+      </p>
+
+      <div class="rollout-wrap" data-a data-d="3">
+
+        <!-- Left: 3 Schritte -->
+        <div class="rollout-steps">
+          <div class="rollout-step">
+            <div class="rs-num">1</div>
+            <div>
+              <strong>Du meldest dich an</strong>
+              <p>Kurzes Formular, dauert keine 2 Minuten. Wir fragen nur das Nötigste.</p>
+            </div>
+          </div>
+          <div class="rollout-step">
+            <div class="rs-num">2</div>
+            <div>
+              <strong>Wir prüfen dein Profil</strong>
+              <p>Wir schauen, ob dein Nutzerprofil zu unserem aktuellen Testbedarf passt – und sortieren die Anmeldungen entsprechend.</p>
+            </div>
+          </div>
+          <div class="rollout-step">
+            <div class="rs-num">3</div>
+            <div>
+              <strong>Du wirst freigeschaltet</strong>
+              <p>Sobald du an der Reihe bist, bekommst du per E-Mail deinen persönlichen Beta-Zugang. Versprochen.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Wellen-Visualisierung -->
+        <div class="rollout-visual" aria-hidden="true">
+          <div class="wave-row">
+            <span class="wave-label">Welle 1</span>
+            <div class="wave-dots">
+              <span class="wdot active"></span>
+              <span class="wdot active"></span>
+              <span class="wdot active"></span>
+              <span class="wdot active"></span>
+              <span class="wdot active"></span>
+            </div>
+            <span class="wave-tag live">Aktiv</span>
+          </div>
+          <div class="wave-divider"></div>
+          <div class="wave-row">
+            <span class="wave-label">Welle 2</span>
+            <div class="wave-dots">
+              <span class="wdot soon"></span>
+              <span class="wdot soon"></span>
+              <span class="wdot soon"></span>
+              <span class="wdot soon"></span>
+              <span class="wdot later"></span>
+            </div>
+            <span class="wave-tag coming">Demnächst</span>
+          </div>
+          <div class="wave-divider"></div>
+          <div class="wave-row">
+            <span class="wave-label">Welle 3</span>
+            <div class="wave-dots">
+              <span class="wdot later"></span>
+              <span class="wdot later"></span>
+              <span class="wdot later"></span>
+              <span class="wdot later"></span>
+              <span class="wdot later"></span>
+            </div>
+            <span class="wave-tag later">Später</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       WAS WIR TESTEN
+  ══════════════════════════════════════════ -->
+  <section class="section" id="testen">
+    <div class="container">
+      <span class="eyebrow" data-a>Beta 1</span>
+      <h2 class="section-h" data-a data-d="1">Was wir testen.</h2>
+      <p class="section-sub" data-a data-d="2">Drei Kernbereiche – dein Feedback macht den Unterschied.</p>
+
+      <div class="test-list">
+        <div class="test-item" data-a data-d="1">
+          <span class="test-num">01</span>
+          <div>
+            <h3>Technische Stabilität</h3>
+            <p>Bugs, Performance und Nutzbarkeit auf unterschiedlichen Gerätegrößen und Betriebssystemversionen.</p>
+          </div>
+        </div>
+        <div class="test-item" data-a data-d="2">
+          <span class="test-num">02</span>
+          <div>
+            <h3>Datengenauigkeit</h3>
+            <p>Stimmen Preise, Produkte und Angebote? Wir wollen wissen, wo Daten fehlen oder abweichen.</p>
+          </div>
+        </div>
+        <div class="test-item" data-a data-d="3">
+          <span class="test-num">03</span>
+          <div>
+            <h3>Alltagstauglichkeit</h3>
+            <p>Ist die Planung intuitiv? Werden die richtigen Produkte vorgeschlagen? Was fehlt noch für die tägliche Nutzung?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="notice" data-a>
+        <strong>Hinweis:</strong> Einige Funktionen sind zum Start noch nicht verfügbar – das ist Teil des Prozesses, den wir gemeinsam durchlaufen.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       WER KANN TEILNEHMEN
+  ══════════════════════════════════════════ -->
+  <section class="section alt" id="teilnahme">
+    <div class="container">
+      <span class="eyebrow" data-a>Teilnahme</span>
+      <h2 class="section-h" data-a data-d="1">Für wen ist die Beta?</h2>
+      <p class="section-sub" data-a data-d="2">Damit das Testing aussagekräftig wird, suchen wir Tester:innen, die BonBuddy realistisch im Alltag nutzen.</p>
+
+      <div class="criteria-grid">
+        <div class="crit-card" data-a data-d="1">
+          <strong>Mindestalter 16 Jahre</strong>
+          <p>Für die Nutzung der BonBuddy App ist ein Mindestalter von 16 Jahren erforderlich.</p>
+        </div>
+        <div class="crit-card" data-a data-d="2">
+          <strong>Aus Lüdinghausen</strong>
+          <p>Du kaufst regelmäßig im lokalen Lebensmittelhandel ein und kennst die Läden vor Ort.</p>
+        </div>
+        <div class="crit-card" data-a data-d="3">
+          <strong>Bereit für Feedback</strong>
+          <p>iOS oder Android Smartphone mit aktueller Software – und die Bereitschaft, uns ehrliches Feedback zu geben.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       ANMELDUNG
+  ══════════════════════════════════════════ -->
+  <section class="s-signup" id="anmeldung">
+    <div class="container">
+      <span class="eyebrow" data-a>Jetzt mitmachen</span>
+      <h2 class="section-h" data-a data-d="1">Sei dabei.</h2>
+      <p class="section-sub" data-a data-d="2">Sichere dir einen der limitierten Plätze und erlebe BonBuddy als Erster.</p>
+
+      <div class="form-embed" data-a data-d="3">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSejj7aka3gVET0cvaOLopKcqrQD4fOTYZWnaVKnTFen6SAW7Q/viewform?embedded=true"
+          loading="lazy"
+          title="BonBuddy Beta Anmeldung"
+        >Lädt…</iframe>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FAQ
+  ══════════════════════════════════════════ -->
+  <section class="section alt" id="faq">
+    <div class="container">
+      <span class="eyebrow" data-a>Fragen</span>
+      <h2 class="section-h" data-a data-d="1">Häufig gefragt.</h2>
+
+      <div class="faq-list" data-a data-d="2">
+        <details>
+          <summary>Was kostet die Teilnahme?</summary>
+          <div class="faq-body">Die Teilnahme an der Beta ist vollständig kostenlos.</div>
+        </details>
+        <details>
+          <summary>Wie bekomme ich Zugriff?</summary>
+          <div class="faq-body">Nach deiner Anmeldung prüfen wir kurz, ob die Beta für dich passt. Du erhältst dann eine E-Mail mit dem Beta-Einladelink für TestFlight (iOS) oder Google Play Beta (Android).</div>
+        </details>
+        <details>
+          <summary>Welche Funktionen sind enthalten?</summary>
+          <div class="faq-body">Die App ist voll funktionsfähig: Einkaufsliste schreiben und Einkauf nach den Kriterien <strong>Günstigste</strong>, <strong>Schnellste</strong> und <strong>BonBuddy Option</strong> planen. Weitere Funktionen folgen per Update während der Beta.</div>
+        </details>
+        <details>
+          <summary>Muss ich Feedback geben?</summary>
+          <div class="faq-body">Ja – Feedback ist Voraussetzung für die Teilnahme. Die Beta hat begrenzte Plätze und lebt von deinen Rückmeldungen. Du erhältst gelegentlich kurze Fragebögen per E-Mail, die nicht lange dauern, uns aber enorm helfen.</div>
+        </details>
+        <details>
+          <summary>Was soll ich konkret testen?</summary>
+          <div class="faq-body">Am wichtigsten: Stabilität (Bugs, Performance), Datengenauigkeit (Preise, Produkte, Angebote) und die Alltagstauglichkeit der Planung. Hilfreich ist immer: <em>Was hast du erwartet</em> vs. <em>was ist passiert</em>.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <strong style="font-size:15px; color: var(--text);">BonBuddy</strong>
+          <p style="margin-top:6px; font-size:13px;">Kontakt: <a href="mailto:beta@bonbuddy.de" style="color:var(--mint);">beta@bonbuddy.de</a></p>
+        </div>
+
+        <div class="footer-nav-cols">
+          <div class="footer-col">
+            <h4>BonBuddy</h4>
+            <a href="https://www.bonbuddy.de" rel="noopener">Offizielle Website</a>
+            <a href="ueber-uns.html">Über uns</a>
+            <a href="partner.html">Für Partner</a>
+          </div>
+          <div class="footer-col">
+            <h4>Kundenservice</h4>
+            <a href="hilfe.html">Hilfe-Center</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="#faq">FAQ</a>
+          </div>
+          <div class="footer-col">
+            <h4>Social</h4>
+            <a href="https://www.instagram.com/bonbuddy.de/" rel="noopener">Instagram</a>
+            <a href="https://www.tiktok.com/@bonbuddy.de/" rel="noopener">TikTok</a>
+            <a href="https://www.linkedin.com/company/bonbuddy-de/" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-legal">
+        <span>© 2025 BonBuddy</span>
+        <div class="footer-legal-links">
+          <a href="https://www.bonbuddy.de/impressum" rel="noopener">Impressum</a>
+          <a href="datenschutz-beta.html">Datenschutz</a>
+          <a href="beta-teilnahmebedingungen.html">Teilnahmebedingungen</a>
+          <a href="gender-hinweis.html">Gender-Hinweis</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════ -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    // ─────────────────────────────────────────────────────
+    //  BETA RELEASE DATUM — hier anpassen:
+    const BETA_RELEASE_DATE = new Date('2026-06-15T10:00:00');
+    // ─────────────────────────────────────────────────────
+
+    // ── Countdown ─────────────────────────────────────
+    const elD = document.getElementById('cd-days');
+    const elH = document.getElementById('cd-hours');
+    const elM = document.getElementById('cd-minutes');
+    const elS = document.getElementById('cd-seconds');
+    const pad = n => String(n).padStart(2, '0');
+
+    function tick() {
+      const diff = BETA_RELEASE_DATE - Date.now();
+      if (diff <= 0) { [elD,elH,elM,elS].forEach(e => e.textContent = '00'); return; }
+      elD.textContent = pad(Math.floor(diff / 86_400_000));
+      elH.textContent = pad(Math.floor((diff % 86_400_000) / 3_600_000));
+      elM.textContent = pad(Math.floor((diff % 3_600_000) / 60_000));
+      elS.textContent = pad(Math.floor((diff % 60_000) / 1_000));
+    }
+    tick();
+    setInterval(tick, 1000);
+
+
+    // ── Three.js ──────────────────────────────────────
+    const container = document.getElementById('phone-container');
+    const canvas    = document.getElementById('three-canvas');
+    const scene     = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(0, 0, 6.5);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setClearColor(0x000000, 0);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.3;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+    const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(2,4,5); scene.add(key);
+    const fill = new THREE.DirectionalLight(0x88ddcc, 0.9); fill.position.set(-4,1,2); scene.add(fill);
+    const rim  = new THREE.DirectionalLight(0xffffff, 0.6); rim.position.set(0,-3,-4);  scene.add(rim);
+
+    let model = null;
+
+    new GLTFLoader().load('3dModels/Mockup1.glb', gltf => {
+      model = gltf.scene;
+      const box   = new THREE.Box3().setFromObject(model);
+      const ctr   = box.getCenter(new THREE.Vector3());
+      const size  = box.getSize(new THREE.Vector3());
+      const scale = 2.8 / Math.max(size.x, size.y, size.z);
+      model.scale.setScalar(scale);
+      model.position.copy(ctr.multiplyScalar(-scale));
+      scene.add(model);
+    }, undefined, () => {
+      // fallback
+      const g = new THREE.Group();
+      g.add(Object.assign(new THREE.Mesh(
+        new THREE.BoxGeometry(0.95,2.0,0.11),
+        new THREE.MeshStandardMaterial({ color:0x1c1c1e, roughness:0.15, metalness:0.9 })
+      )));
+      const s = new THREE.Mesh(
+        new THREE.BoxGeometry(0.8,1.65,0.01),
+        new THREE.MeshStandardMaterial({ color:0x080808 })
+      );
+      s.position.z = 0.065;
+      g.add(s);
+      model = g;
+      scene.add(model);
+    });
+
+    // Mouse tracking — on mobile hasMouse stays false → auto-rotation kicks in
+    let tRotX = 0, tRotY = 0, sRotX = 0, sRotY = 0;
+    let hasMouse = false;
+    document.addEventListener('mousemove', e => {
+      hasMouse = true;
+      tRotY =  (e.clientX / window.innerWidth  - 0.5) * 2 * 0.28;
+      tRotX = -(e.clientY / window.innerHeight - 0.5) * 2 * 0.18;
+    });
+
+    // Scroll → phone slides RIGHT (desktop only)
+    const heroWrap = document.querySelector('.hero-wrapper');
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth <= 768) return;
+      const p = Math.min(window.scrollY / (heroWrap.offsetHeight - window.innerHeight), 1);
+      container.style.transform = `translateX(${p * 160}%)`;
+      container.style.opacity   = String(1 - Math.min(p * 2.2, 1));
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      const w = container.clientWidth, h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    const clock = new THREE.Clock();
+    (function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+
+      // On mobile (no mouse ever fired): gentle auto-rotation
+      if (!hasMouse) {
+        tRotY = Math.sin(t * 0.42) * 0.45;
+        tRotX = Math.sin(t * 0.27) * 0.12;
+      }
+
+      sRotX += (tRotX - sRotX) * 0.05;
+      sRotY += (tRotY - sRotY) * 0.05;
+      if (model) {
+        model.rotation.x = sRotX;
+        model.rotation.y = sRotY + Math.sin(t * 0.35) * 0.012;
+        model.position.y = Math.sin(t * 0.55) * 0.045;
+      }
+      renderer.render(scene, camera);
+    })();
+  </script>
+
+  <script>
+    // ── Typewriter for intro headline ──────────────
+    const introH1 = document.getElementById('intro-h1');
+    const introText = 'Clever einkaufen.\nZeit sparen.';
+    let typed = false;
+
+    function typewriter(el, text, speed) {
+      let i = 0;
+      el.innerHTML = '';
+      function step() {
+        if (i >= text.length) return;
+        const ch = text[i];
+        if (ch === '\n') {
+          el.appendChild(document.createElement('br'));
+        } else {
+          el.insertAdjacentText('beforeend', ch);
+        }
+        i++;
+        setTimeout(step, speed);
+      }
+      step();
+    }
+
+    // ── Scroll animations (Intersection Observer) ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        // Typewriter trigger
+        if (entry.target === introH1 && !typed) {
+          typed = true;
+          setTimeout(() => typewriter(introH1, introText, 38), 120);
+        }
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('[data-a]').forEach(el => observer.observe(el));
+
+    // ── Smooth anchor scroll ───────────────────────
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const el = document.querySelector(a.getAttribute('href'));
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+
+</body>
+</html>
