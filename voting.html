@@ -269,7 +269,7 @@
       height: 640px;
     }
     #three-canvas { width: 100% !important; height: 100% !important; display: block; }
-    @media (max-width: 860px) { #phone-container { height: 340px; order: -1; } }
+    @media (max-width: 860px) { #phone-container { height: 340px; } }
 
 
     /* ══════════════════════════════════════════
@@ -576,7 +576,7 @@
     const scene     = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.set(0, 0, 5.0);
+    camera.position.set(0, 0, 4.4);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -598,7 +598,7 @@
       const box   = new THREE.Box3().setFromObject(model);
       const ctr   = box.getCenter(new THREE.Vector3());
       const size  = box.getSize(new THREE.Vector3());
-      const scale = 3.5 / Math.max(size.x, size.y, size.z);
+      const scale = 4.0 / Math.max(size.x, size.y, size.z);
       model.scale.setScalar(scale);
       model.position.copy(ctr.multiplyScalar(-scale));
       scene.add(model);
