@@ -575,8 +575,8 @@
     const canvas    = document.getElementById('three-canvas');
     const scene     = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.set(0, 0, 4.4);
+    const camera = new THREE.PerspectiveCamera(46, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(0, 0, 4.8);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -598,7 +598,7 @@
       const box   = new THREE.Box3().setFromObject(model);
       const ctr   = box.getCenter(new THREE.Vector3());
       const size  = box.getSize(new THREE.Vector3());
-      const scale = 4.0 / Math.max(size.x, size.y, size.z);
+      const scale = 3.6 / Math.max(size.x, size.y, size.z);
       model.scale.setScalar(scale);
       model.position.copy(ctr.multiplyScalar(-scale));
       scene.add(model);
