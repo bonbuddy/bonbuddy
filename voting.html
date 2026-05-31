@@ -27,8 +27,8 @@
     :root {
       --mint:    #519E8A;
       --mint-dk: #3f7c6c;
-      --dark:    #0d1512;
-      --dark2:   #151f1c;
+      --dark:    #152b23;
+      --dark2:   #1c3a2e;
       --text:    #1D1D1F;
       --sub:     #6E6E73;
       --border:  rgba(0,0,0,0.08);
@@ -78,8 +78,8 @@
       align-items: center;
       overflow: hidden;
       background:
-        radial-gradient(ellipse at 75% 40%, rgba(81,158,138,0.2) 0%, transparent 55%),
-        radial-gradient(ellipse at 20% 80%, rgba(81,158,138,0.08) 0%, transparent 45%),
+        radial-gradient(ellipse at 75% 40%, rgba(81,158,138,0.32) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(81,158,138,0.15) 0%, transparent 45%),
         var(--dark);
     }
 
@@ -266,10 +266,10 @@
     /* ── 3D Phone ── */
     #phone-container {
       width: 100%;
-      height: 520px;
+      height: 640px;
     }
     #three-canvas { width: 100% !important; height: 100% !important; display: block; }
-    @media (max-width: 860px) { #phone-container { height: 300px; order: -1; } }
+    @media (max-width: 860px) { #phone-container { height: 340px; order: -1; } }
 
 
     /* ══════════════════════════════════════════
@@ -504,7 +504,7 @@
           </p>
         </div>
         <div class="teamfoto-wrap">
-          <img src="teamfoto.jpg" alt="Das BonBuddy Team" loading="lazy" />
+          <img src="fotos/teamfoto.jpg" alt="Das BonBuddy Team" loading="lazy" />
         </div>
       </div>
     </div>
@@ -576,7 +576,7 @@
     const scene     = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.set(0, 0, 6.5);
+    camera.position.set(0, 0, 5.0);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -598,7 +598,7 @@
       const box   = new THREE.Box3().setFromObject(model);
       const ctr   = box.getCenter(new THREE.Vector3());
       const size  = box.getSize(new THREE.Vector3());
-      const scale = 2.8 / Math.max(size.x, size.y, size.z);
+      const scale = 3.5 / Math.max(size.x, size.y, size.z);
       model.scale.setScalar(scale);
       model.position.copy(ctr.multiplyScalar(-scale));
       scene.add(model);
