@@ -326,56 +326,71 @@
        STEPS (3 Schritte)
     ══════════════════════════════════════════ */
     .steps-section {
-      background: #f3f8f6;
+      background: var(--dark2);
       padding: clamp(60px, 9vw, 96px) 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
-    .steps-header { margin-bottom: 40px; }
+    .steps-header { margin-bottom: 44px; }
+    .steps-header .eyebrow { color: var(--mint); }
+    .steps-header .section-h { color: #fff; }
 
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
     @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; } }
 
     .step-card {
-      background: #fff;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: var(--radius);
-      padding: 28px 24px 26px;
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
-      position: relative;
+      padding: 32px 24px 28px;
+      text-align: center;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
-    .step-num {
-      font-size: 4rem; font-weight: 900;
-      color: rgba(81,158,138,0.1);
-      letter-spacing: -0.07em;
-      line-height: 1;
-      margin-bottom: 10px;
+    @media (hover:hover) {
+      .step-card:hover {
+        background: rgba(81,158,138,0.1);
+        border-color: rgba(81,158,138,0.25);
+      }
     }
-    .step-tag {
-      display: inline-block;
+    .step-icon {
+      width: 60px; height: 60px;
+      border-radius: 18px;
+      background: rgba(81,158,138,0.15);
+      border: 1px solid rgba(81,158,138,0.22);
+      display: grid;
+      place-items: center;
+      color: #6ecfbb;
+      margin: 0 auto 18px;
+    }
+    .step-card.warn-card .step-icon {
+      background: rgba(251,191,36,0.12);
+      border-color: rgba(251,191,36,0.22);
+      color: #fcd34d;
+    }
+    .step-badge {
       font-size: 10px; font-weight: 700;
-      padding: 3px 9px; border-radius: 999px;
-      background: rgba(81,158,138,0.1);
-      color: var(--mint-dk);
-      letter-spacing: 0.08em; text-transform: uppercase;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
       margin-bottom: 10px;
+      display: block;
     }
-    .step-tag.warn {
-      background: rgba(245,158,11,0.1);
-      color: #b45309;
-    }
+    .step-card.warn-card .step-badge { color: rgba(252,211,77,0.6); }
     .step-card h3 {
-      font-size: 16px; font-weight: 700;
-      margin-bottom: 8px; color: var(--text);
+      font-size: 17px; font-weight: 800;
+      color: #fff; margin-bottom: 8px;
+      letter-spacing: -0.01em;
     }
     .step-card p {
-      font-size: 14px; color: var(--sub);
-      line-height: 1.65; margin: 0;
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6; margin: 0;
     }
-    .step-card p strong { color: var(--text); }
+    .step-card p strong { color: rgba(255,255,255,0.75); }
+    .steps-cta { text-align: center; margin-top: 40px; }
 
 
     /* ══════════════════════════════════════════
@@ -488,6 +503,67 @@
 
 
   <!-- ══════════════════════════════════════════
+       3 SCHRITTE
+  ══════════════════════════════════════════ -->
+  <section class="steps-section" id="so-gehts">
+    <div class="container">
+      <div class="steps-header">
+        <span class="eyebrow">So geht's</span>
+        <h2 class="section-h">3 Schritte – fertig.</h2>
+      </div>
+
+      <div class="steps-grid">
+
+        <div class="step-card">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10A15.3 15.3 0 0 1 8 12a15.3 15.3 0 0 1 4-10Z" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <span class="step-badge">Schritt 01</span>
+          <h3>startupteens.de öffnen</h3>
+          <p>Kategorie <strong>„Apps und Plattformen"</strong> wählen.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="step-badge">Schritt 02</span>
+          <h3>BonBuddy voten</h3>
+          <p>Unser Video finden und abstimmen.</p>
+        </div>
+
+        <div class="step-card warn-card">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <span class="step-badge">Schritt 03 · Wichtig!</span>
+          <h3>Abschicken &amp; E-Mail bestätigen</h3>
+          <p>Ganz unten klicken – <strong>Bestätigungs-Mail nicht vergessen!</strong></p>
+        </div>
+
+      </div>
+
+      <div class="steps-cta" id="steps-cta-wrap">
+        <a class="btn btn-vote" href="https://www.startupteens.de" target="_blank" rel="noopener" id="steps-vote-btn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor"/>
+          </svg>
+          Jetzt für BonBuddy voten
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
        TEAM
   ══════════════════════════════════════════ -->
   <section class="section-light">
@@ -505,43 +581,6 @@
         </div>
         <div class="teamfoto-wrap">
           <img src="fotos/teamfoto.jpg" alt="Das BonBuddy Team" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════
-       3 SCHRITTE
-  ══════════════════════════════════════════ -->
-  <section class="steps-section" id="so-gehts">
-    <div class="container">
-      <div class="steps-header">
-        <span class="eyebrow">So funktioniert's</span>
-        <h2 class="section-h" style="color:var(--text);">In 3 Schritten zum Vote.</h2>
-        <p class="section-sub">Klingt nach viel – dauert aber keine 2 Minuten.</p>
-      </div>
-
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">01</div>
-          <span class="step-tag">Schritt 1</span>
-          <h3>Seite öffnen &amp; Kategorie wählen</h3>
-          <p>Geh auf <strong>www.startupteens.de</strong> und wähle die Kategorie <strong>„Apps und Plattformen"</strong>.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-num">02</div>
-          <span class="step-tag">Schritt 2</span>
-          <h3>Unser Video finden &amp; voten</h3>
-          <p>Such unser Video – und stimm für <strong>BonBuddy</strong> ab. Du kannst nur einer App deine Stimme geben, also mach sie bei uns ab! 😉</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-num">03</div>
-          <span class="step-tag warn">⚠ Schritt 3 – Wichtig!</span>
-          <h3>Abschicken &amp; E-Mail bestätigen</h3>
-          <p>Ganz unten auf <strong>„Abschicken"</strong> klicken – und danach die Bestätigungs-E-Mail nicht vergessen! Erst dann zählt deine Stimme wirklich.</p>
         </div>
       </div>
     </div>
@@ -649,9 +688,10 @@
     const VOTE_START = new Date('2026-06-03T15:00:00');
     const VOTE_END   = new Date('2026-06-10T10:00:00');
 
-    const cdState   = document.getElementById('cd-state');
-    const heroCta   = document.getElementById('hero-cta');
-    const bottomCta = document.getElementById('bottom-cta');
+    const cdState      = document.getElementById('cd-state');
+    const heroCta      = document.getElementById('hero-cta');
+    const bottomCta    = document.getElementById('bottom-cta');
+    const stepsCtaWrap = document.getElementById('steps-cta-wrap');
 
     const pad = n => String(n).padStart(2, '0');
 
@@ -681,26 +721,26 @@
         // VOTING OVER
         cdState.innerHTML = `<p class="ended-msg" style="color:rgba(255,255,255,0.35); font-size:1.3rem; font-weight:700; margin-bottom:24px;">Voting beendet. Danke für jede Stimme! 🙏</p>`;
         heroCta.style.display = 'none';
-        bottomCta.innerHTML   = `<p class="ended-msg">Das Voting ist beendet. Danke für eure Unterstützung! 🙏</p>`;
+        stepsCtaWrap.style.display = 'none';
+        bottomCta.innerHTML = `<p class="ended-msg">Das Voting ist beendet. Danke für eure Unterstützung! 🙏</p>`;
         return;
       }
 
       if (diffStart > 0) {
-        // PRE-VOTING: countdown to start
-        cdState.innerHTML = `
-          <p class="cd-label-top">Voting startet in</p>
-          ${cdHTML(diffStart)}`;
+        // PRE-VOTING
+        cdState.innerHTML = `<p class="cd-label-top">Voting startet in</p>${cdHTML(diffStart)}`;
         heroCta.style.display = 'none';
+        stepsCtaWrap.style.display = 'none';
         bottomCta.innerHTML = `<p style="color:rgba(255,255,255,0.35); font-size:14px;">Voting startet am 03.06.2026 um 15:00 Uhr.</p>`;
       } else {
         // VOTING OPEN
-        const openCountdown = cdHTML(diffEnd);
         cdState.innerHTML = `
           <div class="live-badge" style="margin-bottom:14px;"><span class="live-dot"></span> Voting läuft jetzt!</div>
           <p class="cd-label-top">Noch Zeit zum Voten</p>
-          ${openCountdown}
+          ${cdHTML(diffEnd)}
           <div style="margin-bottom: 28px;"></div>`;
         heroCta.style.display = 'flex';
+        stepsCtaWrap.style.display = 'block';
         bottomCta.innerHTML = `
           <a class="btn btn-vote" href="https://www.startupteens.de" target="_blank" rel="noopener"
              style="font-size:17px; padding:16px 32px; margin: 0 auto;">
