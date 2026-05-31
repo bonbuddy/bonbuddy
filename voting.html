@@ -326,14 +326,13 @@
        STEPS (3 Schritte)
     ══════════════════════════════════════════ */
     .steps-section {
-      background: var(--dark2);
+      background: #f3f8f6;
       padding: clamp(60px, 9vw, 96px) 0;
-      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
     .steps-header { margin-bottom: 44px; }
     .steps-header .eyebrow { color: var(--mint); }
-    .steps-header .section-h { color: #fff; }
+    .steps-header .section-h { color: var(--text); }
 
     .steps-grid {
       display: grid;
@@ -343,17 +342,18 @@
     @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; } }
 
     .step-card {
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
       border-radius: var(--radius);
       padding: 32px 24px 28px;
       text-align: center;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     @media (hover:hover) {
       .step-card:hover {
-        background: rgba(81,158,138,0.1);
-        border-color: rgba(81,158,138,0.25);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.09);
       }
     }
     .step-icon {
@@ -374,22 +374,22 @@
     .step-badge {
       font-size: 10px; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: var(--sub);
       margin-bottom: 10px;
       display: block;
     }
-    .step-card.warn-card .step-badge { color: rgba(252,211,77,0.6); }
+    .step-card.warn-card .step-badge { color: #b45309; }
     .step-card h3 {
       font-size: 17px; font-weight: 800;
-      color: #fff; margin-bottom: 8px;
+      color: var(--text); margin-bottom: 8px;
       letter-spacing: -0.01em;
     }
     .step-card p {
       font-size: 14px;
-      color: rgba(255,255,255,0.45);
+      color: var(--sub);
       line-height: 1.6; margin: 0;
     }
-    .step-card p strong { color: rgba(255,255,255,0.75); }
+    .step-card p strong { color: var(--text); }
     .steps-cta { text-align: center; margin-top: 40px; }
 
 
