@@ -154,7 +154,7 @@
       gap: clamp(8px, 1.5vw, 16px);
       align-items: flex-start;
       margin-bottom: 32px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
     .cd-unit { display: flex; flex-direction: column; align-items: center; }
     .cd-value {
@@ -390,7 +390,30 @@
       line-height: 1.6; margin: 0;
     }
     .step-card p strong { color: var(--text); }
-    .steps-cta { text-align: center; margin-top: 40px; }
+    .steps-cta { text-align: center; margin-top: 44px; }
+    .btn-hier {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 44px;
+      border-radius: 999px;
+      font-family: "Jost", sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--mint);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 12px 36px rgba(81,158,138,0.35);
+      transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    @media (hover:hover) {
+      .btn-hier:hover { background: var(--mint-dk); transform: translateY(-3px); box-shadow: 0 20px 48px rgba(81,158,138,0.45); }
+    }
+    .btn-hier:active { transform: translateY(1px); }
 
 
     /* ══════════════════════════════════════════
@@ -551,12 +574,12 @@
 
       </div>
 
-      <div class="steps-cta" id="steps-cta-wrap">
-        <a class="btn btn-vote" href="https://www.startupteens.de" target="_blank" rel="noopener" id="steps-vote-btn">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+      <div class="steps-cta">
+        <a class="btn-hier" href="https://www.startupteens.de" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor"/>
           </svg>
-          Jetzt für BonBuddy voten
+          Hier voten!
         </a>
       </div>
     </div>
