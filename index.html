@@ -502,9 +502,137 @@ hr.v2-divider { border: none; border-top: 1px solid #eef2f0; margin: 0; }
   border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.1);
   text-decoration: none; color: #fff;
 }
+
+/* ── Voting Banner ── */
+#voting-banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 99997;
+  background: linear-gradient(90deg, #0f1c18 0%, #1a3028 40%, #1a3028 60%, #0f1c18 100%);
+  border-bottom: 1px solid rgba(81,158,138,0.3);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 20px);
+  padding: 0 16px;
+  height: 56px;
+  font-family: 'Jost', sans-serif;
+  font-size: 15px;
+  color: #fff;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease;
+  animation: bannerIn 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes bannerIn {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+#voting-banner.vb-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.vb-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74,222,128,0.22);
+  flex-shrink: 0;
+  animation: vbPulse 1.4s ease-in-out infinite;
+}
+@keyframes vbPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.22); }
+  50%       { box-shadow: 0 0 0 7px rgba(74,222,128,0.07); }
+}
+.vb-trophy { font-size: 18px; flex-shrink: 0; }
+.vb-text {
+  font-weight: 600;
+  font-size: clamp(13px, 1.8vw, 15px);
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+}
+.vb-text strong { color: #fff; }
+.vb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #519E8A;
+  color: #fff;
+  font-family: 'Jost', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s, transform 0.12s;
+  flex-shrink: 0;
+}
+.vb-btn:hover { background: #3f7c6c; transform: translateY(-1px); }
+.vb-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.35);
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.15s;
+  font-family: inherit;
+}
+.vb-close:hover { color: rgba(255,255,255,0.8); }
+@media (max-width: 600px) {
+  .vb-text { display: none; }
+  #voting-banner { gap: 10px; }
+}
 </style>
 </head>
 <body>
+
+<!-- Voting Banner -->
+<div id="voting-banner">
+  <span class="vb-trophy">🏆</span>
+  <span class="vb-dot" id="vb-dot" aria-hidden="true"></span>
+  <span class="vb-text" id="vb-text"><strong>Wir sind in den Top&nbsp;5 bei Startup Teens!</strong> Voting läuft – jetzt für BonBuddy stimmen.</span>
+  <a class="vb-btn" href="voting.html" id="vb-btn">Jetzt voten →</a>
+  <button class="vb-close" id="vb-close" aria-label="Banner schließen">×</button>
+</div>
+<script>
+(function(){
+  var VOTE_END = new Date('2026-06-10T10:00:00').getTime();
+  var VOTE_START = new Date('2026-06-03T15:00:00').getTime();
+  var now = Date.now();
+  var banner = document.getElementById('voting-banner');
+  var dot    = document.getElementById('vb-dot');
+  var text   = document.getElementById('vb-text');
+
+  // Hide if dismissed today
+  if(localStorage.getItem('vb_closed') === 'true' || now > VOTE_END) {
+    banner.classList.add('vb-hidden');
+  } else {
+    // Adjust body so content isn't hidden behind banner
+    document.body.style.paddingTop = '56px';
+    if(now < VOTE_START) {
+      dot.style.background = '#facc15';
+      dot.style.boxShadow = '0 0 0 3px rgba(250,204,21,0.22)';
+      dot.style.animation = 'none';
+      text.innerHTML = '<strong>Wir sind in den Top&nbsp;5 bei Startup Teens!</strong> Voting startet am 03.06.2026 – schon mal vormerken.';
+    }
+  }
+
+  document.getElementById('vb-close').addEventListener('click', function(){
+    banner.classList.add('vb-hidden');
+    document.body.style.paddingTop = '0';
+    localStorage.setItem('vb_closed', 'true');
+  });
+})();
+</script>
 
 <!-- Cookie Banner -->
 <div id="bb-cookie-banner">

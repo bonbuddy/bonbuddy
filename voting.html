@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jetzt für BonBuddy voten! | Startup Teens 2026</title>
+  <meta name="description" content="Wir sind in den Top 5 bei Startup Teens 2026 – jetzt für BonBuddy voten und uns ins Finale bringen!" />
+  <link rel="icon" type="image/png" href="fotos/icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --mint:    #519E8A;
+      --mint-dk: #3f7c6c;
+      --dark:    #0d1512;
+      --dark2:   #151f1c;
+      --text:    #1D1D1F;
+      --sub:     #6E6E73;
+      --border:  rgba(0,0,0,0.08);
+      --max:     1080px;
+      --pad:     clamp(20px, 4vw, 44px);
+      --radius:  20px;
+    }
+
+    body {
+      font-family: "Jost", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark);
+      color: #fff;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+    /* ── Nav ── */
+    .top-nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 20;
+      padding: 22px var(--pad);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo { font-weight: 800; font-size: 17px; color: rgba(255,255,255,0.9); }
+    .nav-back {
+      font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.45);
+      display: flex; align-items: center; gap: 6px;
+      transition: color 0.15s;
+    }
+    .nav-back:hover { color: #fff; }
+
+
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 75% 40%, rgba(81,158,138,0.2) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(81,158,138,0.08) 0%, transparent 45%),
+        var(--dark);
+    }
+
+    /* subtle grid texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: clamp(24px, 4vw, 56px);
+      align-items: center;
+      padding-top: 100px;
+      padding-bottom: 72px;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; padding-top: 90px; }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(81,158,138,0.38);
+      background: rgba(81,158,138,0.1);
+      font-size: 13px;
+      font-weight: 600;
+      color: #9dd4c4;
+      margin-bottom: 22px;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 5.6rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+    .hero-title .accent { color: var(--mint); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.12rem);
+      color: rgba(255,255,255,0.5);
+      max-width: 46ch;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    /* ── Countdown ── */
+    .cd-label-top {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 14px;
+    }
+    .countdown {
+      display: flex;
+      gap: clamp(8px, 1.5vw, 16px);
+      align-items: flex-start;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .cd-unit { display: flex; flex-direction: column; align-items: center; }
+    .cd-value {
+      font-size: clamp(2rem, 4.5vw, 3.6rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 14px;
+      padding: 10px 14px;
+      min-width: 3.2rem;
+      text-align: center;
+    }
+    .cd-sub {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 7px;
+    }
+    .cd-sep {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.12);
+      line-height: 1;
+      padding-top: 10px;
+    }
+
+    /* voting live badge */
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(74,222,128,0.1);
+      border: 1px solid rgba(74,222,128,0.25);
+      font-size: 13px;
+      font-weight: 700;
+      color: #86efac;
+      margin-bottom: 14px;
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 3px rgba(74,222,128,0.2);
+      animation: livePulse 1.4s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.2); }
+      50%       { box-shadow: 0 0 0 7px rgba(74,222,128,0.07); }
+    }
+
+    /* ── Buttons ── */
+    .cta-group { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-family: "Jost", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute; inset: -2px;
+      background: linear-gradient(110deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 80%);
+      transform: translateX(-130%);
+      transition: transform 0.55s ease;
+      pointer-events: none;
+    }
+    @media (hover:hover) {
+      .btn:hover { transform: translateY(-2px); }
+      .btn:hover::after { transform: translateX(130%); }
+    }
+    .btn:active { transform: translateY(1px); }
+
+    .btn-vote {
+      background: var(--mint);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(81,158,138,0.38);
+      font-size: 16px;
+      padding: 15px 28px;
+    }
+    @media (hover:hover) { .btn-vote:hover { background: var(--mint-dk); box-shadow: 0 16px 44px rgba(81,158,138,0.48); } }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.11);
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
+    }
+    @media (hover:hover) { .btn-ghost:hover { background: rgba(255,255,255,0.12); } }
+
+    /* ── 3D Phone ── */
+    #phone-container {
+      width: 100%;
+      height: 520px;
+    }
+    #three-canvas { width: 100% !important; height: 100% !important; display: block; }
+    @media (max-width: 860px) { #phone-container { height: 300px; order: -1; } }
+
+
+    /* ══════════════════════════════════════════
+       TEAM SECTION (light)
+    ══════════════════════════════════════════ */
+    .section-light {
+      background: #fff;
+      color: var(--text);
+      padding: clamp(60px, 9vw, 96px) 0;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(28px, 5vw, 64px);
+      align-items: center;
+    }
+    @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } }
+
+    .eyebrow {
+      display: block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--mint);
+      margin-bottom: 12px;
+    }
+    .section-h {
+      font-size: clamp(1.9rem, 3.8vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      color: var(--sub);
+      line-height: 1.72;
+      max-width: 50ch;
+    }
+
+    .teamfoto-wrap {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 28px 72px rgba(0,0,0,0.14);
+      aspect-ratio: 4/3;
+    }
+    .teamfoto-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+
+    /* ══════════════════════════════════════════
+       STEPS (3 Schritte)
+    ══════════════════════════════════════════ */
+    .steps-section {
+      background: #f3f8f6;
+      padding: clamp(60px, 9vw, 96px) 0;
+    }
+
+    .steps-header { margin-bottom: 40px; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; } }
+
+    .step-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 28px 24px 26px;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .step-num {
+      font-size: 4rem; font-weight: 900;
+      color: rgba(81,158,138,0.1);
+      letter-spacing: -0.07em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .step-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700;
+      padding: 3px 9px; border-radius: 999px;
+      background: rgba(81,158,138,0.1);
+      color: var(--mint-dk);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .step-tag.warn {
+      background: rgba(245,158,11,0.1);
+      color: #b45309;
+    }
+    .step-card h3 {
+      font-size: 16px; font-weight: 700;
+      margin-bottom: 8px; color: var(--text);
+    }
+    .step-card p {
+      font-size: 14px; color: var(--sub);
+      line-height: 1.65; margin: 0;
+    }
+    .step-card p strong { color: var(--text); }
+
+
+    /* ══════════════════════════════════════════
+       BOTTOM CTA
+    ══════════════════════════════════════════ */
+    .cta-section {
+      background: var(--dark2);
+      padding: clamp(64px, 10vw, 104px) 0;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .cta-pre {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+    .cta-title {
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      font-weight: 900; letter-spacing: -0.05em;
+      line-height: 0.95;
+      margin-bottom: 10px;
+    }
+    .cta-title .accent { color: var(--mint); }
+    .cta-meta {
+      font-size: 14px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 28px;
+    }
+    .cta-url {
+      font-size: clamp(1.2rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--mint);
+      letter-spacing: -0.02em;
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    /* ended state */
+    .ended-msg {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.3);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn, .btn::after { transition: none; }
+      .live-dot { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a href="index.html" class="nav-logo">BonBuddy</a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Zur Website
+    </a>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left -->
+        <div>
+          <div class="badge">🏆 Top 5 bei Startup Teens 2026</div>
+
+          <h1 class="hero-title">
+            Wir sind<br>
+            wieder<br>
+            <span class="accent">dabei.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Zum zweiten Mal haben wir es in die Top&nbsp;5 bei Startup Teens geschafft –
+            jetzt brauchen wir deine Stimme, um ins Finale zu kommen.
+          </p>
+
+          <!-- Countdown / State — filled by JS -->
+          <div id="cd-state"></div>
+
+          <!-- Vote CTA — shown only when voting is open -->
+          <div class="cta-group" id="hero-cta" style="display:none;">
+            <a class="btn btn-vote" href="https://www.startupteens.de" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor"/>
+              </svg>
+              Jetzt für BonBuddy voten
+            </a>
+            <a class="btn btn-ghost" href="#so-gehts">Wie geht's? →</a>
+          </div>
+        </div>
+
+        <!-- Right: 3D phone -->
+        <div id="phone-container" aria-hidden="true">
+          <canvas id="three-canvas"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       TEAM
+  ══════════════════════════════════════════ -->
+  <section class="section-light">
+    <div class="container">
+      <div class="team-grid">
+        <div>
+          <span class="eyebrow">Das Team</span>
+          <h2 class="section-h">Wir sind BonBuddy.</h2>
+          <p class="section-sub">
+            Wir sind ein junges Team aus Lüdinghausen und entwickeln eine App,
+            die das lokale Einkaufen smarter macht – mit echten Angeboten und optimierter Route.
+            Schon einmal haben wir es in die Top&nbsp;5 bei Startup Teens geschafft.
+            Jetzt wollen wir ins Finale – mit deiner Unterstützung.
+          </p>
+        </div>
+        <div class="teamfoto-wrap">
+          <img src="teamfoto.jpg" alt="Das BonBuddy Team" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       3 SCHRITTE
+  ══════════════════════════════════════════ -->
+  <section class="steps-section" id="so-gehts">
+    <div class="container">
+      <div class="steps-header">
+        <span class="eyebrow">So funktioniert's</span>
+        <h2 class="section-h" style="color:var(--text);">In 3 Schritten zum Vote.</h2>
+        <p class="section-sub">Klingt nach viel – dauert aber keine 2 Minuten.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <span class="step-tag">Schritt 1</span>
+          <h3>Seite öffnen &amp; Kategorie wählen</h3>
+          <p>Geh auf <strong>www.startupteens.de</strong> und wähle die Kategorie <strong>„Apps und Plattformen"</strong>.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <span class="step-tag">Schritt 2</span>
+          <h3>Unser Video finden &amp; voten</h3>
+          <p>Such unser Video – und stimm für <strong>BonBuddy</strong> ab. Du kannst nur einer App deine Stimme geben, also mach sie bei uns ab! 😉</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <span class="step-tag warn">⚠ Schritt 3 – Wichtig!</span>
+          <h3>Abschicken &amp; E-Mail bestätigen</h3>
+          <p>Ganz unten auf <strong>„Abschicken"</strong> klicken – und danach die Bestätigungs-E-Mail nicht vergessen! Erst dann zählt deine Stimme wirklich.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       BOTTOM CTA
+  ══════════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="container">
+      <p class="cta-pre">Kategorie: Apps und Plattformen</p>
+      <h2 class="cta-title">Jetzt <span class="accent">voten.</span></h2>
+      <p class="cta-meta">Voting läuft vom 03. bis 10. Juni 2026</p>
+      <span class="cta-url">www.startupteens.de</span>
+      <div id="bottom-cta">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════ -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    const container = document.getElementById('phone-container');
+    const canvas    = document.getElementById('three-canvas');
+    const scene     = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(0, 0, 6.5);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setClearColor(0x000000, 0);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.3;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+    const key  = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(2, 4, 5);  scene.add(key);
+    const fill = new THREE.DirectionalLight(0x88ddcc, 0.9); fill.position.set(-4, 1, 2); scene.add(fill);
+    const rim  = new THREE.DirectionalLight(0xffffff, 0.6); rim.position.set(0, -3, -4); scene.add(rim);
+
+    let model = null;
+
+    new GLTFLoader().load('3dModels/Mockup1.glb', gltf => {
+      model = gltf.scene;
+      const box   = new THREE.Box3().setFromObject(model);
+      const ctr   = box.getCenter(new THREE.Vector3());
+      const size  = box.getSize(new THREE.Vector3());
+      const scale = 2.8 / Math.max(size.x, size.y, size.z);
+      model.scale.setScalar(scale);
+      model.position.copy(ctr.multiplyScalar(-scale));
+      scene.add(model);
+    }, undefined, () => {
+      const g    = new THREE.Group();
+      const body = new THREE.Mesh(
+        new THREE.BoxGeometry(0.95, 2.0, 0.11),
+        new THREE.MeshStandardMaterial({ color: 0x1c1c1e, roughness: 0.15, metalness: 0.9 })
+      );
+      g.add(body);
+      model = g;
+      scene.add(model);
+    });
+
+    let tRotX = 0, tRotY = 0, sRotX = 0, sRotY = 0, hasMouse = false;
+    document.addEventListener('mousemove', e => {
+      hasMouse = true;
+      tRotY =  (e.clientX / window.innerWidth  - 0.5) * 2 * 0.32;
+      tRotX = -(e.clientY / window.innerHeight - 0.5) * 2 * 0.20;
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+
+    const clock = new THREE.Clock();
+    (function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      if (!hasMouse) {
+        tRotY = Math.sin(t * 0.42) * 0.45;
+        tRotX = Math.sin(t * 0.27) * 0.12;
+      }
+      sRotX += (tRotX - sRotX) * 0.05;
+      sRotY += (tRotY - sRotY) * 0.05;
+      if (model) {
+        model.rotation.x = sRotX;
+        model.rotation.y = sRotY + Math.sin(t * 0.35) * 0.015;
+        model.position.y = Math.sin(t * 0.55) * 0.05;
+      }
+      renderer.render(scene, camera);
+    })();
+  </script>
+
+  <script>
+    const VOTE_START = new Date('2026-06-03T15:00:00');
+    const VOTE_END   = new Date('2026-06-10T10:00:00');
+
+    const cdState   = document.getElementById('cd-state');
+    const heroCta   = document.getElementById('hero-cta');
+    const bottomCta = document.getElementById('bottom-cta');
+
+    const pad = n => String(n).padStart(2, '0');
+
+    function cdHTML(diff) {
+      const d = Math.floor(diff / 86_400_000);
+      const h = Math.floor((diff % 86_400_000) / 3_600_000);
+      const m = Math.floor((diff % 3_600_000)  / 60_000);
+      const s = Math.floor((diff % 60_000)     / 1_000);
+      return `
+        <div class="countdown">
+          <div class="cd-unit"><span class="cd-value" id="v-d">${pad(d)}</span><span class="cd-sub">Tage</span></div>
+          <span class="cd-sep">·</span>
+          <div class="cd-unit"><span class="cd-value" id="v-h">${pad(h)}</span><span class="cd-sub">Std.</span></div>
+          <span class="cd-sep">·</span>
+          <div class="cd-unit"><span class="cd-value" id="v-m">${pad(m)}</span><span class="cd-sub">Min.</span></div>
+          <span class="cd-sep">·</span>
+          <div class="cd-unit"><span class="cd-value" id="v-s">${pad(s)}</span><span class="cd-sub">Sek.</span></div>
+        </div>`;
+    }
+
+    function tick() {
+      const now       = Date.now();
+      const diffStart = VOTE_START - now;
+      const diffEnd   = VOTE_END   - now;
+
+      if (diffEnd <= 0) {
+        // VOTING OVER
+        cdState.innerHTML = `<p class="ended-msg" style="color:rgba(255,255,255,0.35); font-size:1.3rem; font-weight:700; margin-bottom:24px;">Voting beendet. Danke für jede Stimme! 🙏</p>`;
+        heroCta.style.display = 'none';
+        bottomCta.innerHTML   = `<p class="ended-msg">Das Voting ist beendet. Danke für eure Unterstützung! 🙏</p>`;
+        return;
+      }
+
+      if (diffStart > 0) {
+        // PRE-VOTING: countdown to start
+        cdState.innerHTML = `
+          <p class="cd-label-top">Voting startet in</p>
+          ${cdHTML(diffStart)}`;
+        heroCta.style.display = 'none';
+        bottomCta.innerHTML = `<p style="color:rgba(255,255,255,0.35); font-size:14px;">Voting startet am 03.06.2026 um 15:00 Uhr.</p>`;
+      } else {
+        // VOTING OPEN
+        const openCountdown = cdHTML(diffEnd);
+        cdState.innerHTML = `
+          <div class="live-badge" style="margin-bottom:14px;"><span class="live-dot"></span> Voting läuft jetzt!</div>
+          <p class="cd-label-top">Noch Zeit zum Voten</p>
+          ${openCountdown}
+          <div style="margin-bottom: 28px;"></div>`;
+        heroCta.style.display = 'flex';
+        bottomCta.innerHTML = `
+          <a class="btn btn-vote" href="https://www.startupteens.de" target="_blank" rel="noopener"
+             style="font-size:17px; padding:16px 32px; margin: 0 auto;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"
+                    stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor"/>
+            </svg>
+            Jetzt für BonBuddy voten
+          </a>`;
+      }
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+
+</body>
+</html>
