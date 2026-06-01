@@ -1,4 +1,13 @@
 User-agent: *
+Allow: /
 Disallow: /impressum
 Disallow: /agb
 Disallow: /datenschutz
+Disallow: /datenschutz-beta.html
+Disallow: /beta-teilnahmebedingungen.html
+Disallow: /gender-hinweis.html
+Disallow: /brevo-newsletter.html
+Disallow: /footer.html
+Disallow: /index (1).html
+
+Sitemap: https://www.bonbuddy.de/sitemap.xml
