@@ -1,10 +1,8 @@
-
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
 
-<!-- Google Consent Mode v2 – Standard: alles verweigert -->
+<!-- Google Consent Mode v2 -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -14,8 +12,6 @@
     'wait_for_update': 500
   });
 </script>
-
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFQWHP3ZHW"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -24,78 +20,293 @@
   gtag('config', 'G-HFQWHP3ZHW');
 </script>
 
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-HFQWHP3ZHW');
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" href="fotos/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BonBuddy App – So funktioniert's | Smarte Einkaufsapp</title>
+<meta name="description" content="Entdecke wie BonBuddy funktioniert: Einkaufsliste, KI-Vorschläge, Angebote vergleichen und optimale Einkaufsroute – alles in einer App." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.bonbuddy.de/app.html" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.bonbuddy.de/app.html" />
+<meta property="og:title" content="BonBuddy App – So funktioniert's" />
+<meta property="og:description" content="Smarte Einkaufsapp für NRW – Angebote vergleichen, Route planen, Geld sparen." />
+<meta property="og:image" content="https://www.bonbuddy.de/fotos/Startseite2Handys.png" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet" />
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
 </script>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="fotos/icon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BonBuddy App – Kostenlos für iOS & Android | Einkaufsapp NRW</title>
-  <meta name="description" content="Jetzt BonBuddy kostenlos herunterladen – die smarte Einkaufsapp für NRW. Angebote vergleichen, Einkaufsroute planen & Geld sparen in Lüdinghausen, Coesfeld, Dülmen & Münsterland." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.bonbuddy.de/app.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.bonbuddy.de/app.html" />
-  <meta property="og:title" content="BonBuddy App – Kostenlos für iOS & Android | Einkaufsapp NRW" />
-  <meta property="og:description" content="Smarte Einkaufsapp für NRW – Angebote vergleichen, Route planen, Geld sparen. Jetzt kostenlos downloaden." />
-  <meta property="og:image" content="https://www.bonbuddy.de/fotos/Startseite2Handys.png" />
-  <meta property="og:site_name" content="BonBuddy" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BonBuddy","description":"Smarte Einkaufsapp für NRW – lokale Supermarkt-Angebote vergleichen, Einkaufsroute planen, Geld sparen in Lüdinghausen, Coesfeld, Dülmen, Haltern am See und ganz Münsterland.","applicationCategory":"ShoppingApplication","operatingSystem":["iOS","Android"],"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":"https://www.bonbuddy.de/app.html"}</script>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
 <style>
-#bb-cookie-banner {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 99999;
-  background: #fff;
-  border-top: 1px solid rgba(42,42,42,.12);
-  box-shadow: 0 -8px 32px rgba(42,42,42,.10);
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-family: "Jost", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  font-size: 14px;
-  color: #2a2a2a;
-  line-height: 1.5;
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #519E8A;
+  --primary-light: #96E0CD;
+  --primary-dark: #316254;
+  --surface: #F3F2F2;
+  --on-bg: #212121;
+  --greyedout: #757575;
+  --border: #E0E0E0;
+  --error: #B00020;
 }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(ellipse 120% 90% at 50% 38%, #68b8a2 0%, #519e8a 42%, #3b7663 100%);
+  background-attachment: fixed;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* Material Symbols */
+.mi {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: inherit;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+#bg-canvas {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none; opacity: 0.55;
+}
+
+/* ─── NAV ─── */
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 26px 48px; }
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.logo-link img.logo { height: 30px; opacity: 0.92; }
+.main-nav ul { list-style: none; display: flex; gap: 38px; }
+.main-nav a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 15px; font-weight: 600; letter-spacing: 0.01em; transition: color 0.2s; }
+.main-nav a:hover, .main-nav a.active { color: #fff; }
+.nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.88); font-size: 22px; cursor: pointer; padding: 4px; line-height: 1; }
+
+/* ─── COOKIE ─── */
+#bb-cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-top: 1px solid rgba(42,42,42,.1); box-shadow: 0 -8px 32px rgba(42,42,42,.08); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: 'Jost', sans-serif; font-size: 14px; color: #2a2a2a; line-height: 1.5; }
 #bb-cookie-banner.bb-hidden { display: none !important; }
 #bb-cookie-banner p { margin: 0; flex: 1; min-width: 200px; }
-#bb-cookie-banner a { color: #519E8A; text-underline-offset: 2px; }
+#bb-cookie-banner a { color: #519E8A; }
 #bb-cookie-btns { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
-.bb-btn-accept {
-  background: #519E8A; color: #fff; border: none;
-  padding: 10px 20px; border-radius: 999px; font-size: 14px;
-  font-weight: 700; cursor: pointer; font-family: inherit;
-  transition: background .18s;
-}
+.bb-btn-accept { background: #519E8A; color: #fff; border: none; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background .18s; }
 .bb-btn-accept:hover { background: #3f7c6c; }
-.bb-btn-decline {
-  background: transparent; color: #2a2a2a;
-  border: 1px solid rgba(42,42,42,.2); padding: 10px 20px;
-  border-radius: 999px; font-size: 14px; font-weight: 600;
-  cursor: pointer; font-family: inherit; transition: border-color .18s;
+.bb-btn-decline { background: transparent; color: #2a2a2a; border: 1px solid rgba(42,42,42,.2); padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; }
+
+/* ─── HERO ─── */
+.hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 110px 32px 90px; }
+.hero-label { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 28px; }
+.hero-title { font-size: clamp(52px, 10vw, 120px); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; color: #fff; margin-bottom: 32px; }
+.hero-title span { color: rgba(255,255,255,0.4); }
+.hero-sub { font-size: clamp(16px, 1.8vw, 20px); font-weight: 400; color: rgba(255,255,255,0.55); max-width: 420px; line-height: 1.6; margin-bottom: 56px; }
+.scroll-hint { display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.35); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; animation: bobScroll 2.2s ease-in-out infinite; }
+.scroll-hint svg { width: 20px; height: 20px; }
+@keyframes bobScroll { 0%, 100% { transform: translateY(0); opacity: 0.35; } 50% { transform: translateY(6px); opacity: 0.7; } }
+
+/* ─── WALKTHROUGH ─── */
+.wt-section { position: relative; z-index: 1; min-height: 920vh; }
+.wt-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.wt-step-label { position: absolute; top: 32px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); white-space: nowrap; }
+.wt-dots { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.wt-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.25); transition: background 0.3s, transform 0.3s; }
+.wt-dot.active { background: #fff; transform: scale(1.5); }
+.wt-inner { display: flex; align-items: center; justify-content: center; gap: 64px; width: 100%; max-width: 1100px; padding: 80px 48px 48px; }
+
+/* ─── PHONE ─── */
+.phone-wrap { flex: 0 0 auto; position: relative; width: 280px; }
+.phone-frame { width: 280px; height: 580px; background: #1a1a1a; border-radius: 42px; border: 6px solid #0a0a0a; position: relative; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.55), 0 12px 24px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.5); }
+.phone-frame::before { content: ''; position: absolute; left: -9px; top: 120px; width: 3px; height: 60px; background: #2a2a2a; border-radius: 2px; box-shadow: 0 70px 0 #2a2a2a, 0 130px 0 #2a2a2a; }
+.phone-frame::after { content: ''; position: absolute; right: -9px; top: 160px; width: 3px; height: 72px; background: #2a2a2a; border-radius: 2px; }
+.phone-screen { position: absolute; inset: 0; background: #f0f0f0; overflow: hidden; border-radius: 36px; }
+.phone-island { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 88px; height: 26px; background: #111; border-radius: 13px; z-index: 50; }
+
+/* ─── APP SCREENS ───
+   Background is transparent — each screen's .screen-inner provides #fff.
+   This allows two screens to be simultaneously visible during slide transitions
+   (their inner panels slide independently without covering each other).         */
+.app-screen {
+  position: absolute; inset: 0;
+  background: transparent;
+  opacity: 0;
+  transform: translateX(100%);
+  pointer-events: none;
+  will-change: transform, opacity;
 }
-.bb-btn-decline:hover { border-color: #519E8A; }
+
+/* Content area above the persistent nav (screens 0–4) */
+.screen-inner {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 68px;
+  background: #fff;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  color: #212121;
+}
+
+/* Nav holder at bottom of nav-screens */
+.screen-nav {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 68px;
+  overflow: visible;
+}
+
+/* Full-height push screens need their own white background */
+.screen-full { background: #fff; color: #212121; }
+
+/* ─── APP UI PRIMITIVES ─── */
+.a-status { height: 44px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 18px 6px; font-size: 11px; font-weight: 600; color: #222; flex-shrink: 0; }
+.a-appbar { padding: 8px 14px; border-bottom: 1px solid #ebebeb; background: #fff; flex-shrink: 0; }
+.a-body { flex: 1; overflow: hidden; padding: 10px 12px; }
+.a-pill-btn { background: var(--primary); color: #fff; border-radius: 50px; padding: 14px 20px; text-align: center; font-size: 14px; font-weight: 600; }
+.a-search { background: var(--surface); border: 1.5px solid rgba(0,0,0,0.08); border-radius: 50px; padding: 9px 14px; display: flex; align-items: center; gap: 6px; flex: 1; font-size: 12px; color: var(--greyedout); }
+.a-ai-btn { background: var(--primary); border-radius: 16px; width: 48px; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; flex-shrink: 0; }
+.a-list-item { background: var(--surface); border: 1px solid rgba(0,0,0,0.06); border-radius: 8px; padding: 7px; margin-bottom: 5px; display: flex; align-items: center; gap: 7px; }
+.a-list-img { width: 46px; height: 46px; border-radius: 6px; background: #e8f5f1; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; position: relative; }
+.a-ki-badge { position: absolute; top: -3px; right: -3px; width: 16px; height: 16px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 8px; }
+.a-qty { display: flex; align-items: center; gap: 5px; margin-left: auto; }
+.a-qty-btn { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.18); display: flex; align-items: center; justify-content: center; color: var(--greyedout); }
+.a-savings { background: var(--primary); color: #fff; border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; }
+.a-chip { display: inline-flex; align-items: center; gap: 4px; padding: 5px 11px; border-radius: 50px; border: 1.5px solid var(--primary); background: rgba(81,158,138,0.1); color: var(--primary); font-size: 11px; font-weight: 500; margin: 2px; }
+.a-chip.off { border-color: var(--border); background: #fff; color: var(--on-bg); }
+
+/* ─── BOTTOM NAV ─── */
+.a-bottom-nav { background: #fff; border-radius: 18px 18px 0 0; display: flex; padding: 18px 0 8px; border-top: 1px solid var(--border); overflow: visible; position: relative; box-shadow: 0 -4px 16px rgba(0,0,0,0.07); height: 100%; align-items: flex-start; }
+.a-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; font-weight: 500; color: var(--greyedout); }
+.a-nav-item .mi { font-size: 20px; }
+.a-nav-icon-active { transform: translateY(-16px); display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.a-nav-bubble { background: #fff; border-radius: 50%; padding: 3px; box-shadow: 0 -3px 10px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06); }
+.a-nav-inner { background: var(--primary); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; }
+.a-nav-inner .mi { font-size: 21px; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.a-nav-label-on { color: var(--primary); font-size: 8px; font-weight: 600; }
+
+/* ─── BOTTOM SHEET ─── */
+.a-drag { width: 36px; height: 4px; background: rgba(0,0,0,0.18); border-radius: 2px; margin: 9px auto 4px; }
+.a-sheet { position: absolute; bottom: 0; left: 0; right: 0; background: var(--surface); border-radius: 18px 18px 0 0; box-shadow: 0 -6px 28px rgba(0,0,0,0.18); will-change: transform; color: #212121; }
+.a-suggestion { background: rgba(150,224,205,0.15); border: 1px solid rgba(81,158,138,0.22); border-radius: 8px; padding: 7px 10px; margin: 0 10px 5px; display: flex; align-items: center; gap: 7px; font-size: 12px; }
+.a-accept-btn { background: var(--primary); color: #fff; border-radius: 50px; padding: 7px 13px; font-size: 11px; font-weight: 700; margin-left: auto; flex-shrink: 0; }
+
+/* ─── ROUTE ELEMENTS ─── */
+.a-market-card { background: var(--surface); border-radius: 8px; padding: 9px 11px; margin-bottom: 7px; }
+.a-market-hdr { display: flex; align-items: center; gap: 7px; font-weight: 700; font-size: 12px; margin-bottom: 7px; }
+.a-shop-item { display: flex; align-items: center; gap: 7px; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 11px; }
+.a-shop-item:last-child { border-bottom: none; }
+.a-check { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--greyedout); flex-shrink: 0; }
+.a-check.done { background: var(--primary); border-color: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; }
+.a-check.done .mi { font-size: 11px; font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24; }
+.a-map { background: linear-gradient(135deg, #d4e8e2, #b8d8cf); border-radius: 8px; height: 110px; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); font-size: 11px; margin-bottom: 9px; gap: 6px; }
+.a-map .mi { font-size: 22px; }
+.a-slider-track { background: rgba(81,158,138,0.25); height: 4px; border-radius: 2px; position: relative; margin: 6px 0 14px; }
+.a-slider-fill { background: var(--primary); height: 4px; border-radius: 2px; width: 35%; }
+.a-slider-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--primary); position: absolute; top: -6px; left: 33%; border: 3px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.22); }
+.a-radio { display: flex; align-items: center; gap: 7px; padding: 5px 0; font-size: 11px; }
+.a-radio-dot { width: 15px; height: 15px; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.a-radio-dot.sel::after { content:''; width: 7px; height: 7px; border-radius: 50%; background: var(--primary); display: block; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes kiPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(81,158,138,0.55); } 50% { box-shadow: 0 0 0 10px rgba(81,158,138,0); } }
+.ki-pulse { animation: kiPulse 1.8s ease-in-out infinite; }
+
+@keyframes startPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(81,158,138,0.4); } 50% { box-shadow: 0 0 0 12px rgba(81,158,138,0); } }
+.start-pulse { animation: startPulse 2s ease-in-out infinite; }
+
+/* ─── FLY OVERLAY ─── */
+#fly-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 25; overflow: hidden; display: none; }
+.fly-card {
+  position: absolute; left: 50%; top: 0;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(235, 248, 245, 0.96);
+  border: 1.5px solid rgba(81,158,138,0.45);
+  border-radius: 9px; padding: 6px 10px; width: 170px;
+  opacity: 0; pointer-events: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+.fly-card .fi { width: 32px; height: 32px; border-radius: 5px; background: #e8f5f1; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.fly-card span { font-size: 10px; font-weight: 600; color: #212121; }
+
+/* ─── DESCRIPTIONS ─── */
+.wt-descs { flex: 1; position: relative; min-height: 300px; max-width: 380px; }
+.wt-desc { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateX(24px); pointer-events: none; }
+.wt-step-num { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+.wt-desc h2 { font-size: clamp(26px, 3.5vw, 42px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: #fff; margin-bottom: 18px; }
+.wt-desc p { font-size: clamp(15px, 1.5vw, 18px); font-weight: 400; line-height: 1.65; color: rgba(255,255,255,0.62); }
+.wt-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; padding: 6px 14px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); margin-top: 22px; align-self: flex-start; }
+.wt-tag .mi { font-size: 16px; }
+
+/* ─── CTA ─── */
+.cta-section { position: relative; z-index: 1; padding: 100px 32px 60px; text-align: center; }
+.cta-section h2 { font-size: clamp(32px, 5vw, 64px); font-weight: 700; letter-spacing: -0.025em; color: #fff; margin-bottom: 16px; }
+.cta-section p { font-size: 18px; color: rgba(255,255,255,0.55); margin-bottom: 40px; }
+.cta-btn { display: inline-block; background: #fff; color: var(--primary); border-radius: 50px; padding: 18px 48px; font-size: 18px; font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.28); }
+
+/* ─── FOOTER ─── */
+#footer-placeholder { position: relative; z-index: 1; }
+#footer-placeholder footer { background: transparent; color: rgba(255,255,255,0.6); }
+#footer-placeholder footer h4 { color: rgba(255,255,255,0.8); }
+#footer-placeholder footer a { color: rgba(255,255,255,0.55); }
+#footer-placeholder hr { border-color: rgba(255,255,255,0.1) !important; }
+#footer-placeholder .legal-links a { color: rgba(255,255,255,0.5); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 860px) {
+  .site-header { padding: 20px 24px; }
+  .main-nav { display: none; position: fixed; inset: 0; background: rgba(49,98,84,0.97); backdrop-filter: blur(20px); align-items: center; justify-content: center; z-index: 300; }
+  .main-nav.open { display: flex; }
+  .main-nav.open ul { flex-direction: column; gap: 32px; text-align: center; }
+  .main-nav.open a { font-size: 26px; color: rgba(255,255,255,0.85); }
+  .nav-toggle { display: block; }
+  .wt-section { min-height: 700vh; }
+  .wt-inner { flex-direction: column; gap: 28px; padding: 70px 20px 28px; align-items: center; }
+  .phone-wrap { width: 220px; }
+  .phone-frame { width: 220px; height: 456px; border-radius: 34px; border-width: 5px; }
+  .phone-frame::before { left: -7px; }
+  .phone-frame::after { right: -7px; }
+  .phone-island { width: 70px; height: 21px; }
+  .phone-screen { border-radius: 29px; }
+  .wt-descs { min-height: 180px; max-width: 100%; width: 100%; }
+  .wt-desc h2 { font-size: clamp(22px, 6vw, 32px); }
+  .wt-desc p { font-size: 15px; }
+  .wt-dots { right: 16px; }
+  .wt-step-label { font-size: 10px; }
+  .cta-section { padding: 80px 24px 48px; }
+}
+@media (max-width: 480px) {
+  .phone-wrap { width: 190px; }
+  .phone-frame { width: 190px; height: 392px; border-radius: 30px; border-width: 4px; }
+  .phone-island { width: 60px; height: 18px; top: 10px; }
+  .phone-screen { border-radius: 26px; }
+}
+
+/* ─── PHONE CONTENT SCALE WRAPPER ───
+   Designed at 268×568 px (280 frame – 12 border).
+   Scale-transforms to match smaller phone frames on mobile
+   so every font, padding and icon stays proportional.    */
+.ps-wrap { position: absolute; top: 0; left: 0; width: 268px; height: 568px; transform-origin: top left; }
+@media (max-width: 860px) { .ps-wrap { transform: scale(0.7836); } }
+@media (max-width: 480px) { .ps-wrap { transform: scale(0.6791); } }
 </style>
 </head>
 <body>
 
-<!-- Cookie Banner -->
+<canvas id="bg-canvas"></canvas>
+
 <div id="bb-cookie-banner">
-  <p>
-    Wir verwenden <strong>Google Analytics</strong>, um zu verstehen, wie unsere Website genutzt wird.
-    Dazu werden Cookies gesetzt und Daten an Google (USA) übertragen.
-    Mehr dazu in unserer <a href="/datenschutz.html">Datenschutzerklärung</a>.
-  </p>
+  <p>Wir verwenden <strong>Google Analytics</strong>, um zu verstehen, wie unsere Website genutzt wird. Dazu werden Cookies gesetzt und Daten an Google (USA) übertragen. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
   <div id="bb-cookie-btns">
     <button class="bb-btn-decline" onclick="bbDeclineCookies()">Ablehnen</button>
     <button class="bb-btn-accept" onclick="bbAcceptCookies()">Akzeptieren</button>
@@ -103,108 +314,913 @@
 </div>
 <script>
 (function(){
-  var consent = localStorage.getItem('bb_cookie_consent');
-  if(consent === 'accepted'){
-    gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
-    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
-  } else if(consent === 'declined'){
-    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
-  }
+  var c=localStorage.getItem('bb_cookie_consent');
+  if(c==='accepted'){gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});document.getElementById('bb-cookie-banner').classList.add('bb-hidden');}
+  else if(c==='declined'){document.getElementById('bb-cookie-banner').classList.add('bb-hidden');}
 })();
-function bbAcceptCookies(){
-  localStorage.setItem('bb_cookie_consent','accepted');
-  gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
-  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
-}
-function bbDeclineCookies(){
-  localStorage.setItem('bb_cookie_consent','declined');
-  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
-}
+function bbAcceptCookies(){localStorage.setItem('bb_cookie_consent','accepted');gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});document.getElementById('bb-cookie-banner').classList.add('bb-hidden');}
+function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined');document.getElementById('bb-cookie-banner').classList.add('bb-hidden');}
 </script>
 
-  <header class="site-header">
-    <div class="nav-container">
-      <a href="index.html" class="logo-link">
-        <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
-      </a>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="ueber-uns.html">Über uns</a></li>
-          <li><a href="app.html" class="active">App</a></li>
-          <li><a href="partner.html">Partner</a></li>
-          <li><a href="hilfe.html">Hilfe</a></li>
- 
-        </ul>
-      </nav>
-      <button class="nav-toggle" aria-label="Menü öffnen">☰</button>
+<header class="site-header">
+  <div class="nav-container">
+    <a href="index.html" class="logo-link"><img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo"></a>
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="app.html" class="active">App</a></li>
+        <li><a href="partner.html">Partner</a></li>
+        <li><a href="hilfe.html">Hilfe</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <p class="hero-label">BonBuddy App</p>
+  <h1 class="hero-title">So funktioniert<br><span>dein Einkauf.</span></h1>
+  <p class="hero-sub">Ein Rundgang durch die App – von der Liste bis zum Kassenbon.</p>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scrollen
+  </div>
+</section>
+
+<!-- ─── WALKTHROUGH ─── -->
+<section id="walkthrough" class="wt-section">
+  <div class="wt-sticky">
+    <div class="wt-step-label" id="wt-step-label">Schritt 1 · Liste</div>
+    <div class="wt-dots" id="wt-dots">
+      <div class="wt-dot"></div>
+      <div class="wt-dot"></div>
+      <div class="wt-dot"></div>
+      <div class="wt-dot"></div>
+      <div class="wt-dot"></div>
+      <div class="wt-dot"></div>
+      <div class="wt-dot"></div>
     </div>
-  </header>
 
-  <main class="content">
-    <h1 data-aos="fade-up">So funktioniert <span>BonBuddy</span></h1>
-    <p data-aos="fade-up" data-aos-delay="100">
-      Mit unserer App planst du deine Einkäufe smarter, günstiger und nachhaltiger. Folge einfach diesen Schritten:
-    </p>
+    <div class="wt-inner">
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <div class="phone-island"></div>
+          <div class="phone-screen">
+            <div class="ps-wrap">
+            <!-- Persistent status bar — always on top, never flickers during transitions -->
+            <div style="position:absolute;top:0;left:0;right:0;height:44px;background:#fff;z-index:55;display:flex;align-items:flex-end;justify-content:space-between;padding:0 18px 6px;font-size:11px;font-weight:600;color:#222;pointer-events:none;">9:41 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
 
-    <section class="steps" data-aos="fade-up" data-aos-delay="200">
-      <div class="steps-grid">
-        <div class="step">
-          <h2>1. App herunterladen</h2>
-          <p>Lade dir die BonBuddy App kostenlos auf dein Smartphone (iOS oder Android) herunter.</p>
-          <a href="app-download.html" class="btn">App Download</a>
-          <img src="fotos/BB_App_Step0.gif" alt="App Download" style="width: 75%; height: auto;">
+            <!-- SCREEN 0: Liste — inner split (nav stays during tab switch) -->
+            <div class="app-screen" id="screen-0">
+              <div class="screen-inner" id="si-0">
+                <div class="a-status">9:41 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
+                <div class="a-appbar">
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div style="display:flex;align-items:center;gap:4px;">
+                      <span style="font-size:15px;font-weight:700;">Meine Liste</span>
+                      <span class="mi" style="font-size:16px;color:var(--greyedout);">expand_more</span>
+                    </div>
+                    <span class="mi" style="font-size:18px;color:var(--greyedout);">share</span>
+                  </div>
+                </div>
+                <div class="a-body" style="display:flex;flex-direction:column;">
+                  <div style="display:flex;gap:6px;margin-bottom:9px;align-items:center;">
+                    <div class="a-search"><span class="mi" style="font-size:15px;">search</span><span>Produkt suchen…</span></div>
+                    <div class="a-ai-btn"><span class="mi">auto_awesome</span></div>
+                  </div>
+                  <div class="a-list-item">
+                    <div class="a-list-img">🧴</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Dove Deo Roll-On</div>
+                    <div class="a-qty">
+                      <div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div>
+                      <span style="font-size:13px;font-weight:600;">2</span>
+                      <div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div>
+                    </div>
+                  </div>
+                  <div class="a-list-item" style="background:rgba(81,158,138,0.07);border-color:rgba(81,158,138,0.28);">
+                    <div class="a-list-img">🥛<div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Milch 1,5% 1L</div>
+                    <div class="a-qty">
+                      <div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div>
+                      <span style="font-size:13px;font-weight:600;">1</span>
+                      <div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div>
+                    </div>
+                  </div>
+                  <div class="a-list-item">
+                    <div class="a-list-img">🍞</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Vollkornbrot</div>
+                    <div class="a-qty">
+                      <div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div>
+                      <span style="font-size:13px;font-weight:600;">1</span>
+                      <div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div>
+                    </div>
+                  </div>
+                  <div style="font-size:10px;color:var(--greyedout);margin:8px 0 6px;font-weight:500;">Vorschläge für dich</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                    <div style="background:var(--surface);border-radius:10px;padding:7px;font-size:10px;">
+                      <div style="height:44px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:18px;">🥚</div>
+                      <div style="font-weight:600;">Eier 10er</div>
+                    </div>
+                    <div style="background:var(--surface);border-radius:10px;padding:7px;font-size:10px;">
+                      <div style="height:44px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:18px;">☕</div>
+                      <div style="font-weight:600;">Lavazza</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:8px 12px;background:#fff;border-top:1px solid var(--border);">
+                  <div class="a-pill-btn" style="margin:0;">Einkauf starten</div>
+                </div>
+              </div>
+              <div class="screen-nav" id="sn-0">
+                <div class="a-bottom-nav">
+                  <div class="a-nav-item">
+                    <div class="a-nav-icon-active">
+                      <div class="a-nav-bubble"><div class="a-nav-inner"><span class="mi">list_alt</span></div></div>
+                      <span class="a-nav-label-on">Liste</span>
+                    </div>
+                  </div>
+                  <div class="a-nav-item"><span class="mi">local_offer</span><span>Stöbern</span></div>
+                  <div class="a-nav-item"><span class="mi">person</span><span>Profil</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCREEN 1: Stöbern — slides in via inner split -->
+            <div class="app-screen" id="screen-1">
+              <div class="screen-inner" id="si-1">
+                <div class="a-status">9:41 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
+                <div class="a-appbar" style="display:flex;align-items:center;gap:9px;">
+                  <div style="width:32px;height:32px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0;">B</div>
+                  <div>
+                    <div style="font-size:10px;color:var(--greyedout);">Willkommen zurück,</div>
+                    <div style="font-size:14px;font-weight:700;">Johannes</div>
+                  </div>
+                </div>
+                <div class="a-body" style="overflow:hidden;">
+                  <div class="a-savings">
+                    <div style="font-size:11px;opacity:0.88;">Mit BonBuddy gespart:</div>
+                    <div style="font-size:26px;font-weight:900;line-height:1.1;">23,40 €</div>
+                    <div style="font-size:10px;opacity:0.75;margin-top:3px;">🔥 3 Wochen in Folge</div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">
+                    <span style="font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;"><span class="mi" style="font-size:14px;color:var(--primary);">local_offer</span>Angebote in Lüdinghausen</span>
+                    <span style="color:var(--primary);font-size:10px;font-weight:600;">Alle</span>
+                  </div>
+                  <!-- Offers row: scrolls right via JS (id="offers-row") -->
+                  <div style="overflow:hidden;margin-bottom:10px;">
+                    <div id="offers-row" style="display:flex;gap:6px;width:max-content;">
+                      <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
+                        <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🧴</div>
+                        <div style="font-weight:600;margin-bottom:2px;">Schauma</div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;">
+                          <div>
+                            <div style="color:var(--primary);font-weight:700;">1,49 €</div>
+                            <div style="color:var(--greyedout);text-decoration:line-through;font-size:9px;">2,29 €</div>
+                          </div>
+                          <div style="width:20px;height:20px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="mi" style="font-size:13px;color:#fff;">add</span></div>
+                        </div>
+                      </div>
+                      <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
+                        <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🥤</div>
+                        <div style="font-weight:600;margin-bottom:2px;">Cola 1,5L</div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;">
+                          <div>
+                            <div style="color:var(--primary);font-weight:700;">0,99 €</div>
+                            <div style="color:var(--greyedout);text-decoration:line-through;font-size:9px;">1,49 €</div>
+                          </div>
+                          <div style="width:20px;height:20px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="mi" style="font-size:13px;color:#fff;">add</span></div>
+                        </div>
+                      </div>
+                      <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
+                        <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🍫</div>
+                        <div style="font-weight:600;margin-bottom:2px;">Milka 400g</div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;">
+                          <div>
+                            <div style="color:var(--primary);font-weight:700;">2,19 €</div>
+                            <div style="color:var(--greyedout);text-decoration:line-through;font-size:9px;">2,99 €</div>
+                          </div>
+                          <div style="width:20px;height:20px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="mi" style="font-size:13px;color:#fff;">add</span></div>
+                        </div>
+                      </div>
+                      <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
+                        <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🥛</div>
+                        <div style="font-weight:600;margin-bottom:2px;">Milch 1,5%</div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;">
+                          <div>
+                            <div style="color:var(--primary);font-weight:700;">0,79 €</div>
+                            <div style="color:var(--greyedout);text-decoration:line-through;font-size:9px;">1,09 €</div>
+                          </div>
+                          <div style="width:20px;height:20px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="mi" style="font-size:13px;color:#fff;">add</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">
+                    <span style="font-size:13px;font-weight:700;">Lieblingsprodukte</span>
+                    <span style="color:var(--primary);font-size:10px;font-weight:600;">Alle</span>
+                  </div>
+                  <div style="display:flex;gap:6px;overflow:hidden;">
+                    <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
+                      <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">☕</div>
+                      <div style="font-weight:600;">Lavazza</div>
+                    </div>
+                    <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
+                      <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🧈</div>
+                      <div style="font-weight:600;">Butter 250g</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="screen-nav" id="sn-1">
+                <div class="a-bottom-nav">
+                  <div class="a-nav-item"><span class="mi">list_alt</span><span>Liste</span></div>
+                  <div class="a-nav-item">
+                    <div class="a-nav-icon-active">
+                      <div class="a-nav-bubble"><div class="a-nav-inner"><span class="mi">local_offer</span></div></div>
+                      <span class="a-nav-label-on">Stöbern</span>
+                    </div>
+                  </div>
+                  <div class="a-nav-item"><span class="mi">person</span><span>Profil</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCREEN 2: KI-Button (Liste + pulsing AI) — slides in from left -->
+            <div class="app-screen" id="screen-2">
+              <div class="screen-inner" id="si-2">
+                <div class="a-status">9:41 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
+                <div class="a-appbar">
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div style="display:flex;align-items:center;gap:4px;">
+                      <span style="font-size:15px;font-weight:700;">Meine Liste</span>
+                      <span class="mi" style="font-size:16px;color:var(--greyedout);">expand_more</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="a-body" style="display:flex;flex-direction:column;">
+                  <div style="display:flex;gap:6px;margin-bottom:9px;align-items:center;">
+                    <div class="a-search"><span class="mi" style="font-size:15px;">search</span><span>Produkt suchen…</span></div>
+                    <div class="a-ai-btn ki-pulse" style="box-shadow:0 0 0 4px rgba(81,158,138,0.3);"><span class="mi">auto_awesome</span></div>
+                  </div>
+                  <div style="background:rgba(81,158,138,0.09);border:1.5px solid rgba(81,158,138,0.38);border-radius:10px;padding:10px;margin-bottom:8px;text-align:center;">
+                    <span class="mi" style="font-size:22px;color:var(--primary);display:block;margin-bottom:4px;">auto_awesome</span>
+                    <div style="font-size:11px;font-weight:600;color:var(--primary);">KI analysiert deine Gewohnheiten…</div>
+                    <div style="font-size:10px;color:var(--greyedout);margin-top:3px;">Vorschläge werden erstellt</div>
+                  </div>
+                  <div class="a-list-item">
+                    <div class="a-list-img">🧴</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Dove Deo Roll-On</div>
+                    <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">2</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
+                  </div>
+                  <div class="a-list-item">
+                    <div class="a-list-img">🍞</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Vollkornbrot</div>
+                    <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="screen-nav" id="sn-2">
+                <div class="a-bottom-nav">
+                  <div class="a-nav-item">
+                    <div class="a-nav-icon-active">
+                      <div class="a-nav-bubble"><div class="a-nav-inner"><span class="mi">list_alt</span></div></div>
+                      <span class="a-nav-label-on">Liste</span>
+                    </div>
+                  </div>
+                  <div class="a-nav-item"><span class="mi">local_offer</span><span>Stöbern</span></div>
+                  <div class="a-nav-item"><span class="mi">person</span><span>Profil</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCREEN 3: Sheet overlay — transparent, sits over screen-2 -->
+            <div class="app-screen" id="screen-3">
+              <!-- Dark backdrop -->
+              <div style="position:absolute;inset:0;background:rgba(0,0,0,0.32);"></div>
+              <!-- Sheet rises from bottom via JS -->
+              <div class="a-sheet" id="ki-sheet" style="transform:translateY(100%);">
+                <div class="a-drag"></div>
+                <div style="padding:8px 12px 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(0,0,0,0.07);">
+                  <span class="mi" style="font-size:20px;color:var(--primary);">auto_awesome</span>
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#212121;">Smarte Einkaufsliste</div>
+                    <div style="font-size:10px;color:var(--greyedout);">3 Vorschläge</div>
+                  </div>
+                  <div class="a-accept-btn">Übernehmen</div>
+                </div>
+                <div style="padding:8px 0 0;">
+                  <div style="padding:0 10px 4px;">
+                    <div class="a-list-item"><div class="a-list-img" style="width:40px;height:40px;">🧴</div><div style="flex:1;font-size:11px;font-weight:500;">Dove Deo Roll-On</div><span style="font-size:11px;color:var(--greyedout);">2×</span></div>
+                    <div style="display:flex;align-items:center;gap:5px;padding:4px 0 6px;font-size:10px;color:var(--primary);">
+                      <div style="flex:1;height:1px;background:rgba(0,0,0,0.07);"></div>
+                      <span class="mi" style="font-size:13px;">auto_awesome</span> Vorschläge
+                      <div style="flex:1;height:1px;background:rgba(0,0,0,0.07);"></div>
+                    </div>
+                  </div>
+                  <div class="a-suggestion">
+                    <div class="a-list-img" style="width:38px;height:38px;background:rgba(150,224,205,0.2);">🥛</div>
+                    <div style="flex:1;font-size:11px;font-weight:500;">Milch 1,5%</div>
+                    <span style="font-size:11px;color:var(--greyedout);">1</span>
+                    <div style="background:var(--primary);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin-left:4px;"><span class="mi" style="font-size:14px;">add</span></div>
+                  </div>
+                  <div class="a-suggestion">
+                    <div class="a-list-img" style="width:38px;height:38px;background:rgba(150,224,205,0.2);">🧀</div>
+                    <div style="flex:1;font-size:11px;font-weight:500;">Gouda am Stück</div>
+                    <span style="font-size:11px;color:var(--greyedout);">1</span>
+                    <div style="background:var(--primary);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin-left:4px;"><span class="mi" style="font-size:14px;">add</span></div>
+                  </div>
+                  <div class="a-suggestion">
+                    <div class="a-list-img" style="width:38px;height:38px;background:rgba(150,224,205,0.2);">🥚</div>
+                    <div style="flex:1;font-size:11px;font-weight:500;">Eier 10er</div>
+                    <span style="font-size:11px;color:var(--greyedout);">1</span>
+                    <div style="background:var(--primary);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin-left:4px;"><span class="mi" style="font-size:14px;">add</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCREEN 4: Updated Liste after Übernehmen + pulsing CTA -->
+            <div class="app-screen" id="screen-4">
+              <div class="screen-inner" id="si-4">
+                <div class="a-status">9:41 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
+                <div class="a-appbar">
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div style="display:flex;align-items:center;gap:4px;">
+                      <span style="font-size:15px;font-weight:700;">Meine Liste</span>
+                      <span class="mi" style="font-size:16px;color:var(--greyedout);">expand_more</span>
+                    </div>
+                    <span class="mi" style="font-size:18px;color:var(--greyedout);">share</span>
+                  </div>
+                </div>
+                <div class="a-body" style="display:flex;flex-direction:column;">
+                  <div style="display:flex;gap:6px;margin-bottom:9px;align-items:center;">
+                    <div class="a-search"><span class="mi" style="font-size:15px;">search</span><span>Produkt suchen…</span></div>
+                    <div class="a-ai-btn"><span class="mi">auto_awesome</span></div>
+                  </div>
+                  <div class="a-list-item">
+                    <div class="a-list-img">🧴</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Dove Deo Roll-On</div>
+                    <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">2</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
+                  </div>
+                  <div class="a-list-item">
+                    <div class="a-list-img">🍞</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Vollkornbrot</div>
+                    <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
+                  </div>
+                  <!-- KI-added items highlighted -->
+                  <div class="a-list-item" style="background:rgba(81,158,138,0.08);border-color:rgba(81,158,138,0.3);">
+                    <div class="a-list-img">🥛<div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Milch 1,5%</div>
+                    <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
+                  </div>
+                  <div class="a-list-item" style="background:rgba(81,158,138,0.08);border-color:rgba(81,158,138,0.3);">
+                    <div class="a-list-img">🧀<div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Gouda am Stück</div>
+                    <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
+                  </div>
+                  <div class="a-list-item" style="background:rgba(81,158,138,0.08);border-color:rgba(81,158,138,0.3);">
+                    <div class="a-list-img">🥚<div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Eier 10er</div>
+                    <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
+                  </div>
+                </div>
+                <div style="padding:8px 12px;background:#fff;border-top:1px solid var(--border);">
+                  <div id="btn-start" class="a-pill-btn start-pulse" style="margin:0;">Einkauf starten</div>
+                </div>
+              </div>
+              <div class="screen-nav" id="sn-4">
+                <div class="a-bottom-nav">
+                  <div class="a-nav-item">
+                    <div class="a-nav-icon-active">
+                      <div class="a-nav-bubble"><div class="a-nav-inner"><span class="mi">list_alt</span></div></div>
+                      <span class="a-nav-label-on">Liste</span>
+                    </div>
+                  </div>
+                  <div class="a-nav-item"><span class="mi">local_offer</span><span>Stöbern</span></div>
+                  <div class="a-nav-item"><span class="mi">person</span><span>Profil</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flying cards overlay (step 3→4 animation) -->
+            <div id="fly-overlay">
+              <div class="fly-card" id="fly-0"><div class="fi">🥛</div><span>Milch 1,5%</span></div>
+              <div class="fly-card" id="fly-1"><div class="fi">🧀</div><span>Gouda</span></div>
+              <div class="fly-card" id="fly-2"><div class="fi">🥚</div><span>Eier 10er</span></div>
+            </div>
+
+            <!-- SCREEN 5: Einkauf starten — full-height push screen -->
+            <div class="app-screen screen-full" id="screen-5">
+              <div style="display:flex;flex-direction:column;height:100%;">
+                <div class="a-status">9:41 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
+                <div class="a-appbar" style="text-align:center;font-size:14px;font-weight:600;">Einkauf starten</div>
+                <div class="a-body" style="overflow-y:auto;">
+                  <div class="a-map"><span class="mi" style="font-size:26px;">map</span><span>Märkte in der Nähe</span></div>
+                  <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+                    <span style="font-size:11px;font-weight:600;">Umkreis</span>
+                    <span style="font-size:11px;font-weight:600;color:var(--primary);">4 km</span>
+                  </div>
+                  <div class="a-slider-track"><div class="a-slider-fill"></div><div class="a-slider-thumb"></div></div>
+                  <div style="font-size:11px;font-weight:600;margin-bottom:5px;">Marktauswahl</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:8px;">
+                    <div class="a-chip"><span class="mi" style="font-size:12px;">check</span> Alle</div>
+                    <div class="a-chip">REWE</div>
+                    <div class="a-chip off">ALDI</div>
+                    <div class="a-chip">LIDL</div>
+                  </div>
+                  <div style="font-size:11px;font-weight:600;margin-bottom:5px;">Verkehrsmittel</div>
+                  <div style="display:flex;gap:5px;margin-bottom:8px;">
+                    <div style="flex:1;background:var(--primary);border-radius:6px;padding:7px;text-align:center;color:#fff;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:4px;"><span class="mi" style="font-size:14px;color:#fff;font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">directions_bike</span>Fahrrad</div>
+                    <div style="flex:1;background:#fff;border:1.5px solid var(--border);border-radius:6px;padding:7px;text-align:center;font-size:10px;display:flex;align-items:center;justify-content:center;gap:4px;"><span class="mi" style="font-size:14px;">directions_car</span>Auto</div>
+                  </div>
+                  <div style="font-size:11px;font-weight:600;margin-bottom:5px;">Strategie</div>
+                  <div class="a-radio"><div class="a-radio-dot sel"></div><span>Günstigste <span style="color:var(--primary);font-weight:600;">18,43 €</span></span></div>
+                  <div class="a-radio"><div class="a-radio-dot"></div><span>Schnellste <span style="color:var(--greyedout);">21,70 €</span></span></div>
+                  <div class="a-radio"><div class="a-radio-dot"></div><span>BonBuddy <span style="color:var(--greyedout);">19,15 €</span></span></div>
+                  <div style="background:var(--primary);color:#fff;border-radius:50px;padding:13px;text-align:center;font-size:13px;font-weight:600;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;">Weiter<span class="mi" style="font-size:16px;">arrow_forward</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCREEN 6: BonBuddy Route — full-height push screen -->
+            <div class="app-screen screen-full" id="screen-6">
+              <div style="display:flex;flex-direction:column;height:100%;">
+                <div class="a-status">9:41 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
+                <div class="a-appbar" style="text-align:center;font-size:13px;font-weight:600;">BonBuddy Route</div>
+                <div class="a-body" style="overflow-y:auto;">
+                  <div class="a-search" style="margin-bottom:8px;font-size:11px;"><span class="mi" style="font-size:15px;">search</span><span>Produkt suchen oder scannen…</span></div>
+                  <div class="a-market-card">
+                    <div class="a-market-hdr">
+                      <div style="width:24px;height:24px;background:#cc0000;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;">R</div>
+                      REWE – Hauptstr.
+                      <span class="mi" style="margin-left:auto;color:var(--greyedout);font-size:16px;">expand_more</span>
+                    </div>
+                    <div class="a-shop-item">
+                      <div class="a-check done"><span class="mi">check</span></div>
+                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🧴</div>
+                      <div style="flex:1;font-size:10px;color:var(--greyedout);text-decoration:line-through;">Dove Deo Roll-On</div>
+                      <span style="font-size:10px;color:var(--primary);font-weight:700;">1,79 €</span>
+                    </div>
+                    <div class="a-shop-item">
+                      <div class="a-check"></div>
+                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🥛</div>
+                      <div style="flex:1;font-size:10px;">Milch 1,5%</div>
+                      <span style="font-size:10px;color:var(--primary);font-weight:700;">0,89 €</span>
+                    </div>
+                    <div style="margin-top:5px;font-size:9px;color:var(--greyedout);text-align:right;">Gesamt: 2,68 €</div>
+                  </div>
+                  <div class="a-market-card">
+                    <div class="a-market-hdr">
+                      <div style="width:24px;height:24px;background:#005ca9;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;">L</div>
+                      LIDL – Bürgerstr.
+                      <span class="mi" style="margin-left:auto;color:var(--greyedout);font-size:16px;">expand_more</span>
+                    </div>
+                    <div class="a-shop-item">
+                      <div class="a-check"></div>
+                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🧀</div>
+                      <div style="flex:1;font-size:10px;">Gouda am Stück</div>
+                      <span style="font-size:10px;color:var(--primary);font-weight:700;">1,49 €</span>
+                    </div>
+                    <div class="a-shop-item">
+                      <div class="a-check"></div>
+                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🥚</div>
+                      <div style="flex:1;font-size:10px;">Eier 10er</div>
+                      <span style="font-size:10px;color:var(--primary);font-weight:700;">1,29 €</span>
+                    </div>
+                    <div style="margin-top:5px;font-size:9px;color:var(--greyedout);text-align:right;">Gesamt: 2,78 €</div>
+                  </div>
+                  <div style="background:var(--primary);color:#fff;border-radius:50px;padding:13px;text-align:center;font-size:12px;font-weight:700;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:6px;">
+                    Einkauf abschließen<span class="mi" style="font-size:16px;font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24;">check_circle</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </div><!-- /ps-wrap -->
+          </div><!-- /phone-screen -->
+        </div><!-- /phone-frame -->
+      </div><!-- /phone-wrap -->
+
+      <!-- ═══ DESCRIPTIONS ═══ -->
+      <div class="wt-descs">
+        <div class="wt-desc" id="desc-0">
+          <div class="wt-step-num">Schritt 01 · Liste</div>
+          <h2>Deine smarte Einkaufsliste</h2>
+          <p>Trag ein, was du brauchst – per Suche, Barcode-Scanner oder Kategorie. BonBuddy ergänzt automatisch passende Produkte und merkt sich deine Lieblinge.</p>
+          <span class="wt-tag"><span class="mi">list_alt</span> Alles auf einen Blick</span>
         </div>
-        <div class="step">
-          <h2>2. Einkaufszettel erstellen</h2>
-          <p>Trage alle Produkte ein, die du kaufen möchtest. Unsere App schlägt dir automatisch ähnliche Produkte und Angebote vor.</p>
-          <img src="fotos/BB_App_Step1.png" alt="Screenshot Einkaufszettel">
+        <div class="wt-desc" id="desc-1">
+          <div class="wt-step-num">Schritt 02 · Stöbern</div>
+          <h2>Angebote direkt vor deiner Haustür</h2>
+          <p>Sieh auf einen Blick, was gerade im Angebot ist – sortiert nach Supermärkten in deiner Stadt. Und entdeck, wie viel du schon gespart hast.</p>
+          <span class="wt-tag"><span class="mi">local_offer</span> Immer die besten Preise</span>
         </div>
-        <div class="step">
-          <h2>3. Angebote vergleichen</h2>
-          <p>BonBuddy zeigt dir, in welchen Läden es die besten Angebote für deine Liste gibt – inklusive Preisvergleich und CO₂-Tipp.</p>
-          <img src="fotos/BB_App_Step2.png" alt="Screenshot Angebote">
+        <div class="wt-desc" id="desc-2">
+          <div class="wt-step-num">Schritt 03 · KI-Assistent</div>
+          <h2>Dein intelligenter Einkaufshelfer</h2>
+          <p>Ein Tipp auf den KI-Button – und BonBuddy analysiert deine Einkaufsgewohnheiten. In Sekunden bekommst du smarte Vorschläge für alles, was du vergessen hast.</p>
+          <span class="wt-tag"><span class="mi">auto_awesome</span> KI trifft Alltag</span>
         </div>
-        <div class="step">
-          <h2>4. Route planen</h2>
-          <p>Die App berechnet dir die schnellste oder günstigste Route durch alle Läden. So sparst du Zeit und vermeidest unnötige Wege.</p>
-          <img src="fotos/BB_App_Step3.png" alt="Screenshot Route">
+        <div class="wt-desc" id="desc-3">
+          <div class="wt-step-num">Schritt 04 · Vorschläge</div>
+          <h2>Übernimm alles mit einem Tipp</h2>
+          <p>Die smarte Einkaufsliste zeigt deine bestehenden Produkte und die KI-Ergänzungen. Einfach "Übernehmen" – und alle Vorschläge landen auf der Liste.</p>
+          <span class="wt-tag"><span class="mi">auto_awesome</span> Liste in Sekunden komplett</span>
         </div>
-        <div class="step">
-          <h2>5. Einkaufen & sparen</h2>
-          <p>Gehe entspannt einkaufen und spare dabei bares Geld. BonBuddy aktualisiert deine Liste automatisch, wenn du Artikel kaufst.</p>
-          <img src="fotos/BB_App_Step5.gif" alt="App Download" style="width: 50%; height: auto;">
+        <div class="wt-desc" id="desc-4">
+          <div class="wt-step-num">Schritt 05 · Liste komplett</div>
+          <h2>Alle Produkte auf einen Blick</h2>
+          <p>Deine Liste ist vollständig – KI-Produkte sind grün markiert. Jetzt einfach "Einkauf starten" tippen und BonBuddy berechnet die optimale Route für dich.</p>
+          <span class="wt-tag"><span class="mi">bolt</span> Bereit für den Einkauf</span>
+        </div>
+        <div class="wt-desc" id="desc-5">
+          <div class="wt-step-num">Schritt 06 · Route planen</div>
+          <h2>Die optimale Route durch alle Märkte</h2>
+          <p>Wähle Umkreis, Märkte und ob du mit Rad oder Auto unterwegs bist. BonBuddy berechnet, welche Kombination am günstigsten, schnellsten oder ausgewogensten ist.</p>
+          <span class="wt-tag"><span class="mi">map</span> Schlauer einkaufen</span>
+        </div>
+        <div class="wt-desc" id="desc-6">
+          <div class="wt-step-num">Schritt 07 · Einkauf</div>
+          <h2>Haken dran – Geld gespart</h2>
+          <p>Geh durch die optimierte Route und hak Produkte einfach ab. Am Ende siehst du, wie viel du im Vergleich zum Normalpreis gespart hast.</p>
+          <span class="wt-tag"><span class="mi">check_circle</span> Entspannt einkaufen</span>
         </div>
       </div>
-    </section>
-  </main>
+    </div><!-- /wt-inner -->
+  </div><!-- /wt-sticky -->
+</section>
 
-     <!-- Hier wird nun zentral der Footer inkl. Impressum/Datenschutz aus der footer.html geladen -->
-  <div id="footer-placeholder"></div>
+<section class="cta-section">
+  <h2>Bereit zum Sparen?</h2>
+  <p>Kostenlos herunterladen – für iOS & Android.</p>
+  <a href="app-download.html" class="cta-btn">App jetzt holen →</a>
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 800,
-      once: true
+<div id="footer-placeholder"></div>
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+  // Nav toggle
+  const toggle = document.getElementById('nav-toggle');
+  const nav    = document.getElementById('main-nav');
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    toggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  });
+
+  // ── WALKTHROUGH ──────────────────────────────────────────────────────────────
+  const NUM_STEPS  = 7;
+  const walkthrough = document.getElementById('walkthrough');
+  const screens    = Array.from({length: NUM_STEPS}, (_, i) => document.getElementById('screen-' + i));
+  const descs      = Array.from({length: NUM_STEPS}, (_, i) => document.getElementById('desc-' + i));
+  const dots       = Array.from(document.querySelectorAll('.wt-dot'));
+  const stepLabel  = document.getElementById('wt-step-label');
+  const kiSheet    = document.getElementById('ki-sheet');
+  const flyOverlay = document.getElementById('fly-overlay');
+  const flyCards   = Array.from(document.querySelectorAll('.fly-card'));
+  const offersRow  = document.getElementById('offers-row');
+  const stepNames  = ['Liste', 'Stöbern', 'KI-Button', 'Vorschläge', 'Liste komplett', 'Route', 'Einkauf'];
+
+  // Inner elements for screens that use the split nav approach (0,1,2,4)
+  const splitIds = [0, 1, 2, 4];
+  function si(i) { return document.getElementById('si-' + i); }
+  function sn(i) { return document.getElementById('sn-' + i); }
+
+  // Transition types between consecutive steps (6 transitions for 7 steps)
+  // 0→1: slide-left  (Liste → Stöbern tab switch, nav stays fixed)
+  // 1→2: slide-right (Stöbern → Liste/KI tab switch back, nav stays)
+  // 2→3: sheet-up    (sheet rises over KI screen)
+  // 3→4: fly-cards   (products fly from sheet to list)
+  // 4→5: push-left   (Einkauf starten pushed onto stack)
+  // 5→6: push-left   (Route pushed onto stack)
+  const TRANS_TYPE = ['slide-left', 'slide-right', 'sheet-up', 'fly-cards', 'push-left', 'push-left'];
+
+  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+  function easeOutCubic(t)    { return 1 - Math.pow(1 - t, 3); }
+  function easeInOutCubic(t)  { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+  function easeInCubic(t)     { return t*t*t; }
+
+  function applyScrollState(rawStep) {
+    rawStep = clamp(rawStep, 0, NUM_STEPS - 1);
+    const stepA     = Math.min(Math.floor(rawStep), NUM_STEPS - 1);
+    const frac      = (stepA < NUM_STEPS - 1) ? (rawStep - stepA) : 0;
+    const stepB     = Math.min(stepA + 1, NUM_STEPS - 1);
+    const t         = easeInOutCubic(frac);
+    const inTransit = frac > 0.001 && stepA < NUM_STEPS - 1;
+
+    // ── Reset all screens ──────────────────────────────────────────────────────
+    screens.forEach(s => {
+      s.style.opacity       = '0';
+      s.style.transform     = 'translateX(100%)';
+      s.style.pointerEvents = 'none';
+      s.style.zIndex        = '0';
     });
-
-    // Footer dynamisch aus footer.html laden
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      })
-      .catch(error => console.error('Fehler beim Laden des Footers:', error));
-  </script>
-
-  <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.main-nav');
-
-    navToggle.addEventListener('click', () => {
-      nav.classList.toggle('open');
+    // Reset inner content transforms (used by slide transitions)
+    splitIds.forEach(i => {
+      const el = si(i); if (el) el.style.transform = '';
+      const nav = sn(i); if (nav) nav.style.opacity = '';
     });
-  </script>
+    // Reset fly overlay
+    flyOverlay.style.display = 'none';
+    flyCards.forEach(c => { c.style.opacity = '0'; });
+    const btnStartEl = document.getElementById('btn-start');
+    if (btnStartEl) { btnStartEl.style.transform = ''; btnStartEl.style.filter = ''; }
+
+    // ── Offers row scroll-driven animation ─────────────────────────────────────
+    // Starts scrolling as step 1 arrives (rawStep 0.7) and holds until step 2
+    if (offersRow) {
+      const scrollFrac = clamp((rawStep - 0.8) / 1.4, 0, 1);
+      offersRow.style.transform = `translateX(${-scrollFrac * 62}px)`;
+    }
+
+    // ── Transitions ───────────────────────────────────────────────────────────
+    if (!inTransit) {
+      // Resting cleanly at a step
+      const A = screens[stepA];
+      A.style.opacity       = '1';
+      A.style.transform     = 'translateX(0)';
+      A.style.pointerEvents = 'auto';
+      A.style.zIndex        = '1';
+
+      if (stepA === 3) {
+        // Sheet open: also show screen-2 (Liste+KI) behind the overlay
+        screens[2].style.opacity   = '1';
+        screens[2].style.transform = 'translateX(0)';
+        screens[2].style.zIndex    = '0';
+        A.style.zIndex = '1';
+        if (kiSheet) kiSheet.style.transform = 'translateY(0%)';
+      } else if (stepA === 2) {
+        if (kiSheet) kiSheet.style.transform = 'translateY(100%)';
+      }
+    } else {
+      const A = screens[stepA];
+      const B = screens[stepB];
+
+      switch (TRANS_TYPE[stepA]) {
+
+        case 'slide-left':
+          // Both outer screens fixed; only inner content + nav crossfade
+          A.style.opacity = '1'; A.style.transform = 'translateX(0)'; A.style.zIndex = '1'; A.style.pointerEvents = 'none';
+          B.style.opacity = '1'; B.style.transform = 'translateX(0)'; B.style.zIndex = '2'; B.style.pointerEvents = t>=0.5?'auto':'none';
+          // Content panels slide
+          if (si(stepA)) si(stepA).style.transform = `translateX(${-t*100}%)`;
+          if (si(stepB)) si(stepB).style.transform = `translateX(${(1-t)*100}%)`;
+          // Nav crossfade (bubble switches active tab while background stays)
+          if (sn(stepA)) sn(stepA).style.opacity = String(1-t);
+          if (sn(stepB)) sn(stepB).style.opacity = String(t);
+          break;
+
+        case 'slide-right':
+          // Same but B enters from LEFT
+          A.style.opacity = '1'; A.style.transform = 'translateX(0)'; A.style.zIndex = '1'; A.style.pointerEvents = 'none';
+          B.style.opacity = '1'; B.style.transform = 'translateX(0)'; B.style.zIndex = '2'; B.style.pointerEvents = t>=0.5?'auto':'none';
+          if (si(stepA)) si(stepA).style.transform = `translateX(${t*100}%)`;
+          if (si(stepB)) si(stepB).style.transform = `translateX(${-(1-t)*100}%)`;
+          if (sn(stepA)) sn(stepA).style.opacity = String(1-t);
+          if (sn(stepB)) sn(stepB).style.opacity = String(t);
+          break;
+
+        case 'sheet-up': {
+          // Screen-2 stays in place; screen-3 (transparent overlay) fades in on top
+          A.style.opacity = '1'; A.style.transform = 'translateX(0)'; A.style.zIndex = '1'; A.style.pointerEvents = 'none';
+          B.style.opacity = String(t); B.style.transform = 'translateX(0)'; B.style.zIndex = '2'; B.style.pointerEvents = t>=0.5?'auto':'none';
+          // Sheet slides up; starts moving after first 10% of frac
+          const sheetT = easeOutCubic(clamp((frac-0.1)/0.9, 0, 1));
+          if (kiSheet) kiSheet.style.transform = `translateY(${(1-sheetT)*100}%)`;
+          break;
+        }
+
+        case 'fly-cards': {
+          // screen-2 (KI list without overlay) stays as the visible background throughout,
+          // then crossfades to screen-4 (same list + KI items highlighted) at the very end
+          const crossFade = easeInOutCubic(clamp((frac - 0.72) / 0.28, 0, 1));
+          screens[2].style.opacity   = String(1 - crossFade);
+          screens[2].style.transform = 'translateX(0)';
+          screens[2].style.zIndex    = '0';
+
+          // screen-3 (dark overlay) fades out quickly so the list is visible
+          const overlayOut = easeInOutCubic(clamp(frac / 0.30, 0, 1));
+          A.style.opacity   = String(1 - overlayOut);
+          A.style.transform = 'translateX(0)';
+          A.style.zIndex    = '1';
+          // Sheet slides DOWN (dismissal) — gone before cards start flying
+          if (kiSheet) kiSheet.style.transform = `translateY(${easeInCubic(clamp(frac / 0.26, 0, 1)) * 100}%)`;
+
+          // Cards rise from sheet position and arc into their list rows
+          const flyFrac = clamp((frac - 0.06) / 0.68, 0, 1);
+          if (flyFrac > 0 && flyFrac < 1) {
+            flyOverlay.style.display = 'block';
+            flyCards.forEach((card, i) => {
+              const stagger = i * 0.12;
+              const cf = clamp((flyFrac - stagger) / (1 - stagger), 0, 1);
+              const cardT = easeOutCubic(cf);
+              const startY = 320;           // bottom sheet header area
+              const endY   = 110 + i * 54; // KI list item rows
+              const y   = startY + (endY - startY) * cardT;
+              const arc = (i === 0 ? -24 : i === 2 ? 24 : 0) * Math.sin(cardT * Math.PI);
+              const scl = 0.86 + cardT * 0.14;
+              const fadeIn  = Math.min(1, cf * 6);
+              const fadeOut = cf > 0.83 ? Math.max(0, 1 - (cf - 0.83) / 0.17) : 1;
+              card.style.opacity   = String(Math.min(fadeIn, fadeOut));
+              card.style.transform = `translateX(calc(-50% + ${arc}px)) translateY(${y}px) scale(${scl})`;
+            });
+          } else {
+            flyOverlay.style.display = 'none';
+          }
+
+          // screen-4 (updated list with KI items) crossfades in at the end
+          B.style.opacity       = String(crossFade);
+          B.style.transform     = 'translateX(0)';
+          B.style.zIndex        = '3';
+          B.style.pointerEvents = crossFade > 0.5 ? 'auto' : 'none';
+          break;
+        }
+
+        case 'push-left': {
+          const btnEl = document.getElementById('btn-start');
+          if (stepA === 4 && btnEl) {
+            // Simulate button tap: scale down then up in the first 18% of the transition
+            const tapT = clamp(frac / 0.18, 0, 1);
+            const tapBounce = tapT < 0.5 ? tapT * 2 : 2 - tapT * 2; // triangle 0→1→0
+            btnEl.style.transform = `scale(${1 - tapBounce * 0.09})`;
+            btnEl.style.filter    = `brightness(${1 + tapBounce * 0.45})`;
+            // Push-left slide begins after initial tap (0.12→1.0)
+            const pushT = easeInOutCubic(clamp((frac - 0.12) / 0.88, 0, 1));
+            A.style.opacity       = String(1 - pushT * 0.45);
+            A.style.transform     = `translateX(${-pushT*28}%) scale(${1-pushT*0.07})`;
+            A.style.zIndex        = '1';
+            A.style.pointerEvents = 'none';
+            B.style.opacity       = '1';
+            B.style.transform     = `translateX(${(1-pushT)*100}%)`;
+            B.style.zIndex        = '2';
+            B.style.pointerEvents = pushT >= 0.5 ? 'auto' : 'none';
+          } else {
+            // Normal push-left for step 5→6
+            A.style.opacity       = String(1 - t * 0.45);
+            A.style.transform     = `translateX(${-t*28}%) scale(${1-t*0.07})`;
+            A.style.zIndex        = '1';
+            A.style.pointerEvents = 'none';
+            B.style.opacity       = '1';
+            B.style.transform     = `translateX(${(1-t)*100}%)`;
+            B.style.zIndex        = '2';
+            B.style.pointerEvents = t >= 0.5 ? 'auto' : 'none';
+          }
+          break;
+        }
+      }
+    }
+
+    // ── Update step label & dots ───────────────────────────────────────────────
+    stepLabel.textContent = `Schritt ${stepA+1} · ${stepNames[stepA]}`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === stepA));
+
+    // ── Scroll-driven description crossfade ───────────────────────────────────
+    descs.forEach((d, i) => {
+      let op, tx;
+      if (i === stepA)               { op = inTransit ? 1-t : 1; tx = inTransit ? -t*18 : 0; }
+      else if (i===stepB&&inTransit) { op = t; tx = (1-t)*18; }
+      else                           { op = 0; tx = 18; }
+      d.style.opacity       = String(op);
+      d.style.transform     = `translateX(${tx}px)`;
+      d.style.pointerEvents = op > 0.4 ? 'auto' : 'none';
+    });
+  }
+
+  // RAF-batched scroll → one DOM update per frame
+  let rafId = null;
+  function onScroll() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => {
+      rafId = null;
+      const rect  = walkthrough.getBoundingClientRect();
+      const total = walkthrough.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      const scrolled = -rect.top;
+      if (scrolled <= 0)     { applyScrollState(0);             return; }
+      if (scrolled >= total) { applyScrollState(NUM_STEPS - 1); return; }
+      applyScrollState((scrolled / total) * NUM_STEPS);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  applyScrollState(0); // render initial state immediately
+</script>
+
+<script>
+  fetch('footer.html').then(r=>r.text()).then(d=>{document.getElementById('footer-placeholder').innerHTML=d;}).catch(()=>{});
+</script>
+
+<!-- ─── 3D FLOATING FRUITS ─── -->
+<script type="module">
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+  const bgCanvas = document.getElementById('bg-canvas');
+  const bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, alpha: true, antialias: true });
+  bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  bgRenderer.setSize(window.innerWidth, window.innerHeight);
+  bgRenderer.outputColorSpace = THREE.SRGBColorSpace;
+
+  const bgScene = new THREE.Scene();
+  const bgCamera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+  bgCamera.position.z = 14;
+
+  bgScene.add(new THREE.AmbientLight(0xffffff, 1.8));
+  const bgSun = new THREE.DirectionalLight(0xfffaf0, 3.0);
+  bgSun.position.set(5, 10, 8);
+  bgScene.add(bgSun);
+  const bgFill = new THREE.DirectionalLight(0xfff2e8, 0.6);
+  bgFill.position.set(-6, -4, 5);
+  bgScene.add(bgFill);
+
+  function viewBounds() {
+    const h = 2 * Math.tan(THREE.MathUtils.degToRad(bgCamera.fov / 2)) * bgCamera.position.z;
+    return { h: h / 2, w: (h * bgCamera.aspect) / 2 };
+  }
+
+  function prepareModel(gltf, targetSize) {
+    const model = gltf.scene;
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    const scale = targetSize / Math.max(size.x, size.y, size.z);
+    model.scale.setScalar(scale);
+    model.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
+    const wrapper = new THREE.Group();
+    wrapper.add(model);
+    return wrapper;
+  }
+
+  const fruits = [];
+
+  function sideX(b) {
+    const side = Math.random() < 0.5 ? -1 : 1;
+    return side * (b.w * 0.38 + Math.random() * b.w * 0.68);
+  }
+
+  function spawnInstances(template, count) {
+    const b = viewBounds();
+    for (let i = 0; i < count; i++) {
+      const fruit = template.clone(true);
+      fruit.position.set(sideX(b), b.h + 1.5 + Math.random() * b.h * 1.8, (Math.random() - 0.5) * 4);
+      fruit.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+      fruit.userData.vy = 0.006 + Math.random() * 0.007;
+      fruit.userData.rx = (Math.random() - 0.5) * 0.012;
+      fruit.userData.ry = (Math.random() - 0.5) * 0.016;
+      fruit.userData.rz = (Math.random() - 0.5) * 0.009;
+      bgScene.add(fruit);
+      fruits.push(fruit);
+    }
+  }
+
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const isSlowConn = ['slow-2g', '2g'].includes(navigator.connection?.effectiveType);
+  const fruitCount = isMobile ? 3 : 5;
+
+  if (!isSlowConn) {
+    let ready = 0;
+    const loader = new GLTFLoader();
+    setTimeout(() => {
+      loader.load('3dModels/erdbeere.glb', gltf => { spawnInstances(prepareModel(gltf, 1.5), fruitCount); if (++ready === 2) animate(); });
+      loader.load('3dModels/mango.glb',    gltf => { spawnInstances(prepareModel(gltf, 1.6), fruitCount); if (++ready === 2) animate(); });
+    }, 600);
+  }
+
+  const COLLISION_R = 1.05;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const b = viewBounds();
+    fruits.forEach(f => {
+      f.position.y -= f.userData.vy;
+      f.rotation.x += f.userData.rx;
+      f.rotation.y += f.userData.ry;
+      f.rotation.z += f.userData.rz;
+      if (f.position.y < -(b.h + 2)) { f.position.y = b.h + 1.5 + Math.random() * 3; f.position.x = sideX(b); }
+    });
+    const minDist = COLLISION_R * 2;
+    for (let i = 0; i < fruits.length; i++) {
+      for (let j = i + 1; j < fruits.length; j++) {
+        const a = fruits[i], bf = fruits[j];
+        const dx = bf.position.x-a.position.x, dy = bf.position.y-a.position.y, dz = bf.position.z-a.position.z;
+        const distSq = dx*dx+dy*dy+dz*dz;
+        if (distSq < minDist*minDist && distSq > 0.0001) {
+          const dist = Math.sqrt(distSq), push = (minDist-dist)/dist*0.5;
+          a.position.x -= dx*push*0.5; a.position.y -= dy*push*0.5;
+          bf.position.x += dx*push*0.5; bf.position.y += dy*push*0.5;
+        }
+      }
+    }
+    bgRenderer.render(bgScene, bgCamera);
+  }
+
+  window.addEventListener('resize', () => {
+    bgCamera.aspect = window.innerWidth / window.innerHeight;
+    bgCamera.updateProjectionMatrix();
+    bgRenderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
+
 </body>
 </html>
