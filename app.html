@@ -254,13 +254,37 @@ body {
 .cta-btn { display: inline-block; background: #fff; color: var(--primary); border-radius: 50px; padding: 18px 48px; font-size: 18px; font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
 .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.28); }
 
-/* ─── FOOTER ─── */
-#footer-placeholder { position: relative; z-index: 1; }
-#footer-placeholder footer { background: transparent; color: rgba(255,255,255,0.6); }
-#footer-placeholder footer h4 { color: rgba(255,255,255,0.8); }
-#footer-placeholder footer a { color: rgba(255,255,255,0.55); }
-#footer-placeholder hr { border-color: rgba(255,255,255,0.1) !important; }
-#footer-placeholder .legal-links a { color: rgba(255,255,255,0.5); }
+/* ─── FOOTER (identisch zur Startseite: heller Grund, dunkler Text) ─── */
+#footer-placeholder {
+  position: relative; z-index: 1;
+  background: #fff;
+  color: #2a2a2a;
+  line-height: 1.6;
+}
+#footer-placeholder .legal-links { padding: 20px 0; }
+#footer-placeholder .legal-links a { color: #519e8a; text-decoration: none; }
+#footer-placeholder .legal-links a:hover { text-decoration: underline; }
+#footer-placeholder footer {
+  background: #f8f8f8;
+  color: #2a2a2a;
+  padding: 20px;
+  text-align: center;
+}
+#footer-placeholder footer .footer-links {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 30px; margin-bottom: 20px;
+}
+#footer-placeholder footer .footer-links div { min-width: 150px; }
+#footer-placeholder footer h4 {
+  color: #2a2a2a; font-weight: 600; font-size: 1.1em; margin: 0 0 12px;
+}
+#footer-placeholder footer p { color: #2a2a2a; margin: 0 0 16px; }
+#footer-placeholder footer a {
+  color: #519e8a; text-decoration: none; display: block;
+  margin: 5px 0; transition: all 0.3s ease;
+}
+#footer-placeholder footer a:hover { color: #519e8a; text-decoration: underline; }
+#footer-placeholder hr { border: 0 !important; border-top: 1px solid #eee !important; }
 
 /* ─── MOBILE ─── */
 @media (max-width: 860px) {
