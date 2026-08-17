@@ -380,6 +380,19 @@ footer button:hover {
   cursor: pointer;
 }
 
+.nav-cta {
+  background: #519e8a;
+  color: #fff !important;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 700 !important;
+  font-size: 14px;
+  transition: background .18s !important;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: #3f7c6c !important; text-decoration: none !important; }
+@media (max-width: 768px) { .nav-cta { display: none; } }
+
 @media (max-width: 768px) {
   .main-nav {
     display: none;

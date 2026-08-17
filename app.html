@@ -93,10 +93,13 @@ body {
 /* ─── NAV ─── */
 .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 26px 48px; }
 .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-.logo-link img.logo { height: 30px; opacity: 0.92; }
-.main-nav ul { list-style: none; display: flex; gap: 38px; }
+.logo-link img.logo { height: 34px; opacity: 0.92; }
+.main-nav ul { list-style: none; display: flex; align-items: center; gap: 38px; }
 .main-nav a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 15px; font-weight: 600; letter-spacing: 0.01em; transition: color 0.2s; }
 .main-nav a:hover, .main-nav a.active { color: #fff; }
+.main-nav a.nav-cta { background: #fff; color: var(--primary-dark); padding: 8px 20px; border-radius: 999px; font-weight: 700; font-size: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.14); transition: transform 0.2s, box-shadow 0.2s; }
+.main-nav a.nav-cta:hover { color: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+@media (max-width: 768px) { .main-nav a.nav-cta { display: none; } }
 .nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.88); font-size: 22px; cursor: pointer; padding: 4px; line-height: 1; }
 
 /* ─── COOKIE ─── */
@@ -296,12 +299,12 @@ body {
   .nav-toggle { display: block; }
   .wt-section { min-height: 700vh; }
   .wt-inner { flex-direction: column; gap: 28px; padding: 70px 20px 28px; align-items: center; }
-  .phone-wrap { width: 220px; }
-  .phone-frame { width: 220px; height: 456px; border-radius: 34px; border-width: 5px; }
+  .phone-wrap { width: 240px; }
+  .phone-frame { width: 240px; height: 497px; border-radius: 37px; border-width: 5px; }
   .phone-frame::before { left: -7px; }
   .phone-frame::after { right: -7px; }
-  .phone-island { width: 70px; height: 21px; }
-  .phone-screen { border-radius: 29px; }
+  .phone-island { width: 76px; height: 23px; }
+  .phone-screen { border-radius: 32px; }
   .wt-descs { min-height: 180px; max-width: 100%; width: 100%; }
   .wt-desc h2 { font-size: clamp(22px, 6vw, 32px); }
   .wt-desc p { font-size: 15px; }
@@ -310,10 +313,10 @@ body {
   .cta-section { padding: 80px 24px 48px; }
 }
 @media (max-width: 480px) {
-  .phone-wrap { width: 190px; }
-  .phone-frame { width: 190px; height: 392px; border-radius: 30px; border-width: 4px; }
-  .phone-island { width: 60px; height: 18px; top: 10px; }
-  .phone-screen { border-radius: 26px; }
+  .phone-wrap { width: 210px; }
+  .phone-frame { width: 210px; height: 433px; border-radius: 33px; border-width: 4px; }
+  .phone-island { width: 66px; height: 20px; top: 10px; }
+  .phone-screen { border-radius: 29px; }
 }
 
 /* ─── PHONE CONTENT SCALE WRAPPER ───
@@ -321,8 +324,8 @@ body {
    Scale-transforms to match smaller phone frames on mobile
    so every font, padding and icon stays proportional.    */
 .ps-wrap { position: absolute; top: 0; left: 0; width: 268px; height: 568px; transform-origin: top left; }
-@media (max-width: 860px) { .ps-wrap { transform: scale(0.7836); } }
-@media (max-width: 480px) { .ps-wrap { transform: scale(0.6791); } }
+@media (max-width: 860px) { .ps-wrap { transform: scale(0.8582); } }
+@media (max-width: 480px) { .ps-wrap { transform: scale(0.7463); } }
 </style>
 </head>
 <body>
@@ -355,7 +358,9 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
         <li><a href="ueber-uns.html">Über uns</a></li>
         <li><a href="app.html" class="active">App</a></li>
         <li><a href="partner.html">Partner</a></li>
+        <li><a href="presse.html">Presse</a></li>
         <li><a href="hilfe.html">Hilfe</a></li>
+        <li><a href="app-download.html" class="nav-cta">Herunterladen</a></li>
       </ul>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen">☰</button>
@@ -414,8 +419,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     <div class="a-ai-btn"><span class="mi">auto_awesome</span></div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🧴</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Dove Deo Roll-On</div>
+                    <div class="a-list-img">🍓</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Erdbeeren 500g</div>
                     <div class="a-qty">
                       <div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div>
                       <span style="font-size:13px;font-weight:600;">2</span>
@@ -488,7 +493,7 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     <div style="font-size:10px;opacity:0.75;margin-top:3px;">🔥 3 Wochen in Folge</div>
                   </div>
                   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">
-                    <span style="font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;"><span class="mi" style="font-size:14px;color:var(--primary);">local_offer</span>Angebote in Lüdinghausen</span>
+                    <span style="font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;"><span class="mi" style="font-size:14px;color:var(--primary);">local_offer</span>Angebote in <span id="city-name">Lüdinghausen</span></span>
                     <span style="color:var(--primary);font-size:10px;font-weight:600;">Alle</span>
                   </div>
                   <!-- Offers row: scrolls right via JS (id="offers-row") -->
@@ -593,8 +598,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     <div style="font-size:10px;color:var(--greyedout);margin-top:3px;">Vorschläge werden erstellt</div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🧴</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Dove Deo Roll-On</div>
+                    <div class="a-list-img">🍓</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Erdbeeren 500g</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">2</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                   <div class="a-list-item">
@@ -635,7 +640,7 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                 </div>
                 <div style="padding:8px 0 0;">
                   <div style="padding:0 10px 4px;">
-                    <div class="a-list-item"><div class="a-list-img" style="width:40px;height:40px;">🧴</div><div style="flex:1;font-size:11px;font-weight:500;">Dove Deo Roll-On</div><span style="font-size:11px;color:var(--greyedout);">2×</span></div>
+                    <div class="a-list-item"><div class="a-list-img" style="width:40px;height:40px;">🍓</div><div style="flex:1;font-size:11px;font-weight:500;">Erdbeeren 500g</div><span style="font-size:11px;color:var(--greyedout);">2×</span></div>
                     <div style="display:flex;align-items:center;gap:5px;padding:4px 0 6px;font-size:10px;color:var(--primary);">
                       <div style="flex:1;height:1px;background:rgba(0,0,0,0.07);"></div>
                       <span class="mi" style="font-size:13px;">auto_awesome</span> Vorschläge
@@ -683,8 +688,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     <div class="a-ai-btn"><span class="mi">auto_awesome</span></div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🧴</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Dove Deo Roll-On</div>
+                    <div class="a-list-img">🍓</div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Erdbeeren 500g</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">2</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                   <div class="a-list-item">
@@ -782,8 +787,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     </div>
                     <div class="a-shop-item">
                       <div class="a-check done"><span class="mi">check</span></div>
-                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🧴</div>
-                      <div style="flex:1;font-size:10px;color:var(--greyedout);text-decoration:line-through;">Dove Deo Roll-On</div>
+                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🍓</div>
+                      <div style="flex:1;font-size:10px;color:var(--greyedout);text-decoration:line-through;">Erdbeeren 500g</div>
                       <span style="font-size:10px;color:var(--primary);font-weight:700;">1,79 €</span>
                     </div>
                     <div class="a-shop-item">
@@ -1129,6 +1134,16 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
 
   window.addEventListener('scroll', onScroll, { passive: true });
   applyScrollState(0); // render initial state immediately
+
+  // Easter egg: replace city name based on visitor's IP location
+  (function() {
+    const el = document.getElementById('city-name');
+    if (!el) return;
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(d => { if (d && d.city) el.textContent = d.city; })
+      .catch(() => {});
+  })();
 </script>
 
 <script>

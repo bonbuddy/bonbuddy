@@ -52,73 +52,6 @@
       line-height: 1.6;
     }
 
-    .site-header {
-      background: #ffffff;
-      border-bottom: 1px solid #eee;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: center;
-    }
-
-    .logo {
-      height: 50px;
-    }
-
-    .main-nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .main-nav a {
-      text-decoration: none;
-      color: #2a2a2a;
-      font-weight: 600;
-    }
-
-    .main-nav a:hover {
-      color: #519e8a;
-    }
-
-    .nav-toggle {
-      display: none;
-      font-size: 1.5em;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .main-nav ul {
-        display: none;
-        flex-direction: column;
-        background: #fff;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        padding: 20px;
-      }
-      .main-nav.open ul {
-        display: flex;
-      }
-      .nav-toggle {
-        display: block;
-      }
-    }
-
     h1 {
       color: #519e8a;
       font-weight: 700;
@@ -310,17 +243,18 @@ function bbDeclineCookies(){
       <a href="index.html" class="logo-link">
         <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
       </a>
-      <nav class="main-nav">
+      <nav class="main-nav" id="main-nav">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="ueber-uns.html">Über uns</a></li>
           <li><a href="app.html">App</a></li>
           <li><a href="partner.html">Partner</a></li>
+          <li><a href="presse.html">Presse</a></li>
           <li><a href="hilfe.html">Hilfe</a></li>
-          <li><a href="kontakt.html" class="active">Kontakt</a></li>
+          <li><a href="app-download.html" class="nav-cta">Herunterladen</a></li>
         </ul>
       </nav>
-      <button class="nav-toggle" aria-label="Menü öffnen">☰</button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen">☰</button>
     </div>
   </header>
 
