@@ -179,7 +179,8 @@ body {
 .a-search { background: var(--surface); border: 1.5px solid rgba(0,0,0,0.08); border-radius: 50px; padding: 9px 14px; display: flex; align-items: center; gap: 6px; flex: 1; font-size: 12px; color: var(--greyedout); }
 .a-ai-btn { background: var(--primary); border-radius: 16px; width: 48px; height: 42px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; flex-shrink: 0; }
 .a-list-item { background: var(--surface); border: 1px solid rgba(0,0,0,0.06); border-radius: 8px; padding: 7px; margin-bottom: 5px; display: flex; align-items: center; gap: 7px; }
-.a-list-img { width: 46px; height: 46px; border-radius: 6px; background: #e8f5f1; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; position: relative; }
+.a-list-img { width: 46px; height: 46px; border-radius: 6px; background: #fff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; position: relative; overflow: hidden; }
+.a-list-img img { width: 100%; height: 100%; object-fit: contain; padding: 2px; box-sizing: border-box; }
 .a-ki-badge { position: absolute; top: -3px; right: -3px; width: 16px; height: 16px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 8px; }
 .a-qty { display: flex; align-items: center; gap: 5px; margin-left: auto; }
 .a-qty-btn { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid rgba(0,0,0,0.18); display: flex; align-items: center; justify-content: center; color: var(--greyedout); }
@@ -238,7 +239,8 @@ body {
   opacity: 0; pointer-events: none;
   box-shadow: 0 6px 18px rgba(0,0,0,0.18);
 }
-.fly-card .fi { width: 32px; height: 32px; border-radius: 5px; background: #e8f5f1; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.fly-card .fi { width: 32px; height: 32px; border-radius: 5px; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; overflow: hidden; }
+.fly-card .fi img { width: 100%; height: 100%; object-fit: contain; padding: 2px; box-sizing: border-box; }
 .fly-card span { font-size: 10px; font-weight: 600; color: #212121; }
 
 /* ─── DESCRIPTIONS ─── */
@@ -419,8 +421,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     <div class="a-ai-btn"><span class="mi">auto_awesome</span></div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🍓</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Erdbeeren 500g</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4000540003567.png" alt="Kölln Müsli"></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Kölln Müsli 500g</div>
                     <div class="a-qty">
                       <div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div>
                       <span style="font-size:13px;font-weight:600;">2</span>
@@ -428,8 +430,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     </div>
                   </div>
                   <div class="a-list-item" style="background:rgba(81,158,138,0.07);border-color:rgba(81,158,138,0.28);">
-                    <div class="a-list-img">🥛<div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Milch 1,5% 1L</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4002971043402.png" alt="Ehrmann Almighurt"><div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Almighurt 250g</div>
                     <div class="a-qty">
                       <div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div>
                       <span style="font-size:13px;font-weight:600;">1</span>
@@ -437,8 +439,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     </div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🍞</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Vollkornbrot</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4002676212875.png" alt="Birkel Mini Maccaroni"></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Mini Maccaroni</div>
                     <div class="a-qty">
                       <div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div>
                       <span style="font-size:13px;font-weight:600;">1</span>
@@ -448,12 +450,12 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                   <div style="font-size:10px;color:var(--greyedout);margin:8px 0 6px;font-weight:500;">Vorschläge für dich</div>
                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
                     <div style="background:var(--surface);border-radius:10px;padding:7px;font-size:10px;">
-                      <div style="height:44px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:18px;">🥚</div>
-                      <div style="font-weight:600;">Eier 10er</div>
+                      <div style="height:44px;background:#fff;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/3083681003949.png" alt="Bonduelle Kichererbsen" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                      <div style="font-weight:600;">Kichererbsen</div>
                     </div>
                     <div style="background:var(--surface);border-radius:10px;padding:7px;font-size:10px;">
-                      <div style="height:44px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:18px;">☕</div>
-                      <div style="font-weight:600;">Lavazza</div>
+                      <div style="height:44px;background:#fff;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4002846034603.png" alt="Mio Mio Mate Ginger" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                      <div style="font-weight:600;">Mio Mate</div>
                     </div>
                   </div>
                 </div>
@@ -500,8 +502,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                   <div style="overflow:hidden;margin-bottom:10px;">
                     <div id="offers-row" style="display:flex;gap:6px;width:max-content;">
                       <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
-                        <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🧴</div>
-                        <div style="font-weight:600;margin-bottom:2px;">Schauma</div>
+                        <div style="height:50px;background:#fff;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4009300009894.png" alt="Teekanne Prinzessin Lillifee" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                        <div style="font-weight:600;margin-bottom:2px;">Lillifee Tee</div>
                         <div style="display:flex;align-items:center;justify-content:space-between;">
                           <div>
                             <div style="color:var(--primary);font-weight:700;">1,49 €</div>
@@ -511,8 +513,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                         </div>
                       </div>
                       <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
-                        <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🥤</div>
-                        <div style="font-weight:600;margin-bottom:2px;">Cola 1,5L</div>
+                        <div style="height:50px;background:#fff;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/5000112622744.png" alt="Coca-Cola" style="width:100%;height:100%;object-fit:contain;"></div>
+                        <div style="font-weight:600;margin-bottom:2px;">Coca-Cola 1,5L</div>
                         <div style="display:flex;align-items:center;justify-content:space-between;">
                           <div>
                             <div style="color:var(--primary);font-weight:700;">0,99 €</div>
@@ -522,8 +524,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                         </div>
                       </div>
                       <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
-                        <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🍫</div>
-                        <div style="font-weight:600;margin-bottom:2px;">Milka 400g</div>
+                        <div style="height:50px;background:#fff;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4000540003567.png" alt="Kölln Müsli" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                        <div style="font-weight:600;margin-bottom:2px;">Kölln Müsli 500g</div>
                         <div style="display:flex;align-items:center;justify-content:space-between;">
                           <div>
                             <div style="color:var(--primary);font-weight:700;">2,19 €</div>
@@ -533,8 +535,8 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                         </div>
                       </div>
                       <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
-                        <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🥛</div>
-                        <div style="font-weight:600;margin-bottom:2px;">Milch 1,5%</div>
+                        <div style="height:50px;background:#fff;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4002971043402.png" alt="Ehrmann Almighurt" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                        <div style="font-weight:600;margin-bottom:2px;">Almighurt 250g</div>
                         <div style="display:flex;align-items:center;justify-content:space-between;">
                           <div>
                             <div style="color:var(--primary);font-weight:700;">0,79 €</div>
@@ -551,12 +553,12 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                   </div>
                   <div style="display:flex;gap:6px;overflow:hidden;">
                     <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
-                      <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">☕</div>
-                      <div style="font-weight:600;">Lavazza</div>
+                      <div style="height:50px;background:#fff;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4002846034603.png" alt="Mio Mio Mate Ginger" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                      <div style="font-weight:600;">Mio Mate</div>
                     </div>
                     <div style="background:var(--surface);border-radius:10px;padding:7px;width:90px;flex-shrink:0;font-size:10px;">
-                      <div style="height:50px;background:#e8f5f1;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:20px;">🧈</div>
-                      <div style="font-weight:600;">Butter 250g</div>
+                      <div style="height:50px;background:#fff;border-radius:6px;margin-bottom:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4002676212875.png" alt="Birkel Mini Maccaroni" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                      <div style="font-weight:600;">Mini Maccaroni</div>
                     </div>
                   </div>
                 </div>
@@ -598,13 +600,13 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     <div style="font-size:10px;color:var(--greyedout);margin-top:3px;">Vorschläge werden erstellt</div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🍓</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Erdbeeren 500g</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4000540003567.png" alt="Kölln Müsli"></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Kölln Müsli 500g</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">2</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🍞</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Vollkornbrot</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4002676212875.png" alt="Birkel Mini Maccaroni"></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Mini Maccaroni</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                 </div>
@@ -640,7 +642,7 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                 </div>
                 <div style="padding:8px 0 0;">
                   <div style="padding:0 10px 4px;">
-                    <div class="a-list-item"><div class="a-list-img" style="width:40px;height:40px;">🍓</div><div style="flex:1;font-size:11px;font-weight:500;">Erdbeeren 500g</div><span style="font-size:11px;color:var(--greyedout);">2×</span></div>
+                    <div class="a-list-item"><div class="a-list-img" style="width:40px;height:40px;"><img src="Product_Pictures/4000540003567.png" alt="Kölln Müsli"></div><div style="flex:1;font-size:11px;font-weight:500;">Kölln Müsli 500g</div><span style="font-size:11px;color:var(--greyedout);">2×</span></div>
                     <div style="display:flex;align-items:center;gap:5px;padding:4px 0 6px;font-size:10px;color:var(--primary);">
                       <div style="flex:1;height:1px;background:rgba(0,0,0,0.07);"></div>
                       <span class="mi" style="font-size:13px;">auto_awesome</span> Vorschläge
@@ -648,20 +650,20 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     </div>
                   </div>
                   <div class="a-suggestion">
-                    <div class="a-list-img" style="width:38px;height:38px;background:rgba(150,224,205,0.2);">🥛</div>
-                    <div style="flex:1;font-size:11px;font-weight:500;">Milch 1,5%</div>
+                    <div class="a-list-img" style="width:38px;height:38px;background:#fff;"><img src="Product_Pictures/4002971043402.png" alt="Ehrmann Almighurt"></div>
+                    <div style="flex:1;font-size:11px;font-weight:500;">Almighurt 250g</div>
                     <span style="font-size:11px;color:var(--greyedout);">1</span>
                     <div style="background:var(--primary);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin-left:4px;"><span class="mi" style="font-size:14px;">add</span></div>
                   </div>
                   <div class="a-suggestion">
-                    <div class="a-list-img" style="width:38px;height:38px;background:rgba(150,224,205,0.2);">🧀</div>
-                    <div style="flex:1;font-size:11px;font-weight:500;">Gouda am Stück</div>
+                    <div class="a-list-img" style="width:38px;height:38px;background:#fff;"><img src="Product_Pictures/4002359040306.png" alt="Ben's Original Risi Bisi"></div>
+                    <div style="flex:1;font-size:11px;font-weight:500;">Risi Bisi</div>
                     <span style="font-size:11px;color:var(--greyedout);">1</span>
                     <div style="background:var(--primary);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin-left:4px;"><span class="mi" style="font-size:14px;">add</span></div>
                   </div>
                   <div class="a-suggestion">
-                    <div class="a-list-img" style="width:38px;height:38px;background:rgba(150,224,205,0.2);">🥚</div>
-                    <div style="flex:1;font-size:11px;font-weight:500;">Eier 10er</div>
+                    <div class="a-list-img" style="width:38px;height:38px;background:#fff;"><img src="Product_Pictures/3083681003949.png" alt="Bonduelle Kichererbsen"></div>
+                    <div style="flex:1;font-size:11px;font-weight:500;">Kichererbsen</div>
                     <span style="font-size:11px;color:var(--greyedout);">1</span>
                     <div style="background:var(--primary);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;margin-left:4px;"><span class="mi" style="font-size:14px;">add</span></div>
                   </div>
@@ -688,29 +690,29 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     <div class="a-ai-btn"><span class="mi">auto_awesome</span></div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🍓</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Erdbeeren 500g</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4000540003567.png" alt="Kölln Müsli"></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Kölln Müsli 500g</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">2</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                   <div class="a-list-item">
-                    <div class="a-list-img">🍞</div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Vollkornbrot</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4002676212875.png" alt="Birkel Mini Maccaroni"></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Mini Maccaroni</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                   <!-- KI-added items highlighted -->
                   <div class="a-list-item" style="background:rgba(81,158,138,0.08);border-color:rgba(81,158,138,0.3);">
-                    <div class="a-list-img">🥛<div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Milch 1,5%</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4002971043402.png" alt="Ehrmann Almighurt"><div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Almighurt 250g</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                   <div class="a-list-item" style="background:rgba(81,158,138,0.08);border-color:rgba(81,158,138,0.3);">
-                    <div class="a-list-img">🧀<div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Gouda am Stück</div>
+                    <div class="a-list-img"><img src="Product_Pictures/4002359040306.png" alt="Ben's Original Risi Bisi"><div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Risi Bisi</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                   <div class="a-list-item" style="background:rgba(81,158,138,0.08);border-color:rgba(81,158,138,0.3);">
-                    <div class="a-list-img">🥚<div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
-                    <div style="flex:1;font-size:12px;font-weight:500;">Eier 10er</div>
+                    <div class="a-list-img"><img src="Product_Pictures/3083681003949.png" alt="Bonduelle Kichererbsen"><div class="a-ki-badge"><span class="mi" style="font-size:7px;">auto_awesome</span></div></div>
+                    <div style="flex:1;font-size:12px;font-weight:500;">Kichererbsen</div>
                     <div class="a-qty"><div class="a-qty-btn"><span class="mi" style="font-size:12px;">remove</span></div><span style="font-size:13px;font-weight:600;">1</span><div class="a-qty-btn"><span class="mi" style="font-size:12px;">add</span></div></div>
                   </div>
                 </div>
@@ -734,9 +736,9 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
 
             <!-- Flying cards overlay (step 3→4 animation) -->
             <div id="fly-overlay">
-              <div class="fly-card" id="fly-0"><div class="fi">🥛</div><span>Milch 1,5%</span></div>
-              <div class="fly-card" id="fly-1"><div class="fi">🧀</div><span>Gouda</span></div>
-              <div class="fly-card" id="fly-2"><div class="fi">🥚</div><span>Eier 10er</span></div>
+              <div class="fly-card" id="fly-0"><div class="fi"><img src="Product_Pictures/4002971043402.png" alt="Ehrmann Almighurt"></div><span>Almighurt</span></div>
+              <div class="fly-card" id="fly-1"><div class="fi"><img src="Product_Pictures/4002359040306.png" alt="Ben's Original Risi Bisi"></div><span>Risi Bisi</span></div>
+              <div class="fly-card" id="fly-2"><div class="fi"><img src="Product_Pictures/3083681003949.png" alt="Bonduelle Kichererbsen"></div><span>Kichererbsen</span></div>
             </div>
 
             <!-- SCREEN 5: Einkauf starten — full-height push screen -->
@@ -787,14 +789,14 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     </div>
                     <div class="a-shop-item">
                       <div class="a-check done"><span class="mi">check</span></div>
-                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🍓</div>
-                      <div style="flex:1;font-size:10px;color:var(--greyedout);text-decoration:line-through;">Erdbeeren 500g</div>
+                      <div style="width:26px;height:26px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4000540003567.png" alt="Kölln Müsli" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                      <div style="flex:1;font-size:10px;color:var(--greyedout);text-decoration:line-through;">Kölln Müsli 500g</div>
                       <span style="font-size:10px;color:var(--primary);font-weight:700;">1,79 €</span>
                     </div>
                     <div class="a-shop-item">
                       <div class="a-check"></div>
-                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🥛</div>
-                      <div style="flex:1;font-size:10px;">Milch 1,5%</div>
+                      <div style="width:26px;height:26px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4002971043402.png" alt="Ehrmann Almighurt" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                      <div style="flex:1;font-size:10px;">Almighurt 250g</div>
                       <span style="font-size:10px;color:var(--primary);font-weight:700;">0,89 €</span>
                     </div>
                     <div style="margin-top:5px;font-size:9px;color:var(--greyedout);text-align:right;">Gesamt: 2,68 €</div>
@@ -807,14 +809,14 @@ function bbDeclineCookies(){localStorage.setItem('bb_cookie_consent','declined')
                     </div>
                     <div class="a-shop-item">
                       <div class="a-check"></div>
-                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🧀</div>
-                      <div style="flex:1;font-size:10px;">Gouda am Stück</div>
+                      <div style="width:26px;height:26px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/4002359040306.png" alt="Ben's Original Risi Bisi" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                      <div style="flex:1;font-size:10px;">Risi Bisi</div>
                       <span style="font-size:10px;color:var(--primary);font-weight:700;">1,49 €</span>
                     </div>
                     <div class="a-shop-item">
                       <div class="a-check"></div>
-                      <div style="width:26px;height:26px;background:#e8f5f1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;">🥚</div>
-                      <div style="flex:1;font-size:10px;">Eier 10er</div>
+                      <div style="width:26px;height:26px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="Product_Pictures/3083681003949.png" alt="Bonduelle Kichererbsen" style="width:100%;height:100%;object-fit:contain;padding:2px;box-sizing:border-box;"></div>
+                      <div style="flex:1;font-size:10px;">Kichererbsen</div>
                       <span style="font-size:10px;color:var(--primary);font-weight:700;">1,29 €</span>
                     </div>
                     <div style="margin-top:5px;font-size:9px;color:var(--greyedout);text-align:right;">Gesamt: 2,78 €</div>
