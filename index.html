@@ -1073,6 +1073,12 @@ function bbDeclineCookies(){ localStorage.setItem('bb_cookie_consent','declined'
         if (s.src) n.src = s.src; else n.textContent = s.textContent;
         document.body.appendChild(n);
       });
+      // Falls per Anker verlinkt (z. B. index.html#newsletter), erst nach dem
+      // Laden des Footers dorthin scrollen, da der Footer asynchron nachlädt.
+      if (location.hash === '#newsletter') {
+        var target = document.getElementById('newsletter');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
 </script>
 </body>
