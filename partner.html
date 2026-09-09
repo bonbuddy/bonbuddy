@@ -24,57 +24,488 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Partner werden – BonBuddy | Lokaler Einzelhandel NRW</title>
-  <meta name="description" content="Als lokaler Supermarkt oder Einzelhändler in NRW Partner von BonBuddy werden – bringe deine Angebote direkt zu Kunden in Lüdinghausen, Coesfeld, Dülmen und Münsterland." />
+  <title>Für Unternehmen – Werbung & Markt-Integration | BonBuddy</title>
+  <meta name="description" content="Werbung direkt auf der Einkaufsliste – ab 29 € im Monat. Oder deinen Supermarkt in der BonBuddy App sichtbar machen. Lokale Reichweite im Münsterland und in ganz NRW." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.bonbuddy.de/partner.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.bonbuddy.de/partner.html" />
-  <meta property="og:title" content="Partner werden – BonBuddy | Lokaler Einzelhandel NRW" />
-  <meta property="og:description" content="Als lokaler Händler in NRW BonBuddy-Partner werden und Kunden in Lüdinghausen, Coesfeld, Dülmen & Münsterland erreichen." />
+  <meta property="og:title" content="Für Unternehmen – Werbung & Markt-Integration | BonBuddy" />
+  <meta property="og:description" content="Werbung direkt auf der Einkaufsliste ab 29 €/Monat – oder den eigenen Markt in der BonBuddy App sichtbar machen." />
   <meta property="og:site_name" content="BonBuddy" />
+  <meta property="og:image" content="https://www.bonbuddy.de/fotos/Startseite2Handys.png" />
   <link rel="icon" type="image/png" href="fotos/icon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
-#bb-cookie-banner {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 99999;
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green:       #519E8A;
+  --green-dark:  #2E6054;
+  --green-light: #96E0CD;
+  --mint:        #EEF7F4;
+  --deep:        #2E6054;
+  --deep-dark:   #21463D;
+  --deep-soft:   #E7F1ED;
+  --sage:        #417F70;
+  --sage-soft:   #ECF5F1;
+  --ink:         #1E2422;
+  --muted:       #6E7B77;
+  --line:        #E6EDEA;
+  --surface:     #F3F2F2;
+  --greyedout:   #757575;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
   background: #fff;
-  border-top: 1px solid rgba(42,42,42,.12);
-  box-shadow: 0 -8px 32px rgba(42,42,42,.10);
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  font-family: "Jost", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  font-size: 14px;
-  color: #2a2a2a;
-  line-height: 1.5;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+
+.mi {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal; font-style: normal;
+  font-size: inherit; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  vertical-align: middle;
+  font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+.mi.fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.wrap-narrow { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+section { padding: 0; margin: 0; max-width: none; }
+
+/* ═══════════════════════════════════════════
+   NAV  (identisch zur restlichen Website)
+═══════════════════════════════════════════ */
+.site-header {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px);
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+  position: sticky; top: 0; z-index: 1000;
+}
+.nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1920px; margin: 0 auto; }
+.logo { width: 100%; max-width: 170px; height: auto; display: block; }
+.main-nav ul { list-style: none; display: flex; align-items: center; gap: 30px; }
+.main-nav a { color: var(--ink); font-weight: 600; transition: color .2s; }
+.main-nav a:hover, .main-nav a.active { color: var(--green); }
+.nav-cta { background: #519e8a; color: #fff !important; padding: 8px 20px; border-radius: 999px; font-weight: 700; font-size: 14px; transition: background .18s; white-space: nowrap; }
+.nav-cta:hover { background: #3f7c6c; }
+.nav-toggle { display: none; background: none; border: none; font-size: 1.7em; cursor: pointer; line-height: 1; color: var(--ink); }
+@media (max-width: 900px) {
+  .nav-cta { display: none; }
+  .main-nav { display: none; flex-direction: column; background: #fff; position: absolute; top: 64px; left: 0; width: 100%; padding: 18px 0; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+  .main-nav.open { display: flex; }
+  .main-nav ul { flex-direction: column; gap: 18px; align-items: center; }
+  .nav-toggle { display: block; }
+}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 84px 0 72px;
+  background:
+    radial-gradient(ellipse 60% 70% at 12% 0%,  rgba(150,224,205,.42) 0%, transparent 62%),
+    radial-gradient(ellipse 55% 65% at 92% 12%, rgba(46,96,84,.16)  0%, transparent 62%),
+    radial-gradient(ellipse 70% 60% at 62% 100%, rgba(81,158,138,.13) 0%, transparent 65%),
+    #FBFDFC;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--green-dark); background: rgba(255,255,255,.75);
+  border: 1px solid rgba(81,158,138,.28);
+  padding: 7px 16px; border-radius: 999px; margin-bottom: 24px;
+}
+.eyebrow .mi { font-size: 15px; }
+.hero h1 {
+  font-size: clamp(38px, 6.2vw, 68px); font-weight: 800;
+  line-height: 1.06; letter-spacing: -.03em; max-width: 15ch; margin-bottom: 22px;
+}
+.hero h1 em { font-style: normal; color: var(--green); }
+.hero-sub { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 54ch; margin-bottom: 44px; }
+
+/* Zwei Pfade */
+.paths { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 820px) { .paths { grid-template-columns: 1fr; } }
+.path-card {
+  position: relative; overflow: hidden;
+  background: #fff; border: 1px solid var(--line); border-radius: 22px;
+  padding: 28px 28px 26px; display: block;
+  box-shadow: 0 2px 4px rgba(30,36,34,.03), 0 12px 34px rgba(30,36,34,.05);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.path-card:hover { transform: translateY(-4px); box-shadow: 0 6px 12px rgba(30,36,34,.05), 0 22px 48px rgba(30,36,34,.10); }
+.path-card::after {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 4px;
+}
+.path-card.green::after { background: linear-gradient(90deg, var(--green), var(--green-light)); }
+.path-card.deep::after   { background: linear-gradient(90deg, var(--deep), var(--deep)); }
+.path-card.green:hover { border-color: rgba(81,158,138,.4); }
+.path-card.deep:hover   { border-color: rgba(46,96,84,.45); }
+.path-ico {
+  width: 46px; height: 46px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 16px;
+}
+.path-card.green .path-ico { background: var(--mint); color: var(--green-dark); }
+.path-card.deep   .path-ico { background: var(--deep); color: #fff; }
+.path-num { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.path-card h2 { font-size: 22px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 8px; }
+.path-card p { color: var(--muted); font-size: 15px; margin-bottom: 18px; }
+.path-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 15px; }
+.path-card.green .path-link { color: var(--green); }
+.path-card.deep   .path-link { color: var(--deep-dark); }
+.path-link .mi { font-size: 18px; transition: transform .2s; }
+.path-card:hover .path-link .mi { transform: translateX(3px); }
+
+/* ═══════════════════════════════════════════
+   SECTION-BAUSTEINE
+═══════════════════════════════════════════ */
+.sec { padding: 96px 0; }
+.sec.tint-mint { background: linear-gradient(180deg, #F7FBFA 0%, #fff 100%); }
+.sec.tint-deep  { background: linear-gradient(180deg, #F6FAF9 0%, #fff 100%); }
+.sec-head { max-width: 720px; margin-bottom: 52px; }
+.sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+}
+.kicker.green { background: var(--mint); color: var(--green-dark); }
+.kicker.deep   { background: var(--deep-soft); color: var(--deep-dark); }
+.kicker.sage{ background: var(--sage-soft); color: var(--sage); }
+.kicker .mi { font-size: 15px; }
+.sec h2 { font-size: clamp(30px, 4.4vw, 46px); font-weight: 800; line-height: 1.12; letter-spacing: -.025em; margin-bottom: 16px; }
+.sec h2 em { font-style: normal; }
+.sec h2 em.g { color: var(--green); }
+.sec h2 em.s { color: var(--green); }
+.sec-lead { font-size: 18px; color: var(--muted); }
+
+/* Split-Layout: Text + Visual */
+.split { display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: center; }
+@media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 44px; } .split .visual { justify-self: center; } }
+
+/* Benefit-Liste */
+.blist { display: grid; gap: 14px; }
+.bitem {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;
+  box-shadow: 0 1px 2px rgba(30,36,34,.03);
+}
+.bitem-ico { width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.bitem-ico.g { background: var(--mint); color: var(--green-dark); }
+.bitem-ico.s { background: var(--deep-soft); color: var(--deep-dark); }
+.bitem-ico.v { background: var(--sage-soft); color: var(--sage); }
+.bitem h3 { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+.bitem p { font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+
+/* Karten-Grid */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.card {
+  background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px;
+  box-shadow: 0 1px 2px rgba(30,36,34,.03), 0 10px 28px rgba(30,36,34,.04);
+  transition: transform .2s, box-shadow .2s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(30,36,34,.06), 0 18px 40px rgba(30,36,34,.08); }
+.card-ico { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
+.card-ico.g { background: var(--mint); color: var(--green-dark); }
+.card-ico.s { background: var(--deep-soft); color: var(--deep-dark); }
+.card-ico.v { background: var(--sage-soft); color: var(--sage); }
+.card h3 { font-size: 17px; font-weight: 700; margin-bottom: 7px; letter-spacing: -.01em; }
+.card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+/* CTA-Box */
+.ctabox {
+  border-radius: 24px; padding: 40px 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.ctabox.green { background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 62%, #68B8A2 100%); color: #fff; }
+.ctabox h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
+.ctabox p { opacity: .82; font-size: 16px; max-width: 46ch; }
+.btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  border-radius: 999px; padding: 15px 30px;
+  font-weight: 700; font-size: 16px; white-space: nowrap;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn .mi { font-size: 19px; }
+.btn-white { background: #fff; color: var(--green-dark); box-shadow: 0 8px 26px rgba(0,0,0,.16); }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.22); }
+.btn-deep { background: var(--green-light); color: var(--deep-dark); box-shadow: 0 8px 26px rgba(0,0,0,.22); }
+.btn-deep:hover { background: #B0EBDA; transform: translateY(-2px); }
+.btn-ghost { border: 1.5px solid var(--line); color: var(--muted); background: #fff; }
+.btn-ghost.disabled { cursor: default; opacity: .75; }
+
+.mailline { font-size: 14px; color: var(--muted); margin-top: 14px; }
+.mailline a { color: var(--green); font-weight: 600; border-bottom: 1px solid rgba(81,158,138,.35); }
+
+/* ═══════════════════════════════════════════
+   APP-MOCKUP (Bausteine aus der App)
+═══════════════════════════════════════════ */
+.phone-frame {
+  width: 268px; height: 552px; background: #1a1a1a; border-radius: 40px;
+  border: 6px solid #0a0a0a; position: relative; overflow: hidden; flex-shrink: 0;
+  box-shadow: 0 30px 64px rgba(30,55,48,.28), 0 10px 20px rgba(30,55,48,.16), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.phone-frame::before { content: ''; position: absolute; left: -9px; top: 112px; width: 3px; height: 56px; background: #2a2a2a; border-radius: 2px; box-shadow: 0 66px 0 #2a2a2a; }
+.phone-frame::after  { content: ''; position: absolute; right: -9px; top: 150px; width: 3px; height: 68px; background: #2a2a2a; border-radius: 2px; }
+.phone-screen { position: absolute; inset: 0; background: #fff; overflow: hidden; border-radius: 34px; color: #212121; display: flex; flex-direction: column; text-align: left; }
+.phone-island { position: absolute; top: 13px; left: 50%; transform: translateX(-50%); width: 84px; height: 25px; background: #111; border-radius: 13px; z-index: 50; }
+
+.a-status { height: 42px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 18px 6px; font-size: 11px; font-weight: 600; color: #222; flex-shrink: 0; }
+.a-appbar { padding: 8px 14px; border-bottom: 1px solid #ebebeb; background: #fff; flex-shrink: 0; display: flex; align-items: center; gap: 9px; }
+.a-avatar { width: 32px; height: 32px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+.a-body { flex: 1; overflow: hidden; padding: 10px 12px; }
+.a-savings { background: var(--green); color: #fff; border-radius: 14px; padding: 11px 13px; margin-bottom: 11px; }
+.a-rowhdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+.a-rowhdr span.t { font-size: 12.5px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.a-rowhdr span.all { color: var(--green); font-size: 10px; font-weight: 600; }
+.a-prod {
+  background: var(--surface); border-radius: 10px; padding: 7px; width: 92px;
+  flex-shrink: 0; font-size: 10px;
+}
+.a-prod .thumb { height: 50px; background: #fff; border-radius: 6px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.a-prod .thumb img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
+.a-prod .name { font-weight: 600; margin-bottom: 2px; line-height: 1.25; }
+.a-prod .prices { display: flex; align-items: center; justify-content: space-between; }
+.a-prod .now { color: var(--green); font-weight: 700; }
+.a-prod .was { color: var(--greyedout); text-decoration: line-through; font-size: 9px; }
+.a-add { width: 20px; height: 20px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+.a-add .mi { font-size: 13px; }
+.a-listitem { background: var(--surface); border: 1px solid rgba(0,0,0,.06); border-radius: 9px; padding: 7px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.a-listitem .thumb { width: 42px; height: 42px; border-radius: 6px; background: #fff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.a-listitem .thumb img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
+.a-listitem .nm { font-size: 11px; font-weight: 600; line-height: 1.3; }
+.a-listitem .pr { font-size: 11px; font-weight: 700; margin-left: auto; }
+
+.a-bottom-nav { background: #fff; border-radius: 18px 18px 0 0; display: flex; padding: 16px 0 8px; border-top: 1px solid #E0E0E0; position: relative; box-shadow: 0 -4px 16px rgba(0,0,0,.07); height: 64px; align-items: flex-start; flex-shrink: 0; }
+.a-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 9px; font-weight: 500; color: var(--greyedout); }
+.a-nav-item .mi { font-size: 19px; }
+.a-nav-active { transform: translateY(-15px); display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.a-nav-bubble { background: #fff; border-radius: 50%; padding: 3px; box-shadow: 0 -3px 10px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.06); }
+.a-nav-inner { background: var(--green); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; }
+.a-nav-inner .mi { font-size: 20px; }
+.a-nav-label-on { color: var(--green); font-size: 8px; font-weight: 600; }
+
+/* ── DIE WERBEPLÄTZE ── */
+.ad-badge {
+  position: absolute; top: 7px; right: 7px; z-index: 3;
+  background: rgba(0,0,0,.55); color: #fff;
+  font-size: 8px; font-weight: 600; letter-spacing: .04em;
+  padding: 3px 8px; border-radius: 999px; backdrop-filter: blur(4px);
+}
+.ad-label {
+  display: inline-block; font-size: 8px; font-weight: 700; letter-spacing: .12em;
+  color: var(--greyedout); border: 1px solid #dcdcdc; border-radius: 5px;
+  padding: 2px 7px; margin-bottom: 6px;
+}
+.ad-tile {
+  position: relative; overflow: hidden; flex-shrink: 0;
+  border-radius: 10px; color: #fff;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 12px 11px;
+  background: linear-gradient(150deg, #8FE3C9 0%, #3F8B78 42%, #16332C 100%);
+  box-shadow: 0 6px 18px rgba(36,84,74,.30);
+}
+.ad-tile::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(255,255,255,.34) 0%, transparent 46%),
+    radial-gradient(circle at 8% 92%, rgba(255,255,255,.16) 0%, transparent 44%);
+}
+.ad-tile .adtxt { position: relative; font-size: 13px; font-weight: 800; line-height: 1.16; letter-spacing: -.01em; text-shadow: 0 1px 6px rgba(0,0,0,.18); }
+.ad-tile .adsub { position: relative; font-size: 8.5px; font-weight: 500; opacity: .88; margin-top: 5px; letter-spacing: .06em; text-transform: uppercase; }
+.ad-tile.small { width: 118px; height: 168px; }
+.ad-tile.wide {
+  width: 100%; height: 128px; border-radius: 12px; padding: 16px;
+  background: linear-gradient(120deg, #16332C 0%, #35786A 44%, #8FE3C9 100%);
+  box-shadow: 0 8px 22px rgba(36,84,74,.28);
+  justify-content: center;
+}
+.ad-tile.wide .adtxt { font-size: 17px; max-width: 15ch; }
+
+/* Callout-Pfeil auf die Werbefläche */
+.mock-stage { position: relative; display: flex; justify-content: center; }
+.mock-note {
+  position: absolute; z-index: 6;
+  background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  padding: 9px 13px; font-size: 12.5px; font-weight: 600; line-height: 1.35;
+  box-shadow: 0 10px 28px rgba(30,36,34,.14); white-space: nowrap;
+}
+.mock-note b { display: block; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--deep-dark); font-weight: 700; margin-bottom: 2px; }
+.mock-note::after {
+  content: ''; position: absolute; top: 50%; width: 26px; height: 1.5px;
+  background: linear-gradient(90deg, var(--deep), rgba(46,96,84,.22));
+}
+.mock-note.right::after { left: -26px; background: linear-gradient(270deg, var(--deep), rgba(46,96,84,.22)); }
+.mock-note.left::after  { right: -26px; }
+.mock-note::before {
+  content: ''; position: absolute; top: 50%; margin-top: -3.5px;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--deep);
+}
+.mock-note.right::before { left: -29px; }
+.mock-note.left::before  { right: -29px; }
+@media (max-width: 1040px) { .mock-note { display: none; } }
+
+/* Format-Karten */
+.formats { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+@media (max-width: 900px) { .formats { grid-template-columns: 1fr; gap: 56px; } }
+.format-col { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.format-txt { max-width: 400px; margin-top: 28px; }
+.format-txt .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--deep-dark); background: var(--deep-soft); padding: 5px 13px; border-radius: 999px; margin-bottom: 12px; }
+.format-txt h3 { font-size: 21px; font-weight: 700; letter-spacing: -.015em; margin-bottom: 8px; }
+.format-txt p { color: var(--muted); font-size: 15.5px; }
+
+/* ═══════════════════════════════════════════
+   PARTNERPORTAL-MOCKUP
+═══════════════════════════════════════════ */
+.browser {
+  border-radius: 16px; overflow: hidden; background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 10px rgba(30,36,34,.05), 0 26px 60px rgba(30,36,34,.13);
+}
+.browser-bar { background: #F5F7F6; border-bottom: 1px solid var(--line); padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; }
+.browser-url { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 999px; font-size: 11px; color: var(--muted); padding: 4px 12px; text-align: center; margin: 0 8px; }
+.portal { display: grid; grid-template-columns: 172px 1fr; min-height: 372px; }
+@media (max-width: 700px) { .portal { grid-template-columns: 1fr; } .portal-side { display: none !important; } }
+.portal-side { background: #FAFCFB; border-right: 1px solid var(--line); padding: 18px 14px; }
+.portal-brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px; margin-bottom: 22px; }
+.portal-brand .b { width: 24px; height: 24px; border-radius: 7px; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.pnav { display: flex; align-items: center; gap: 9px; font-size: 12.5px; color: var(--muted); padding: 8px 10px; border-radius: 9px; margin-bottom: 3px; font-weight: 500; }
+.pnav .mi { font-size: 17px; }
+.pnav.on { background: var(--mint); color: var(--green-dark); font-weight: 700; }
+.portal-main { padding: 20px 22px; }
+.portal-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+.portal-h h4 { font-size: 16px; font-weight: 700; }
+.portal-h .mini-btn { background: var(--green); color: #fff; font-size: 11px; font-weight: 700; padding: 7px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 5px; }
+.portal-h .mini-btn .mi { font-size: 14px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+@media (max-width: 480px) { .stats { grid-template-columns: 1fr 1fr; } }
+.stat { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 13px; }
+.stat .lbl { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.stat .val { font-size: 21px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.stat .delta { font-size: 10.5px; font-weight: 600; color: var(--green); display: flex; align-items: center; gap: 2px; margin-top: 2px; }
+.stat .delta .mi { font-size: 13px; }
+.chartbox { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 15px; }
+.chartbox .ch { font-size: 11.5px; font-weight: 700; color: var(--muted); margin-bottom: 12px; letter-spacing: .04em; }
+.bars { display: flex; align-items: flex-end; gap: 7px; height: 84px; }
+.bar { flex: 1; border-radius: 5px 5px 3px 3px; background: linear-gradient(180deg, var(--green-light), var(--green)); opacity: .55; }
+.bar.hi { opacity: 1; background: linear-gradient(180deg, var(--green-light), var(--deep)); }
+.axis { display: flex; gap: 7px; margin-top: 7px; }
+.axis span { flex: 1; text-align: center; font-size: 9px; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   PREIS
+═══════════════════════════════════════════ */
+.price-hero {
+  display: grid; grid-template-columns: minmax(0,300px) 1fr; gap: 32px; align-items: stretch;
+}
+@media (max-width: 860px) { .price-hero { grid-template-columns: 1fr; } }
+.price-main {
+  background: linear-gradient(150deg, #F4FAF8 0%, #E2F0EB 100%);
+  border: 1px solid rgba(46,96,84,.26); border-radius: 22px;
+  padding: 30px 28px; display: flex; flex-direction: column; justify-content: center;
+}
+.price-main .from { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--deep-dark); margin-bottom: 8px; }
+.price-main .amt { font-size: 58px; font-weight: 900; letter-spacing: -.04em; line-height: 1; color: var(--ink); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.price-main .amt small { font-size: 17px; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+.price-main .note { font-size: 14.5px; color: #4C6259; margin-top: 12px; }
+.price-facts { display: grid; gap: 12px; align-content: center; }
+.pfact { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 15px 18px; }
+.pfact .mi { font-size: 20px; color: var(--deep-dark); flex-shrink: 0; margin-top: 1px; }
+.pfact h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.pfact p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+/* ═══════════════════════════════════════════
+   FINALE CTA / VORREGISTRIERUNG
+═══════════════════════════════════════════ */
+.reg {
+  border-radius: 26px; overflow: hidden;
+  background: linear-gradient(140deg, #232B33 0%, #2E3F46 48%, #35544F 100%);
+  color: #fff; padding: 48px 44px;
+  position: relative;
+}
+.reg::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 70% at 88% 8%, rgba(150,224,205,.26) 0%, transparent 62%),
+              radial-gradient(ellipse 46% 60% at 6% 100%, rgba(150,224,205,.22) 0%, transparent 60%);
+}
+.reg > * { position: relative; }
+.reg .soon { display: inline-flex; align-items: center; gap: 8px; font-size: 11.5px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); padding: 6px 14px; border-radius: 999px; margin-bottom: 20px; }
+.reg .soon .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--green-light); box-shadow: 0 0 0 0 rgba(150,224,205,.6); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(150,224,205,.6); } 50% { box-shadow: 0 0 0 8px rgba(150,224,205,0); } }
+.reg h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -.025em; line-height: 1.12; margin-bottom: 14px; max-width: 18ch; }
+.reg p.lead { color: rgba(255,255,255,.72); font-size: 17px; max-width: 56ch; margin-bottom: 30px; }
+.reg-grid { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: start; }
+@media (max-width: 900px) { .reg-grid { grid-template-columns: 1fr; gap: 30px; } .reg { padding: 38px 26px; } }
+.reg-steps { display: grid; gap: 14px; }
+.rstep { display: flex; gap: 14px; align-items: flex-start; }
+.rstep .n { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.rstep .tx { font-size: 15px; color: rgba(255,255,255,.8); line-height: 1.5; }
+.rstep .tx b { color: #fff; font-weight: 700; }
+.reg-panel { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: 18px; padding: 24px; backdrop-filter: blur(6px); }
+.reg-panel .lb { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 10px; }
+.reg-panel .mail { font-size: 18px; font-weight: 700; word-break: break-all; margin-bottom: 18px; }
+.reg-panel .mail a { border-bottom: 1px solid rgba(255,255,255,.35); }
+.reg-panel .btn { width: 100%; justify-content: center; }
+.portal-soon { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,.5); border: 1px dashed rgba(255,255,255,.22); border-radius: 999px; padding: 11px 16px; }
+.portal-soon .mi { font-size: 15px; }
+
+/* ═══════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════ */
+.faq { display: grid; gap: 10px; max-width: 780px; margin: 0 auto; }
+.faq details { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 0 20px; transition: border-color .2s; }
+.faq details[open] { border-color: rgba(81,158,138,.35); }
+.faq summary { list-style: none; cursor: pointer; font-weight: 700; font-size: 16px; padding: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .mi { font-size: 20px; color: var(--green); transition: transform .25s; flex-shrink: 0; }
+.faq details[open] summary .mi { transform: rotate(45deg); }
+.faq .ans { color: var(--muted); font-size: 15.5px; padding: 0 0 18px; line-height: 1.65; max-width: 62ch; }
+
+/* ═══════════════════════════════════════════
+   FOOTER (identisch zur Startseite)
+═══════════════════════════════════════════ */
+#footer-placeholder { background: #fff; color: #2a2a2a; line-height: 1.6; }
+#footer-placeholder .legal-links { padding: 20px 0; }
+#footer-placeholder .legal-links a { color: #519e8a; text-decoration: none; }
+#footer-placeholder .legal-links a:hover { text-decoration: underline; }
+#footer-placeholder footer { background: #f8f8f8; color: #2a2a2a; padding: 20px; text-align: center; }
+#footer-placeholder footer .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-bottom: 20px; }
+#footer-placeholder footer .footer-links div { min-width: 150px; }
+#footer-placeholder footer h4 { color: #2a2a2a; font-weight: 600; font-size: 1.1em; margin: 0 0 12px; }
+#footer-placeholder footer p { color: #2a2a2a; margin: 0 0 16px; }
+#footer-placeholder footer a { color: #519e8a; text-decoration: none; display: block; margin: 5px 0; }
+#footer-placeholder footer a:hover { text-decoration: underline; }
+#footer-placeholder hr { border: 0 !important; border-top: 1px solid #eee !important; }
+
+/* ── Cookie Banner ── */
+#bb-cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 99999; background: rgba(255,255,255,.97); backdrop-filter: blur(16px); border-top: 1px solid rgba(42,42,42,.1); box-shadow: 0 -8px 32px rgba(42,42,42,.08); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; color: #2a2a2a; line-height: 1.5; }
 #bb-cookie-banner.bb-hidden { display: none !important; }
-#bb-cookie-banner p { margin: 0; flex: 1; min-width: 200px; }
-#bb-cookie-banner a { color: #519E8A; text-underline-offset: 2px; }
+#bb-cookie-banner p { flex: 1; min-width: 200px; }
+#bb-cookie-banner a { color: #519E8A; }
 #bb-cookie-btns { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
-.bb-btn-accept {
-  background: #519E8A; color: #fff; border: none;
-  padding: 10px 20px; border-radius: 999px; font-size: 14px;
-  font-weight: 700; cursor: pointer; font-family: inherit;
-  transition: background .18s;
-}
+.bb-btn-accept { background: #519E8A; color: #fff; border: none; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
 .bb-btn-accept:hover { background: #3f7c6c; }
-.bb-btn-decline {
-  background: transparent; color: #2a2a2a;
-  border: 1px solid rgba(42,42,42,.2); padding: 10px 20px;
-  border-radius: 999px; font-size: 14px; font-weight: 600;
-  cursor: pointer; font-family: inherit; transition: border-color .18s;
-}
-.bb-btn-decline:hover { border-color: #519E8A; }
+.bb-btn-decline { background: transparent; color: #2a2a2a; border: 1px solid rgba(42,42,42,.2); padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; }
 </style>
 </head>
 <body>
@@ -91,175 +522,574 @@
     <button class="bb-btn-accept" onclick="bbAcceptCookies()">Akzeptieren</button>
   </div>
 </div>
-<script>
-(function(){
-  var consent = localStorage.getItem('bb_cookie_consent');
-  if(consent === 'accepted'){
-    gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
-    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
-  } else if(consent === 'declined'){
-    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
-  }
-})();
-function bbAcceptCookies(){
-  localStorage.setItem('bb_cookie_consent','accepted');
-  gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
-  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
-}
-function bbDeclineCookies(){
-  localStorage.setItem('bb_cookie_consent','declined');
-  document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
-}
-</script>
 
-
-  <!-- Header / Navigation -->
-  <header class="site-header">
-    <div class="nav-container">
-      <a href="index.html" class="logo-link">
-        <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
-      </a>
-      <nav class="main-nav" id="main-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="ueber-uns.html">Über uns</a></li>
-          <li><a href="app-vorstellung.html">App</a></li>
-          <li><a href="partner.html">Partner</a></li>
-          <li><a href="presse.html">Presse</a></li>
-          <li><a href="hilfe.html">Hilfe</a></li>
-          <li><a href="app-download.html" class="nav-cta">Herunterladen</a></li>
-        </ul>
-      </nav>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen">☰</button>
-    </div>
-  </header>
-
-  <main class="content">
-    <!-- Intro Partnerprogramm -->
-    <section data-aos="fade-up">
-      <h1>Das BonBuddy <span>Partnerprogramm</span></h1>
-      <p>BonBuddy möchte auch dir als <strong>Lebensmittelproduzent</strong> oder als <strong>lokaler Einzelhändler</strong> die Möglichkeit geben, in der BonBuddy-App sichtbar zu werden. Wir freuen uns über Unternehmen mit innovativen, nachhaltigen Produktansätzen und lokale Einzelhändler, die mit ihrem Sortiment unsere App vielfältiger machen. <br> Dazu bieten wir zwei Optionen an:</br></p>
-    </section>
-
-    <section class="steps" data-aos="fade-up" data-aos-delay="100">
-      <div class="steps-grid">
-        <div class="step">
-          <h2>Als Lebensmittelproduzent werben</h2>
-          <p>Die Sichtbarkeit ist perfekt auf deine Zielgruppe zugeschnitten – ohne Banner oder Störer. Dein Produkt bekommt genau die Aufmerksamkeit, die es verdient.</p>
-        </div>
-        <div class="step">
-          <h2>Als lokaler Einzelhändler werben</h2>
-          <p>Über das BonBuddy-Partnerportal integrierst du dein Sortiment in die App. Wir schlagen deine Produkte beim Erstellen der Einkaufsliste vor.</p>
-        </div>
-      </div>
-      <p class="cta-text">
-        <br>
-        Haben wir dein Interesse geweckt? Dann melde dich bei 
-        <a href="mailto:partnerservice@bonbuddy.de">partnerservice@bonbuddy.de</a>!
-        </br>
-      </p>
-    </section>
-
-    <!-- „Wie wir dir helfen können“ -->
-    <section data-aos="fade-up" data-aos-delay="200">
-      <h2>Wie wir <span>dir helfen können</span></h2>
-      <div class="features">
-        <div class="feature-card" data-aos="zoom-in">
-          <img src="fotos/icon-kunden.png" alt="Neue Kunden gewinnen">
-          <h3>Gemeinsam neue Kunden gewinnen.</h3>
-          <p>Gezielte Bewerbung deines Sortiments hilft dir, passende Käufer zu erreichen.</p>
-        </div>
-        <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
-          <img src="fotos/icon-bekanntheit.png" alt="Produkte bekannter machen">
-          <h3>Gemeinsam deine Produkte bekannter machen.</h3>
-          <p>Deine Artikel erscheinen prominent beim Einkaufsprozess unserer Nutzer.</p>
-        </div>
-        <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
-          <img src="fotos/icon-umsatz.png" alt="Umsatz steigern">
-          <h3>Gemeinsam deinen Umsatz steigern.</h3>
-          <p>Erreiche neue Zielgruppen und profitiere von erhöhter Sichtbarkeit.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Partnerportal-Details -->
-    <section data-aos="fade-up" data-aos-delay="300">
-      <p>In unserem Partnerportal kannst du deine Artikel hinzufügen, verwalten und bewerben. Im Dashboard siehst du:
+<!-- ══════════ NAV ══════════ -->
+<header class="site-header">
+  <div class="nav-container">
+    <a href="index.html" class="logo-link">
+      <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
+    </a>
+    <nav class="main-nav" id="main-nav">
       <ul>
-        <li>Statistiken deiner Produkte & Top-Artikel</li>
-        <li>Vergleich zu Konkurrenz & aktuelle Anzeigen</li>
-        <li>Verwaltung von Standort, Kontaktdaten und Links</li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="app-vorstellung.html">App</a></li>
+        <li><a href="partner.html" class="active">Partner</a></li>
+        <li><a href="presse.html">Presse</a></li>
+        <li><a href="hilfe.html">Hilfe</a></li>
+        <li><a href="app-download.html" class="nav-cta">Herunterladen</a></li>
       </ul>
-      Über den Tab „Ads“ erstellst, bearbeitest und steuerst du Kampagnen exakt nach Zielgruppe.</p>
-    </section>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen">☰</button>
+  </div>
+</header>
 
-    <!-- Call to Action Schritte -->
-    <section class="steps" data-aos="fade-up" data-aos-delay="400">
-      <h2>Was hast du <span>zu verlieren?</span></h2>
-      <p class="subhead">Werde Teil eines digitalen Netzwerks, das deine Kunden erreicht, bevor sie im Laden stehen.</p>
-      <h1 class="big">Hol’ dir <span>mehr Umsatz!</span></h1>
-      <p class="subhead">Klingt gut! Was nun?</p>
-      <div class="steps-grid">
-        <div class="step">
-          <h2>1. Geh' auf partner.bonbuddy.de!</h2>
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="mi">storefront</span>Für Unternehmen</div>
+    <h1>Sichtbar da, wo der <em>Einkauf entsteht.</em></h1>
+    <p class="hero-sub">
+      BonBuddy ist die Einkaufsliste, die weiß, was in der Region gerade im Angebot ist –
+      und dabei hilft, den günstigsten Markt zu finden. Es gibt zwei Wege, dein Unternehmen dort zu platzieren.
+    </p>
+
+    <div class="paths">
+      <a href="#markt" class="path-card green" data-aos="fade-up">
+        <div class="path-ico"><span class="mi">add_business</span></div>
+        <div class="path-num">Weg 1 · Einzelhandel</div>
+        <h2>Deinen Markt integrieren</h2>
+        <p>Dein Supermarkt ist noch nicht in der App? Dann bring deine Angebote rein – und werde von der Einkaufsliste empfohlen.</p>
+        <span class="path-link">Mehr erfahren <span class="mi">arrow_forward</span></span>
+      </a>
+      <a href="#werbung" class="path-card deep" data-aos="fade-up" data-aos-delay="80">
+        <div class="path-ico"><span class="mi">campaign</span></div>
+        <div class="path-num">Weg 2 · Werbung</div>
+        <h2>Anzeigen schalten</h2>
+        <p>Werbeflächen direkt in der App – täglich ausgespielt, lokal ausgesteuert, mit Statistiken. Ab 29 € im Monat.</p>
+        <span class="path-link">Zum Werbeangebot <span class="mi">arrow_forward</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WEG 1 · EINZELHÄNDLER ══════════ -->
+<section class="sec tint-mint" id="markt">
+  <div class="wrap">
+    <div class="sec-head" data-aos="fade-up">
+      <div class="kicker green"><span class="mi">add_business</span>Weg 1 · Für Einzelhändler</div>
+      <h2>Dein Markt gehört <em class="g">in die App.</em></h2>
+      <p class="sec-lead">
+        Wer BonBuddy nutzt, entscheidet in der App, wo er einkauft. Märkte, die nicht drin sind,
+        tauchen in dieser Entscheidung nicht auf. Das ändern wir – kostenlos und ohne Aufwand für dich.
+      </p>
+    </div>
+
+    <div class="split">
+      <div class="blist">
+        <div class="bitem" data-aos="fade-up">
+          <div class="bitem-ico g"><span class="mi">local_offer</span></div>
+          <div>
+            <h3>Angebote digital ausspielen</h3>
+            <p>Deine Wochenangebote landen tagesaktuell in der App – dort, wo Kunden ohnehin nach Angeboten suchen.</p>
+          </div>
         </div>
-        <div class="step">
-          <h2>2. Registrier' dich mit deinen Daten!</h2>
+        <div class="bitem" data-aos="fade-up" data-aos-delay="60">
+          <div class="bitem-ico g"><span class="mi">checklist</span></div>
+          <div>
+            <h3>Von der Einkaufsliste empfohlen</h3>
+            <p>BonBuddy rechnet aus, wo der komplette Einkauf am günstigsten ist. Sind deine Preise dabei, wird dein Markt aktiv empfohlen.</p>
+          </div>
         </div>
-        <div class="step">
-          <h2>3. Wir schalten dein Profil frei!</h2>
-        </div>
-        <div class="step">
-          <h2>4. Füg' dein Sortiment hinzu!</h2>
-        </div>
-        <div class="step">
-          <h2>5. Lass deinen Umsatz wachsen!</h2>
+        <div class="bitem" data-aos="fade-up" data-aos-delay="120">
+          <div class="bitem-ico g"><span class="mi">near_me</span></div>
+          <div>
+            <h3>Kunden aus deiner Umgebung</h3>
+            <p>Nutzer sehen zuerst, was in ihrer Stadt verfügbar ist. Deine Reichweite bleibt genau da, wo dein Einzugsgebiet ist.</p>
+          </div>
         </div>
       </div>
-      <p class="cta-text"><a href="https://partner.bonbuddy.de" class="btn"><br>Jetzt BonBuddy-Partner werden!</br></a></p>
-      <h2 data-aos="fade-up" data-aos-delay="500">Wir freuen uns <span>auf Dich!</span></h2>
-      <p>Deinen Umsatz steigern war noch nie so einfach.</p>
-    </section>
-  </main>
+
+      <!-- Mini-Visualisierung: Markt-Sektion in der App -->
+      <div class="visual" data-aos="fade-left">
+        <div style="width:300px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px 16px;box-shadow:0 4px 10px rgba(30,36,34,.04),0 20px 46px rgba(30,36,34,.09);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Angebote in Lüdinghausen</div>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+            <div style="width:22px;height:22px;border-radius:6px;background:#e9edec;"></div>
+            <div style="font-size:12.5px;font-weight:700;">Markt A</div>
+            <div style="font-size:9.5px;font-weight:600;color:var(--green);background:var(--mint);padding:2px 8px;border-radius:999px;">86 Angebote</div>
+          </div>
+          <div style="display:flex;gap:6px;margin-bottom:18px;opacity:.5;">
+            <div style="flex:1;height:52px;background:var(--surface);border-radius:9px;"></div>
+            <div style="flex:1;height:52px;background:var(--surface);border-radius:9px;"></div>
+            <div style="flex:1;height:52px;background:var(--surface);border-radius:9px;"></div>
+          </div>
+
+          <div style="position:relative;border:1.5px solid var(--green);background:rgba(81,158,138,.06);border-radius:14px;padding:12px 12px 14px;">
+            <div style="position:absolute;top:-9px;left:12px;background:var(--green);color:#fff;font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 9px;border-radius:999px;">Dein Markt</div>
+            <div style="display:flex;align-items:center;gap:8px;margin:5px 0 9px;">
+              <div style="width:22px;height:22px;border-radius:6px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;"><span class="mi">storefront</span></div>
+              <div style="font-size:12.5px;font-weight:700;">Dein Supermarkt</div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <div class="a-prod" style="width:auto;flex:1;">
+                <div class="thumb"><img src="Product_Pictures/4000540003567.png" alt="Müsli"></div>
+                <div class="name">Müsli 500 g</div>
+                <div class="prices"><div><div class="now">1,99 €</div><div class="was">2,49 €</div></div><div class="a-add"><span class="mi">add</span></div></div>
+              </div>
+              <div class="a-prod" style="width:auto;flex:1;">
+                <div class="thumb"><img src="Product_Pictures/5000112622744.png" alt="Cola"></div>
+                <div class="name">Cola 1,75 L</div>
+                <div class="prices"><div><div class="now">1,29 €</div><div class="was">1,75 €</div></div><div class="a-add"><span class="mi">add</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding:10px 12px;background:var(--mint);border-radius:11px;">
+            <span class="mi" style="font-size:17px;color:var(--green-dark);">emoji_events</span>
+            <div style="font-size:11.5px;font-weight:600;color:var(--green-dark);line-height:1.35;">Einkaufsliste am günstigsten bei <b>Dein Supermarkt</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ctabox green" style="margin-top:56px;" data-aos="fade-up">
+      <div>
+        <h3>Markt jetzt integrieren</h3>
+        <p>Schreib uns kurz, welcher Markt du bist und wo er steht – wir melden uns mit den nächsten Schritten. Die Integration ist für Einzelhändler kostenlos.</p>
+      </div>
+      <div>
+        <a class="btn btn-white" href="mailto:partnerservice@bonbuddy.de?subject=Markt%20in%20der%20BonBuddy%20App%20integrieren&body=Hallo%20BonBuddy-Team%2C%0A%0Awir%20m%C3%B6chten%20unseren%20Markt%20in%20der%20BonBuddy%20App%20sichtbar%20machen.%0A%0AMarkt%2FUnternehmen%3A%20%0AStandort%20(Stra%C3%9Fe%2C%20PLZ%2C%20Ort)%3A%20%0AAnsprechpartner%3A%20%0ATelefon%3A%20%0A%0AViele%20Gr%C3%BC%C3%9Fe">
+          <span class="mi">mail</span>Jetzt integrieren
+        </a>
+        <div class="mailline" style="color:rgba(255,255,255,.75);text-align:center;">partnerservice@bonbuddy.de</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WEG 2 · WERBUNG ══════════ -->
+<section class="sec tint-deep" id="werbung">
+  <div class="wrap">
+    <div class="sec-head center" data-aos="fade-up">
+      <div class="kicker deep"><span class="mi">campaign</span>Weg 2 · Werbung schalten</div>
+      <h2>Werbung direkt auf der <em class="s">Einkaufsliste.</em></h2>
+      <p class="sec-lead">
+        Keine Banner irgendwo im Feed. Deine Anzeige erscheint genau dort, wo Menschen ihren
+        Einkauf planen – zwischen Angeboten und Produkten, im Moment der Kaufentscheidung.
+      </p>
+    </div>
+
+    <!-- ── DIE ZWEI WERBEFORMATE ── -->
+    <div class="formats">
+
+      <!-- Format 1: Angebots-Kachel -->
+      <div class="format-col" data-aos="fade-up">
+        <div class="mock-stage">
+          <div class="phone-frame">
+            <div class="phone-island"></div>
+            <div class="phone-screen">
+              <div class="a-status">19:30 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
+              <div class="a-appbar">
+                <div class="a-avatar">B</div>
+                <div>
+                  <div style="font-size:10px;color:var(--greyedout);line-height:1.3;">Willkommen zurück,</div>
+                  <div style="font-size:14px;font-weight:700;line-height:1.2;">BonBuddy</div>
+                </div>
+              </div>
+              <div class="a-body">
+                <div class="a-savings">
+                  <div style="font-size:10.5px;opacity:.88;">Mit BonBuddy gespart:</div>
+                  <div style="font-size:24px;font-weight:900;line-height:1.15;">23,40 €</div>
+                </div>
+                <div class="a-rowhdr">
+                  <span class="t"><span class="mi" style="font-size:14px;color:var(--green);">local_offer</span>Angebote in Lüdinghausen</span>
+                  <span class="all">Alle</span>
+                </div>
+                <div style="display:flex;gap:7px;align-items:stretch;">
+                  <div class="a-prod">
+                    <div class="thumb"><img src="Product_Pictures/4009300009894.png" alt="Tee"></div>
+                    <div class="name">Lillifee Tee</div>
+                    <div class="prices"><div><div class="now">1,49 €</div><div class="was">2,29 €</div></div><div class="a-add"><span class="mi">add</span></div></div>
+                  </div>
+                  <div class="ad-tile small">
+                    <div class="ad-badge">Gesponsert</div>
+                    <div class="adtxt">Hier könnte deine Werbung stehen!</div>
+                    <div class="adsub">Dein Unternehmen</div>
+                  </div>
+                  <div class="a-prod" style="width:40px;overflow:hidden;opacity:.55;">
+                    <div class="thumb"><img src="Product_Pictures/4002971043402.png" alt="Joghurt"></div>
+                  </div>
+                </div>
+                <div class="a-rowhdr" style="margin-top:14px;">
+                  <span class="t">Lieblingsprodukte</span><span class="all">Alle</span>
+                </div>
+                <div style="display:flex;gap:7px;">
+                  <div class="a-prod"><div class="thumb"><img src="Product_Pictures/4002846034603.png" alt="Mate"></div><div class="name">Mio Mate</div></div>
+                  <div class="a-prod"><div class="thumb"><img src="Product_Pictures/4002676212875.png" alt="Nudeln"></div><div class="name">Maccaroni</div></div>
+                </div>
+              </div>
+              <div class="a-bottom-nav">
+                <div class="a-nav-item"><span class="mi">list_alt</span>Liste</div>
+                <div class="a-nav-item">
+                  <div class="a-nav-active">
+                    <div class="a-nav-bubble"><div class="a-nav-inner"><span class="mi fill">sell</span></div></div>
+                    <div class="a-nav-label-on">Stöbern</div>
+                  </div>
+                </div>
+                <div class="a-nav-item"><span class="mi">person</span>Profil</div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-note right" style="top:242px;right:-176px;">
+            <b>Format 1</b>Mitten in den Angeboten
+          </div>
+        </div>
+        <div class="format-txt">
+          <div class="tag"><span class="mi" style="font-size:14px;">view_carousel</span>Angebots-Kachel</div>
+          <h3>Zwischen den Angeboten deiner Stadt</h3>
+          <p>Deine Kachel läuft in der Angebotsreihe der Startseite mit – im gleichen Look wie die Produkte, klar als „Gesponsert“ gekennzeichnet. Bild, Text und Ziel bestimmst du.</p>
+        </div>
+      </div>
+
+      <!-- Format 2: Große Anzeige -->
+      <div class="format-col" data-aos="fade-up" data-aos-delay="100">
+        <div class="mock-stage">
+          <div class="phone-frame">
+            <div class="phone-island"></div>
+            <div class="phone-screen">
+              <div class="a-status">19:30 <span style="letter-spacing:2px;font-size:9px;">●●●</span></div>
+              <div class="a-appbar">
+                <div class="a-avatar">B</div>
+                <div>
+                  <div style="font-size:10px;color:var(--greyedout);line-height:1.3;">Deine Einkaufsliste</div>
+                  <div style="font-size:14px;font-weight:700;line-height:1.2;">7 Produkte</div>
+                </div>
+              </div>
+              <div class="a-body">
+                <div class="a-listitem">
+                  <div class="thumb"><img src="Product_Pictures/4000540003567.png" alt="Müsli"></div>
+                  <div class="nm">Kölln Müsli<br><span style="color:var(--greyedout);font-weight:500;">500 g</span></div>
+                  <div class="pr">1,99 €</div>
+                </div>
+                <div class="a-listitem">
+                  <div class="thumb"><img src="Product_Pictures/5000112622744.png" alt="Cola"></div>
+                  <div class="nm">Coca-Cola<br><span style="color:var(--greyedout);font-weight:500;">1,75 L</span></div>
+                  <div class="pr">1,29 €</div>
+                </div>
+                <div class="a-listitem">
+                  <div class="thumb"><img src="Product_Pictures/4002971043402.png" alt="Joghurt"></div>
+                  <div class="nm">Almighurt<br><span style="color:var(--greyedout);font-weight:500;">250 g</span></div>
+                  <div class="pr">0,69 €</div>
+                </div>
+                <div style="margin-top:12px;">
+                  <div class="ad-label">GESPONSERT</div>
+                  <div class="ad-tile wide">
+                    <div class="adtxt">Hier könnte deine Werbung stehen!</div>
+                    <div class="adsub">Dein Unternehmen · Lüdinghausen</div>
+                  </div>
+                </div>
+              </div>
+              <div class="a-bottom-nav">
+                <div class="a-nav-item">
+                  <div class="a-nav-active">
+                    <div class="a-nav-bubble"><div class="a-nav-inner"><span class="mi fill">list_alt</span></div></div>
+                    <div class="a-nav-label-on">Liste</div>
+                  </div>
+                </div>
+                <div class="a-nav-item"><span class="mi">sell</span>Stöbern</div>
+                <div class="a-nav-item"><span class="mi">person</span>Profil</div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-note left" style="top:352px;left:-186px;">
+            <b>Format 2</b>Volle Breite, volle Wirkung
+          </div>
+        </div>
+        <div class="format-txt">
+          <div class="tag"><span class="mi" style="font-size:14px;">crop_16_9</span>Große Anzeige</div>
+          <h3>Die ganze Breite der Liste</h3>
+          <p>Das aufmerksamkeitsstärkste Format: eine große Fläche unterhalb der Produkte – gesehen von jedem, der seine Einkaufsliste durchgeht.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WARUM ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center" data-aos="fade-up">
+      <div class="kicker sage"><span class="mi">insights</span>Was du bekommst</div>
+      <h2>Mehr als eine Anzeige.</h2>
+      <p class="sec-lead">Jede Kampagne kommt mit echten Zahlen, lokaler Aussteuerung und voller Kontrolle – nichts läuft im Blindflug.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card" data-aos="fade-up">
+        <div class="card-ico s"><span class="mi">visibility</span></div>
+        <h3>Maximale Aufmerksamkeit in deiner Region</h3>
+        <p>Deine Anzeige läuft täglich – genau in den Städten, aus denen deine Kunden kommen. Kein Streuverlust in ganz Deutschland.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="60">
+        <div class="card-ico v"><span class="mi">bar_chart</span></div>
+        <h3>Statistiken zu jeder Anzeige</h3>
+        <p>Impressionen, Klicks und Klickrate – tagesgenau im Partnerportal. Du siehst, welches Motiv funktioniert und welches nicht.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="120">
+        <div class="card-ico g"><span class="mi">lightbulb</span></div>
+        <h3>Exklusive Einblicke</h3>
+        <p>Welche Produkte in deiner Region gerade gesucht werden, wann eingekauft wird – Wissen, das sonst niemand hat.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="180">
+        <div class="card-ico s"><span class="mi">tune</span></div>
+        <h3>Jederzeit selbst steuerbar</h3>
+        <p>Motiv tauschen, Laufzeit verlängern, Kampagne pausieren – alles direkt im Portal, ohne Umweg über uns.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="240">
+        <div class="card-ico v"><span class="mi">schedule</span></div>
+        <h3>Im richtigen Moment</h3>
+        <p>Nutzer öffnen BonBuddy, bevor sie losfahren. Deine Werbung erreicht sie also vor dem Einkauf – nicht danach.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-ico g"><span class="mi">handshake</span></div>
+        <h3>Persönliche Betreuung</h3>
+        <p>Wir sind selbst ein lokales Team aus dem Münsterland. Bei Fragen antwortet ein Mensch, kein Ticketsystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PARTNERPORTAL ══════════ -->
+<section class="sec tint-mint">
+  <div class="wrap">
+    <div class="sec-head center" data-aos="fade-up">
+      <div class="kicker green"><span class="mi">dashboard</span>Das Partnerportal</div>
+      <h2>Kampagnen anlegen, <em class="g">Zahlen sehen.</em></h2>
+      <p class="sec-lead">
+        Über das BonBuddy-Partnerportal erstellst du deine Anzeigen selbst, legst Städte und Laufzeit fest –
+        und verfolgst live, wie sie laufen.
+      </p>
+    </div>
+
+    <div class="browser" data-aos="fade-up">
+      <div class="browser-bar">
+        <span class="dot" style="background:#FF5F57;"></span>
+        <span class="dot" style="background:#FEBC2E;"></span>
+        <span class="dot" style="background:#28C840;"></span>
+        <div class="browser-url">partner.bonbuddy.de</div>
+      </div>
+      <div class="portal">
+        <aside class="portal-side">
+          <div class="portal-brand"><span class="b">B</span> Partnerportal</div>
+          <div class="pnav on"><span class="mi">dashboard</span>Übersicht</div>
+          <div class="pnav"><span class="mi">campaign</span>Anzeigen</div>
+          <div class="pnav"><span class="mi">bar_chart</span>Statistiken</div>
+          <div class="pnav"><span class="mi">store</span>Unternehmen</div>
+          <div class="pnav"><span class="mi">receipt_long</span>Rechnungen</div>
+        </aside>
+        <div class="portal-main">
+          <div class="portal-h">
+            <h4>Übersicht · letzte 30 Tage</h4>
+            <span class="mini-btn"><span class="mi">add</span>Neue Anzeige</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <div class="lbl">Impressionen</div>
+              <div class="val">12.480</div>
+              <div class="delta"><span class="mi">trending_up</span>+18 %</div>
+            </div>
+            <div class="stat">
+              <div class="lbl">Klicks</div>
+              <div class="val">642</div>
+              <div class="delta"><span class="mi">trending_up</span>+11 %</div>
+            </div>
+            <div class="stat">
+              <div class="lbl">Klickrate</div>
+              <div class="val">5,1 %</div>
+              <div class="delta"><span class="mi">trending_up</span>+0,4</div>
+            </div>
+          </div>
+          <div class="chartbox">
+            <div class="ch">Einblendungen pro Tag</div>
+            <div class="bars">
+              <div class="bar" style="height:38%"></div>
+              <div class="bar" style="height:52%"></div>
+              <div class="bar" style="height:44%"></div>
+              <div class="bar" style="height:68%"></div>
+              <div class="bar" style="height:58%"></div>
+              <div class="bar hi" style="height:92%"></div>
+              <div class="bar" style="height:74%"></div>
+            </div>
+            <div class="axis"><span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:16px;">
+      Beispielhafte Darstellung des Partnerportals.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ PREIS ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center" data-aos="fade-up">
+      <div class="kicker deep"><span class="mi">payments</span>Preismodelle</div>
+      <h2>Lokale Werbung, <em class="s">planbarer Preis.</em></h2>
+      <p class="sec-lead">Monatlich abgerechnet, täglich ausgespielt. Kein Gebot, keine versteckten Klickkosten.</p>
+    </div>
+
+    <div class="price-hero" data-aos="fade-up">
+      <div class="price-main">
+        <div class="from">Einstieg ab</div>
+        <div class="amt">29 €<small>/ Monat</small></div>
+        <div class="note">Für eine täglich ausgespielte Anzeige mit lokal passender Aussteuerung.</div>
+      </div>
+      <div class="price-facts">
+        <div class="pfact">
+          <span class="mi">view_carousel</span>
+          <div>
+            <h4>Format</h4>
+            <p>Angebots-Kachel, große Anzeige – oder beides kombiniert.</p>
+          </div>
+        </div>
+        <div class="pfact">
+          <span class="mi">location_on</span>
+          <div>
+            <h4>Reichweite</h4>
+            <p>Eine Stadt, ein Umkreis oder mehrere Orte – du entscheidest, wie weit es geht.</p>
+          </div>
+        </div>
+        <div class="pfact">
+          <span class="mi">event_repeat</span>
+          <div>
+            <h4>Laufzeit</h4>
+            <p>Monatlich kündbar. Längere Laufzeiten werden günstiger.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:15px;color:var(--muted);margin-top:26px;">
+      Du willst wissen, was dein Paket konkret kostet?
+      <a href="mailto:partnerservice@bonbuddy.de?subject=Preisangebot%20BonBuddy-Werbung" style="color:var(--green);font-weight:600;border-bottom:1px solid rgba(81,158,138,.4);">Angebot anfragen</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ VORREGISTRIERUNG ══════════ -->
+<section class="sec" style="padding-top:0;">
+  <div class="wrap">
+    <div class="reg" data-aos="fade-up">
+      <div class="soon"><span class="pulse"></span>Partnerportal startet in Kürze</div>
+      <div class="reg-grid">
+        <div>
+          <h2>Sichere dir deinen Werbeplatz vorab.</h2>
+          <p class="lead">
+            Das Partnerportal geht in den nächsten Wochen live. Bis dahin nehmen wir Anfragen direkt per
+            E-Mail entgegen – wer sich jetzt meldet, bekommt seinen Zugang zuerst und startet ab Tag eins.
+          </p>
+          <div class="reg-steps">
+            <div class="rstep"><div class="n">1</div><div class="tx"><b>Anfrage senden</b> – mit Unternehmen, Stadt und Wunschformat.</div></div>
+            <div class="rstep"><div class="n">2</div><div class="tx"><b>Angebot erhalten</b> – wir melden uns mit Reichweite und Preis für deine Region.</div></div>
+            <div class="rstep"><div class="n">3</div><div class="tx"><b>Zugang zum Portal</b> – zum Start bekommst du deinen Login und legst direkt los.</div></div>
+          </div>
+        </div>
+
+        <div class="reg-panel">
+          <div class="lb">Anfrage senden an</div>
+          <div class="mail"><a href="mailto:partnerservice@bonbuddy.de">partnerservice@bonbuddy.de</a></div>
+          <a class="btn btn-deep" href="mailto:partnerservice@bonbuddy.de?subject=Vorregistrierung%20Partnerportal%20%E2%80%93%20Werbung%20schalten&body=Hallo%20BonBuddy-Team%2C%0A%0Awir%20m%C3%B6chten%20Werbung%20in%20der%20BonBuddy%20App%20schalten%20und%20uns%20f%C3%BCr%20das%20Partnerportal%20vorregistrieren.%0A%0AUnternehmen%3A%20%0AStadt%20%2F%20gew%C3%BCnschte%20Region%3A%20%0AAnsprechpartner%3A%20%0ATelefon%3A%20%0AWunschformat%20(Angebots-Kachel%20%2F%20gro%C3%9Fe%20Anzeige%20%2F%20beides)%3A%20%0AGew%C3%BCnschter%20Start%3A%20%0A%0AViele%20Gr%C3%BC%C3%9Fe">
+            <span class="mi">rocket_launch</span>Jetzt vorregistrieren
+          </a>
+          <div class="portal-soon"><span class="mi">lock_clock</span>partner.bonbuddy.de · bald verfügbar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="sec tint-mint" style="padding-top:80px;">
+  <div class="wrap">
+    <div class="sec-head center" data-aos="fade-up">
+      <h2 style="font-size:clamp(26px,3.4vw,36px);">Häufige Fragen</h2>
+    </div>
+    <div class="faq" data-aos="fade-up">
+      <details>
+        <summary>Muss ich Supermarkt sein, um Werbung zu schalten?<span class="mi">add</span></summary>
+        <div class="ans">Nein. Werbeflächen kann jedes Unternehmen buchen, das lokale Kundschaft erreichen will – Handwerk, Gastronomie, Autohaus, Dienstleister, Verein. Die Markt-Integration (Weg 1) ist dagegen speziell für Lebensmittelhändler.</div>
+      </details>
+      <details>
+        <summary>Was kostet es, meinen Markt in die App zu bringen?<span class="mi">add</span></summary>
+        <div class="ans">Die Integration deiner Angebote ist für Einzelhändler kostenlos. Uns hilft jeder zusätzliche Markt, die App für Nutzer besser zu machen – und dir bringt sie zusätzliche Sichtbarkeit.</div>
+      </details>
+      <details>
+        <summary>Wie kommt meine Anzeige in die App?<span class="mi">add</span></summary>
+        <div class="ans">Du lieferst Motiv und Zielinformationen, wir prüfen sie kurz und schalten sie frei. Sobald das Partnerportal live ist, lädst du Motive selbst hoch und startest Kampagnen ohne Zwischenschritt.</div>
+      </details>
+      <details>
+        <summary>In welchen Regionen läuft BonBuddy?<span class="mi">add</span></summary>
+        <div class="ans">Schwerpunkt ist aktuell das Münsterland – Lüdinghausen, Coesfeld, Dülmen und Umgebung – mit laufender Ausweitung in NRW. Sag uns einfach deine Stadt, dann sagen wir dir, welche Reichweite dort möglich ist.</div>
+      </details>
+      <details>
+        <summary>Kann ich meine Kampagne wieder beenden?<span class="mi">add</span></summary>
+        <div class="ans">Ja. Werbepakete laufen monatlich und sind monatlich kündbar. Pausieren oder Motive tauschen geht jederzeit.</div>
+      </details>
+    </div>
+  </div>
+</section>
 
 <div id="footer-placeholder"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-  AOS.init({
-    duration: 600,
-    once: true,
-    easing: 'ease-out-back'
-  });
+  AOS.init({ duration: 650, once: true, easing: 'ease-out-cubic', offset: 60 });
 
-  const navToggle = document.querySelector('.nav-toggle');
-  const nav = document.querySelector('.main-nav');
+  // Cookie-Consent
+  (function(){
+    var consent = localStorage.getItem('bb_cookie_consent');
+    if(consent === 'accepted'){
+      gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
+      document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+    } else if(consent === 'declined'){
+      document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+    }
+  })();
+  function bbAcceptCookies(){
+    localStorage.setItem('bb_cookie_consent','accepted');
+    gtag('consent','update',{'analytics_storage':'granted','ad_storage':'granted'});
+    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+  }
+  function bbDeclineCookies(){
+    localStorage.setItem('bb_cookie_consent','declined');
+    document.getElementById('bb-cookie-banner').classList.add('bb-hidden');
+  }
+
+  // Mobile-Navigation
+  const navToggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('main-nav');
   navToggle.addEventListener('click', () => {
     nav.classList.toggle('open');
     navToggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
   });
 
-  // Footer laden
+  // Footer nachladen
   fetch('footer.html')
     .then(r => r.text())
     .then(data => {
-      document.getElementById('footer-placeholder').innerHTML = data;
-      const scripts = document.getElementById('footer-placeholder').getElementsByTagName('script');
+      const ph = document.getElementById('footer-placeholder');
+      ph.innerHTML = data;
+      const scripts = ph.getElementsByTagName('script');
       for (let s of scripts) {
         const n = document.createElement('script');
         if (s.src) n.src = s.src; else n.textContent = s.textContent;
         document.body.appendChild(n);
       }
     });
-
-  // Optimierte Marquee Logik
-  window.addEventListener('load', function() {
-    const track = document.getElementById('marqueeTrack');
-    if (!track) return;
-    const content = track.innerHTML;
-    track.innerHTML = content + content + content;
-    track.style.animationPlayState = 'running';
-  });
 </script>
 
 </body>
