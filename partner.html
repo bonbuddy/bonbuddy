@@ -91,12 +91,17 @@ section { padding: 0; margin: 0; max-width: none; }
 /* ═══════════════════════════════════════════
    NAV  (identisch zur restlichen Website)
 ═══════════════════════════════════════════ */
+/* Blur sitzt auf einem eigenen ::before, damit .site-header selbst keinen
+   Containing Block für fixed-positionierte Kinder (das mobile Menü) bildet. */
 .site-header {
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(14px);
+  position: sticky; top: 0; z-index: 1000;
   padding: 10px 20px;
   border-bottom: 1px solid #eee;
-  position: sticky; top: 0; z-index: 1000;
+}
+.site-header::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
 }
 .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1920px; margin: 0 auto; }
 .logo { width: 100%; max-width: 170px; height: auto; display: block; }
@@ -107,11 +112,18 @@ section { padding: 0; margin: 0; max-width: none; }
 .nav-cta:hover { background: #3f7c6c; }
 .nav-toggle { display: none; background: none; border: none; font-size: 1.7em; cursor: pointer; line-height: 1; color: var(--ink); }
 @media (max-width: 900px) {
-  .nav-cta { display: none; }
-  .main-nav { display: none; flex-direction: column; background: #fff; position: absolute; top: 64px; left: 0; width: 100%; padding: 18px 0; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+  .main-nav a.nav-cta { display: none; }
+  .main-nav {
+    display: none; position: fixed; inset: 0;
+    background: rgba(46,96,84,0.97);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    align-items: center; justify-content: center; z-index: 300;
+  }
   .main-nav.open { display: flex; }
-  .main-nav ul { flex-direction: column; gap: 18px; align-items: center; }
-  .nav-toggle { display: block; }
+  .main-nav ul { flex-direction: column; gap: 32px; align-items: center; text-align: center; }
+  .main-nav a { font-size: 26px; color: rgba(255,255,255,0.85); }
+  .main-nav a:hover, .main-nav a.active { color: #fff; }
+  .nav-toggle { display: block; position: relative; z-index: 301; }
 }
 
 /* ═══════════════════════════════════════════
