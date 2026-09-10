@@ -62,7 +62,7 @@
   --greyedout:   #757575;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 body {
   font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--ink);
@@ -1087,6 +1087,19 @@ section { padding: 0; margin: 0; max-width: none; }
   navToggle.addEventListener('click', () => {
     nav.classList.toggle('open');
     navToggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  });
+
+  // Smooth-Scroll für Anker-Links (z. B. „Zum Werbeangebot" -> #werbung)
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const el = document.querySelector(href);
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.pushState(null, '', href);
   });
 
   // Footer nachladen
