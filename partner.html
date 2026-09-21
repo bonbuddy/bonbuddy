@@ -60,9 +60,11 @@
   --line:        #E6EDEA;
   --surface:     #F3F2F2;
   --greyedout:   #757575;
+  --hdr-h:       68px;   /* wird per JS an die echte Header-Höhe angepasst */
+  --bar-h:       56px;   /* dito für die Bereichs-Leiste */
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--hdr-h) + var(--bar-h) + 16px); }
 body {
   font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--ink);
@@ -509,6 +511,90 @@ section { padding: 0; margin: 0; max-width: none; }
 #footer-placeholder footer a:hover { text-decoration: underline; }
 #footer-placeholder hr { border: 0 !important; border-top: 1px solid #eee !important; }
 
+
+/* ═══════════════════════════════════════════
+   BEREICHS-TRENNUNG (Weg 1 = Händler · Weg 2 = Werbung)
+═══════════════════════════════════════════ */
+.paths-area { position: relative; }
+
+/* Klebende Orientierungs-Leiste: zeigt dauerhaft, in welchem Weg man gerade liest */
+.path-bar {
+  position: sticky; top: var(--hdr-h); z-index: 900;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 3px solid var(--green);
+  box-shadow: 0 6px 18px rgba(30,36,34,.06);
+  transition: border-color .3s;
+}
+.path-bar[data-active="2"] { border-bottom-color: var(--deep); }
+.pb-inner { display: flex; align-items: center; gap: 10px; padding-top: 8px; padding-bottom: 8px; }
+.pb-tab {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 8px 18px; border-radius: 999px;
+  border: 1.5px solid var(--line); background: #fff; color: var(--muted);
+  font-size: 14px; font-weight: 700; white-space: nowrap;
+  transition: background .25s, color .25s, border-color .25s;
+}
+.pb-tab .mi { font-size: 20px; }
+.pb-tab small { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .75; margin-right: 6px; }
+.pb-tab:hover { border-color: rgba(30,36,34,.25); color: var(--ink); }
+.pb-tab.on { color: #fff; border-color: transparent; }
+.pb-tab.t1.on { background: var(--green); }
+.pb-tab.t2.on { background: var(--deep); }
+.pb-tab.on small { opacity: .8; }
+.pb-note { margin-left: auto; font-size: 13.5px; font-weight: 600; color: var(--muted); text-align: right; }
+.pb-note span { display: none; }
+.path-bar[data-active="1"] .pb-note .n1, .path-bar[data-active="2"] .pb-note .n2 { display: inline; }
+@media (max-width: 1000px) { .pb-note { display: none; } }
+@media (max-width: 640px) {
+  .pb-inner { gap: 8px; padding-top: 6px; padding-bottom: 6px; }
+  .path-bar .wrap { padding-left: 14px; padding-right: 14px; }
+  .pb-tab { flex: 1 1 0; min-width: 0; justify-content: center; padding: 6px 8px; border-radius: 16px; gap: 6px; }
+  .pb-tab .mi { font-size: 17px; }
+  .pb-txt { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; min-width: 0; }
+  .pb-tab small { margin: 0 0 1px; font-size: 10px; }
+  .pb-tab b { font-size: 12.5px; white-space: normal; }
+}
+
+/* Vollflächige Kopf-Bänder: klare Zäsur zwischen den beiden Wegen */
+.area-head { padding: 34px 0 32px; color: #fff; }
+.area-head.a1 { background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%); }
+.area-head.a2 { background: linear-gradient(135deg, var(--deep-dark) 0%, #2A5B4F 100%); }
+.ah-inner { display: flex; align-items: center; gap: 22px; }
+.ah-ico { flex-shrink: 0; width: 64px; height: 64px; border-radius: 20px; background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; font-size: 34px; }
+.ah-label { font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; opacity: .82; margin-bottom: 6px; }
+.ah-title { font-size: clamp(22px, 3.2vw, 32px); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; margin-bottom: 6px; }
+.ah-sub { font-size: 16px; opacity: .88; max-width: 62ch; }
+.ah-sub a { color: #fff; font-weight: 700; border-bottom: 1.5px solid rgba(255,255,255,.55); white-space: nowrap; }
+@media (max-width: 640px) { .ah-inner { align-items: flex-start; gap: 16px; } .ah-ico { width: 48px; height: 48px; font-size: 26px; border-radius: 15px; } .ah-sub { font-size: 15px; } }
+
+/* Ziel bündig unter Header + Leiste (statt 16 px Luft) */
+#teil-1, #werbung { scroll-margin-top: -16px; }
+
+/* Weg 2 hebt sich farblich vom Rest ab */
+#teil-2 { background: linear-gradient(180deg, #E9F2EE 0%, #F2F8F5 50%, #E9F2EE 100%); }
+#teil-2 .sec.tint-deep, #teil-2 .sec.tint-mint { background: transparent; }
+#teil-2 .sec.alt { background: rgba(255,255,255,.72); }
+#teil-2 .sec h2 em { color: var(--deep); }
+#teil-2 .faq details[open] { border-color: rgba(46,96,84,.4); }
+#teil-2 .faq summary .mi { color: var(--deep); }
+
+/* Klartext-Box für Lebensmittelhändler */
+.klartext { background: #fff; border: 1.5px solid rgba(81,158,138,.35); border-radius: 22px; padding: 26px 28px 8px; margin-bottom: 52px; box-shadow: 0 10px 30px rgba(30,36,34,.05); }
+.kt-head { display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--green-dark); margin-bottom: 18px; }
+.kt-head .mi { font-size: 20px; }
+.kt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 34px; }
+.kt { display: flex; gap: 13px; padding: 12px 0 18px; }
+.kt > .mi { flex-shrink: 0; font-size: 26px; margin-top: 1px; }
+.kt > .mi.ok { color: var(--green); }
+.kt > .mi.no { color: #B4534B; }
+.kt b { display: block; font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+.kt p { font-size: 15px; color: var(--muted); line-height: 1.55; }
+@media (max-width: 760px) { .kt-grid { grid-template-columns: 1fr; gap: 0; } .klartext { padding: 22px 20px 6px; } }
+
+.crosslink { text-align: center; font-size: 15px; color: var(--muted); margin-top: 26px; }
+.crosslink a { color: var(--deep); font-weight: 700; border-bottom: 1.5px solid rgba(46,96,84,.4); white-space: nowrap; }
+.crosslink .mi { font-size: 17px; }
 </style>
 </head>
 <body>
@@ -542,38 +628,82 @@ section { padding: 0; margin: 0; max-width: none; }
     <h1>Sichtbar da, wo der <em>Einkauf entsteht.</em></h1>
     <p class="hero-sub">
       BonBuddy ist die Einkaufsliste, die weiß, was in der Region gerade im Angebot ist –
-      und dabei hilft, den günstigsten Markt zu finden. Es gibt zwei Wege, dein Unternehmen dort zu platzieren.
+      und dabei hilft, den günstigsten Markt zu finden. Für Unternehmen gibt es zwei getrennte Wege –
+      je nachdem, ob du Lebensmittel verkaufst oder in der App werben möchtest.
     </p>
 
     <div class="paths">
-      <a href="#markt" class="path-card green" data-aos="fade-up">
+      <a href="#teil-1" class="path-card green" data-aos="fade-up">
         <div class="path-ico"><span class="mi">add_business</span></div>
-        <div class="path-num">Weg 1 · Einzelhandel</div>
+        <div class="path-num">Weg 1 · Du bist Lebensmittelhändler</div>
         <h2>Deinen Markt integrieren</h2>
-        <p>Dein Supermarkt ist noch nicht in der App? Dann bring deine Angebote rein – und werde von der Einkaufsliste empfohlen.</p>
+        <p>Dein Supermarkt ist noch nicht in der App? Dann bring deine Angebote rein, damit deine Produkte gefunden werden. Kostenlos – ohne Portal, ohne Werbung.</p>
         <span class="path-link">Mehr erfahren <span class="mi">arrow_forward</span></span>
       </a>
       <a href="#werbung" class="path-card deep" data-aos="fade-up" data-aos-delay="80">
         <div class="path-ico"><span class="mi">campaign</span></div>
-        <div class="path-num">Weg 2 · Werbung</div>
+        <div class="path-num">Weg 2 · Du willst in der App werben</div>
         <h2>Anzeigen schalten</h2>
-        <p>Werbeflächen direkt in der App – täglich ausgespielt, lokal ausgesteuert, mit Statistiken. Ab 29 € im Monat.</p>
+        <p>Für lokale Unternehmen: Werbeflächen direkt in der App – täglich ausgespielt, lokal ausgesteuert, mit Statistiken und Partnerportal. Ab 29 € im Monat.</p>
         <span class="path-link">Zum Werbeangebot <span class="mi">arrow_forward</span></span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ══════════ WEG 1 · EINZELHÄNDLER ══════════ -->
+<div class="paths-area">
+
+<!-- Klebende Orientierung: immer sichtbar, in welchem Weg man gerade liest -->
+<nav class="path-bar" id="path-bar" data-active="1" aria-label="Bereich wählen">
+  <div class="wrap pb-inner">
+    <a href="#teil-1" class="pb-tab t1 on" data-tab="1" aria-current="true">
+      <span class="mi">storefront</span>
+      <span class="pb-txt"><small>Weg 1</small><b>Lebensmittelhändler</b></span>
+    </a>
+    <a href="#werbung" class="pb-tab t2" data-tab="2">
+      <span class="mi">campaign</span>
+      <span class="pb-txt"><small>Weg 2</small><b>Werbung schalten</b></span>
+    </a>
+    <div class="pb-note" aria-live="polite">
+      <span class="n1">Markt integrieren – kostenlos, ohne Portal, ohne Werbung</span>
+      <span class="n2">Anzeigen in der App – für lokale Unternehmen, ab 29 € im Monat</span>
+    </div>
+  </div>
+</nav>
+
+<div id="teil-1" class="area a1">
+
+<!-- ══════════ WEG 1 · LEBENSMITTELHÄNDLER ══════════ -->
+<div class="area-head a1">
+  <div class="wrap ah-inner">
+    <div class="ah-ico"><span class="mi">storefront</span></div>
+    <div>
+      <div class="ah-label">Weg 1 · Für Lebensmittelhändler</div>
+      <div class="ah-title">Du verkaufst Lebensmittel? Dieser Bereich ist für dich.</div>
+      <p class="ah-sub">Supermärkte, Discounter, Hofläden, Bäckereien &amp; Co. – so kommen deine Produkte in die App.</p>
+    </div>
+  </div>
+</div>
+
 <section class="sec tint-mint" id="markt">
   <div class="wrap">
     <div class="sec-head" data-aos="fade-up">
-      <div class="kicker green"><span class="mi">add_business</span>Weg 1 · Für Einzelhändler</div>
       <h2>Dein Markt gehört <em class="g">in die App.</em></h2>
       <p class="sec-lead">
         Wer BonBuddy nutzt, entscheidet in der App, wo er einkauft. Märkte, die nicht drin sind,
-        tauchen in dieser Entscheidung nicht auf. Das ändern wir – kostenlos und ohne Aufwand für dich.
+        tauchen in dieser Entscheidung nicht auf – und ihre Produkte werden nicht gefunden.
+        Das ändern wir – kostenlos und ohne Aufwand für dich.
       </p>
+    </div>
+
+    <div class="klartext" data-aos="fade-up">
+      <div class="kt-head"><span class="mi">info</span>Klartext für Lebensmittelhändler</div>
+      <div class="kt-grid">
+        <div class="kt"><span class="mi ok">check_circle</span><div><b>Kostenlos &amp; unkompliziert</b><p>Du schickst uns eine kurze Nachricht, wir binden deine Angebote in die App ein.</p></div></div>
+        <div class="kt"><span class="mi ok">search</span><div><b>Damit man dich findet</b><p>Ohne Integration tauchen deine Produkte in der App nicht auf – und dein Markt nicht im Preisvergleich.</p></div></div>
+        <div class="kt"><span class="mi no">block</span><div><b>Kein Partnerportal</b><p>Kein Login, keine Kampagnen. Das Portal gibt es nur für Werbekunden – das ist Weg 2 und betrifft dich nicht.</p></div></div>
+        <div class="kt"><span class="mi no">block</span><div><b>Keine Werbung</b><p>Als Lebensmittelhändler kannst du in BonBuddy keine Werbeplätze buchen. Empfohlen wird, wo der Einkauf am günstigsten ist.</p></div></div>
+      </div>
     </div>
 
     <div class="split">
@@ -602,7 +732,7 @@ section { padding: 0; margin: 0; max-width: none; }
       </div>
 
       <!-- Mini-Visualisierung: Markt-Sektion in der App -->
-      <div class="visual" data-aos="fade-left">
+      <div class="visual" data-aos="fade-up">
         <div style="width:300px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px 16px;box-shadow:0 4px 10px rgba(30,36,34,.04),0 20px 46px rgba(30,36,34,.09);">
           <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Angebote in Lüdinghausen</div>
 
@@ -657,14 +787,54 @@ section { padding: 0; margin: 0; max-width: none; }
         <div class="mailline" style="color:rgba(255,255,255,.75);text-align:center;">partnerservice@bonbuddy.de</div>
       </div>
     </div>
+
+    <p class="crosslink">Du verkaufst keine Lebensmittel, sondern möchtest werben?
+      <a href="#werbung">Zu Weg 2 <span class="mi">arrow_downward</span></a></p>
   </div>
 </section>
 
-<!-- ══════════ WEG 2 · WERBUNG ══════════ -->
-<section class="sec tint-deep" id="werbung">
+<section class="sec" style="padding-top:0;">
   <div class="wrap">
     <div class="sec-head center" data-aos="fade-up">
-      <div class="kicker deep"><span class="mi">campaign</span>Weg 2 · Werbung schalten</div>
+      <div class="kicker green"><span class="mi">help</span>Weg 1 · Häufige Fragen</div>
+    </div>
+    <div class="faq" data-aos="fade-up">
+      <details>
+        <summary>Was kostet es, meinen Markt in die App zu bringen?<span class="mi">add</span></summary>
+        <div class="ans">Die Integration deiner Angebote ist für Einzelhändler kostenlos. Uns hilft jeder zusätzliche Markt, die App für Nutzer besser zu machen – und dir bringt sie zusätzliche Sichtbarkeit.</div>
+      </details>
+      <details>
+        <summary>Gibt es ein Partnerportal – und kann ich als Supermarkt Werbung schalten?<span class="mi">add</span></summary>
+        <div class="ans">Nein. Partnerportal und Werbeplätze sind für andere lokale Unternehmen gedacht (Weg 2). Als Lebensmittelhändler brauchst du beides nicht: Du schickst uns deine Angebote, wir binden sie ein – damit deine Produkte in der App gefunden werden.</div>
+      </details>
+      <details>
+        <summary>In welchen Regionen läuft BonBuddy?<span class="mi">add</span></summary>
+        <div class="ans">Schwerpunkt ist aktuell das Münsterland – Lüdinghausen, Coesfeld, Dülmen und Umgebung – mit laufender Ausweitung in NRW. Sag uns einfach, wo dein Markt steht.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</div><!-- /teil-1 -->
+
+<div id="teil-2" class="area a2">
+
+<!-- ══════════ WEG 2 · WERBUNG ══════════ -->
+<div class="area-head a2" id="werbung">
+  <div class="wrap ah-inner">
+    <div class="ah-ico"><span class="mi">campaign</span></div>
+    <div>
+      <div class="ah-label">Weg 2 · Für Werbetreibende</div>
+      <div class="ah-title">Ab hier geht es um Werbung in der App.</div>
+      <p class="ah-sub">Für lokale Unternehmen, die Kundschaft aus der Region erreichen wollen – mit Werbeflächen, Partnerportal und Preisen.
+        <b>Lebensmittelhändler</b> brauchen diesen Teil nicht: Für sie ging es bei <a href="#teil-1">Weg 1 <span class="mi" style="font-size:16px;">arrow_upward</span></a> um die Integration.</p>
+    </div>
+  </div>
+</div>
+
+<section class="sec tint-deep">
+  <div class="wrap">
+    <div class="sec-head center" data-aos="fade-up">
       <h2>Werbung direkt auf der <em class="s">Einkaufsliste.</em></h2>
       <p class="sec-lead">
         Keine Banner irgendwo im Feed. Deine Anzeige erscheint genau dort, wo Menschen ihren
@@ -809,10 +979,10 @@ section { padding: 0; margin: 0; max-width: none; }
 </section>
 
 <!-- ══════════ WARUM ══════════ -->
-<section class="sec">
+<section class="sec alt">
   <div class="wrap">
     <div class="sec-head center" data-aos="fade-up">
-      <div class="kicker sage"><span class="mi">insights</span>Was du bekommst</div>
+      <div class="kicker deep"><span class="mi">insights</span>Weg 2 · Was du bekommst</div>
       <h2>Mehr als eine Anzeige.</h2>
       <p class="sec-lead">Jede Kampagne kommt mit echten Zahlen, lokaler Aussteuerung und voller Kontrolle – nichts läuft im Blindflug.</p>
     </div>
@@ -853,11 +1023,11 @@ section { padding: 0; margin: 0; max-width: none; }
 </section>
 
 <!-- ══════════ PARTNERPORTAL ══════════ -->
-<section class="sec tint-mint">
+<section class="sec tint-deep">
   <div class="wrap">
     <div class="sec-head center" data-aos="fade-up">
-      <div class="kicker green"><span class="mi">dashboard</span>Das Partnerportal</div>
-      <h2>Kampagnen anlegen, <em class="g">Zahlen sehen.</em></h2>
+      <div class="kicker deep"><span class="mi">dashboard</span>Weg 2 · Das Partnerportal für Werbekunden</div>
+      <h2>Kampagnen anlegen, <em class="s">Zahlen sehen.</em></h2>
       <p class="sec-lead">
         Über das BonBuddy-Partnerportal erstellst du deine Anzeigen selbst, legst Städte und Laufzeit fest –
         und verfolgst live, wie sie laufen.
@@ -925,10 +1095,10 @@ section { padding: 0; margin: 0; max-width: none; }
 </section>
 
 <!-- ══════════ PREIS ══════════ -->
-<section class="sec">
+<section class="sec alt">
   <div class="wrap">
     <div class="sec-head center" data-aos="fade-up">
-      <div class="kicker deep"><span class="mi">payments</span>Preismodelle</div>
+      <div class="kicker deep"><span class="mi">payments</span>Weg 2 · Preismodelle</div>
       <h2>Lokale Werbung, <em class="s">planbarer Preis.</em></h2>
       <p class="sec-lead">Monatlich abgerechnet, täglich ausgespielt. Kein Gebot, keine versteckten Klickkosten.</p>
     </div>
@@ -1003,20 +1173,16 @@ section { padding: 0; margin: 0; max-width: none; }
   </div>
 </section>
 
-<!-- ══════════ FAQ ══════════ -->
-<section class="sec tint-mint" style="padding-top:80px;">
+<!-- ══════════ FAQ · WEG 2 ══════════ -->
+<section class="sec alt" style="padding-top:80px;">
   <div class="wrap">
     <div class="sec-head center" data-aos="fade-up">
-      <h2 style="font-size:clamp(26px,3.4vw,36px);">Häufige Fragen</h2>
+      <div class="kicker deep"><span class="mi">help</span>Weg 2 · Häufige Fragen</div>
     </div>
     <div class="faq" data-aos="fade-up">
       <details>
-        <summary>Muss ich Supermarkt sein, um Werbung zu schalten?<span class="mi">add</span></summary>
-        <div class="ans">Nein. Werbeflächen kann jedes Unternehmen buchen, das lokale Kundschaft erreichen will – Handwerk, Gastronomie, Autohaus, Dienstleister, Verein. Die Markt-Integration (Weg 1) ist dagegen speziell für Lebensmittelhändler.</div>
-      </details>
-      <details>
-        <summary>Was kostet es, meinen Markt in die App zu bringen?<span class="mi">add</span></summary>
-        <div class="ans">Die Integration deiner Angebote ist für Einzelhändler kostenlos. Uns hilft jeder zusätzliche Markt, die App für Nutzer besser zu machen – und dir bringt sie zusätzliche Sichtbarkeit.</div>
+        <summary>Für wen sind die Werbeplätze gedacht?<span class="mi">add</span></summary>
+        <div class="ans">Für jedes lokale Unternehmen, das Kundschaft aus der Region erreichen will – Handwerk, Gastronomie, Autohaus, Dienstleister, Verein. Lebensmittelhändler sind davon ausgenommen: Sie kommen über Weg 1 in die App, dort gibt es weder Portal noch Werbung.</div>
       </details>
       <details>
         <summary>Wie kommt meine Anzeige in die App?<span class="mi">add</span></summary>
@@ -1034,6 +1200,9 @@ section { padding: 0; margin: 0; max-width: none; }
   </div>
 </section>
 
+</div><!-- /teil-2 -->
+</div><!-- /paths-area -->
+
 <div id="footer-placeholder"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -1047,6 +1216,44 @@ section { padding: 0; margin: 0; max-width: none; }
     nav.classList.toggle('open');
     navToggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
   });
+
+  // Bereichs-Leiste: zeigt dauerhaft, ob man gerade Weg 1 (Händler) oder Weg 2 (Werbung) liest
+  (function () {
+    const root = document.documentElement;
+    const hdr = document.querySelector('.site-header');
+    const bar = document.getElementById('path-bar');
+    const area2 = document.getElementById('teil-2');
+    if (!hdr || !bar || !area2) return;
+    const tabs = bar.querySelectorAll('[data-tab]');
+    let current = null;
+
+    function measure() {
+      root.style.setProperty('--hdr-h', hdr.offsetHeight + 'px');
+      root.style.setProperty('--bar-h', bar.offsetHeight + 'px');
+    }
+    function update() {
+      const line = hdr.offsetHeight + bar.offsetHeight + 24;
+      const active = area2.getBoundingClientRect().top <= line ? '2' : '1';
+      if (active === current) return;
+      current = active;
+      bar.dataset.active = active;
+      tabs.forEach(t => {
+        const on = t.dataset.tab === active;
+        t.classList.toggle('on', on);
+        if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+      });
+    }
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { update(); ticking = false; });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { measure(); update(); });
+    window.addEventListener('load', () => { measure(); update(); });
+    measure(); update();
+  })();
 
   // Smooth-Scroll für Anker-Links (z. B. „Zum Werbeangebot" -> #werbung)
   document.addEventListener('click', e => {
