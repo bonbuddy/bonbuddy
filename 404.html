@@ -7,7 +7,8 @@
   <title>Seite nicht gefunden - BonBuddy</title>
   <!-- Diese Datei wird von GitHub Pages unter jedem unbekannten Pfad
        ausgeliefert, deshalb sind alle Pfade absolut. Bewusst ohne Tracking,
-       Cookie-Banner und externe Skripte. -->
+       Cookie-Banner und externe Skripte. Ausnahme: /p/<token> ruft einmalig
+       die Supabase-RPC get_product_share_preview auf (Name, Marke, Menge). -->
   <link rel="icon" type="image/png" href="/fotos/icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
@@ -97,6 +98,24 @@
       margin: 0;
     }
 
+    .product-box {
+      margin-bottom: 28px;
+    }
+
+    .product-name {
+      font-size: 1.6em;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #519e8a;
+      margin: 0 0 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .product-meta {
+      color: #555;
+      overflow-wrap: anywhere;
+    }
+
     .legal-links {
       padding: 20px 0 40px;
     }
@@ -151,6 +170,32 @@
     </div>
   </main>
 
+  <!-- Geteiltes Produkt: /p/<token> -->
+  <main id="product" hidden>
+    <div class="invite-wrapper">
+      <h1>Ein Produkt wurde mit dir geteilt</h1>
+
+      <p class="lead" id="product-loading" hidden>Produkt wird geladen…</p>
+
+      <div class="invite-code-box product-box" id="product-box" hidden>
+        <p class="product-name" id="product-name"></p>
+        <p class="product-meta" id="product-meta" hidden></p>
+      </div>
+
+      <p class="lead" id="product-not-found" hidden>Dieses Produkt konnte nicht gefunden werden.</p>
+
+      <p class="lead" id="product-hint">
+        Öffne den Link auf deinem Handy mit installierter BonBuddy-App, um das
+        Produkt direkt zu sehen.
+      </p>
+
+      <div class="invite-buttons">
+        <a class="invite-btn" href="https://play.google.com/store/apps/details?id=de.bonbuddy.app">Bei Google Play laden</a>
+        <a class="invite-btn invite-btn-outline" href="/bonbuddy-beta.html">Für iPhone: Beta testen</a>
+      </div>
+    </div>
+  </main>
+
   <!-- Alle anderen unbekannten Pfade -->
   <main id="not-found">
     <div class="invite-wrapper">
@@ -180,6 +225,71 @@
       return code.length === 6 ? code : '';
     }
 
+    // Liefert fuer /p/<token> den Token (genau 12 Zeichen A-Za-z0-9_-,
+    // Gross-/Kleinschreibung bleibt erhalten), '' fuer einen Produktpfad ohne
+    // gueltigen Token und null fuer jeden anderen Pfad.
+    function productTokenFromPath(pathname) {
+      var match = /^\/p(?:\/([^\/]*))?\/?$/.exec(pathname);
+      if (!match) return null;
+      var raw = match[1] || '';
+      return /^[A-Za-z0-9_-]{12}$/.test(raw) ? raw : '';
+    }
+
+    var PRODUCT_PREVIEW_URL = 'https://uxvjwzxvqvkanuudcnac.supabase.co/rest/v1/rpc/get_product_share_preview';
+    // Oeffentlicher Publishable Key, darf im Quelltext stehen.
+    var PRODUCT_PREVIEW_KEY = 'sb_publishable_Qja3LpKN2XBF2FaOgrSHDw_HTiuRDk_';
+
+    function showProductNotFound() {
+      document.getElementById('product-loading').hidden = true;
+      document.getElementById('product-box').hidden = true;
+      document.getElementById('product-hint').hidden = true;
+      document.getElementById('product-not-found').hidden = false;
+    }
+
+    function showProduct(product) {
+      var meta = [product.brand_name, product.quantity].filter(function (value) {
+        return typeof value === 'string' && value.trim();
+      }).join(' · ');
+      // textContent: die Werte kommen vom Server und werden nie als HTML eingefuegt.
+      document.getElementById('product-name').textContent = product.product_name;
+      if (meta) {
+        document.getElementById('product-meta').textContent = meta;
+        document.getElementById('product-meta').hidden = false;
+      }
+      document.getElementById('product-loading').hidden = true;
+      document.getElementById('product-box').hidden = false;
+    }
+
+    // Laedt Name, Marke und Menge des geteilten Produkts. Jeder Fehler
+    // (Netzwerk, Timeout nach 8 s, unbekannter Token) endet im selben Hinweis.
+    function loadProductPreview(token) {
+      document.getElementById('product-loading').hidden = false;
+      try {
+        var controller = new AbortController();
+        var timeout = setTimeout(function () { controller.abort(); }, 8000);
+        fetch(PRODUCT_PREVIEW_URL, {
+          method: 'POST',
+          headers: { 'apikey': PRODUCT_PREVIEW_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ p_token: token }),
+          signal: controller.signal
+        }).then(function (response) {
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          return response.json();
+        }).then(function (rows) {
+          var product = Array.isArray(rows) ? rows[0] : null;
+          if (product && typeof product.product_name === 'string' && product.product_name.trim()) {
+            showProduct(product);
+          } else {
+            showProductNotFound();
+          }
+        }).catch(showProductNotFound).then(function () {
+          clearTimeout(timeout);
+        });
+      } catch (e) {
+        showProductNotFound();
+      }
+    }
+
     (function () {
       var code = inviteCodeFromPath(window.location.pathname);
       if (code !== null) {
@@ -192,6 +302,18 @@
           document.getElementById('invite-code-box').hidden = false;
         } else {
           document.getElementById('invite-no-code').hidden = false;
+        }
+      }
+
+      var token = productTokenFromPath(window.location.pathname);
+      if (token !== null) {
+        document.title = 'Geteiltes Produkt - BonBuddy';
+        document.getElementById('not-found').hidden = true;
+        document.getElementById('product').hidden = false;
+        if (token) {
+          loadProductPreview(token);
+        } else {
+          showProductNotFound();
         }
       }
 
