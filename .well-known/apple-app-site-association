@@ -1,1 +1,1 @@
-{"applinks":{"apps":[],"details":[{"appID":"FMM86PQMWM.de.bonbuddy.app","appIDs":["FMM86PQMWM.de.bonbuddy.app"],"paths":["/l/*"],"components":[{"/":"/l/*","comment":"Einkaufsliste beitreten"}]}]}}
+{"applinks":{"apps":[],"details":[{"appID":"FMM86PQMWM.de.bonbuddy.app","appIDs":["FMM86PQMWM.de.bonbuddy.app"],"paths":["/l/*","/p/*"],"components":[{"/":"/l/*","comment":"Einkaufsliste beitreten"},{"/":"/p/*","comment":"Geteiltes Produkt"}]}]}}
