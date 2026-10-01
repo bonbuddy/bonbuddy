@@ -8,7 +8,8 @@
   <!-- Diese Datei wird von GitHub Pages unter jedem unbekannten Pfad
        ausgeliefert, deshalb sind alle Pfade absolut. Bewusst ohne Tracking,
        Cookie-Banner und externe Skripte. Ausnahme: /p/<token> ruft einmalig
-       die Supabase-RPC get_product_share_preview auf (Name, Marke, Menge). -->
+       die BonBuddy-Funktion share-preview auf (Name, Marke, Menge); kein
+       API-Key im Browser. -->
   <link rel="icon" type="image/png" href="/fotos/icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css" />
@@ -184,6 +185,8 @@
 
       <p class="lead" id="product-not-found" hidden>Dieses Produkt konnte nicht gefunden werden.</p>
 
+      <p class="lead" id="product-rate-limited" hidden>Gerade zu viele Anfragen. Bitte versuche es später noch einmal.</p>
+
       <p class="lead" id="product-hint">
         Öffne den Link auf deinem Handy mit installierter BonBuddy-App, um das
         Produkt direkt zu sehen.
@@ -235,15 +238,19 @@
       return /^[A-Za-z0-9_-]{12}$/.test(raw) ? raw : '';
     }
 
-    var PRODUCT_PREVIEW_URL = 'https://uxvjwzxvqvkanuudcnac.supabase.co/rest/v1/rpc/get_product_share_preview';
-    // Oeffentlicher Publishable Key, darf im Quelltext stehen.
-    var PRODUCT_PREVIEW_KEY = 'sb_publishable_Qja3LpKN2XBF2FaOgrSHDw_HTiuRDk_';
+    var PRODUCT_PREVIEW_URL = 'https://uxvjwzxvqvkanuudcnac.supabase.co/functions/v1/share-preview';
 
-    function showProductNotFound() {
+    // Blendet Ladezustand, Produktbox und App-Hinweis aus und zeigt
+    // stattdessen den Hinweistext mit der uebergebenen id.
+    function showProductMessage(id) {
       document.getElementById('product-loading').hidden = true;
       document.getElementById('product-box').hidden = true;
       document.getElementById('product-hint').hidden = true;
-      document.getElementById('product-not-found').hidden = false;
+      document.getElementById(id).hidden = false;
+    }
+
+    function showProductNotFound() {
+      showProductMessage('product-not-found');
     }
 
     function showProduct(product) {
@@ -260,23 +267,30 @@
       document.getElementById('product-box').hidden = false;
     }
 
-    // Laedt Name, Marke und Menge des geteilten Produkts. Jeder Fehler
-    // (Netzwerk, Timeout nach 8 s, unbekannter Token) endet im selben Hinweis.
+    // Laedt Name, Marke und Menge des geteilten Produkts. Status 429 zeigt
+    // einen eigenen Hinweis, jeder andere Fehler (Netzwerk, Timeout nach 8 s,
+    // unbekannter Token) endet im "nicht gefunden"-Hinweis.
     function loadProductPreview(token) {
       document.getElementById('product-loading').hidden = false;
       try {
+        var rateLimited = {};
         var controller = new AbortController();
         var timeout = setTimeout(function () { controller.abort(); }, 8000);
         fetch(PRODUCT_PREVIEW_URL, {
           method: 'POST',
-          headers: { 'apikey': PRODUCT_PREVIEW_KEY, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ p_token: token }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: token }),
           signal: controller.signal
         }).then(function (response) {
+          if (response.status === 429) return rateLimited;
           if (!response.ok) throw new Error('HTTP ' + response.status);
           return response.json();
-        }).then(function (rows) {
-          var product = Array.isArray(rows) ? rows[0] : null;
+        }).then(function (data) {
+          if (data === rateLimited) {
+            showProductMessage('product-rate-limited');
+            return;
+          }
+          var product = data ? data.product : null;
           if (product && typeof product.product_name === 'string' && product.product_name.trim()) {
             showProduct(product);
           } else {
