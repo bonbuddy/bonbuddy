@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /datenschutz-app.html
 Disallow: /impressum
 Disallow: /agb
 Disallow: /datenschutz

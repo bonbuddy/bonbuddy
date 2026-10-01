@@ -45,7 +45,7 @@
   function applyConsent(consent) {
     safeGtag({
       analytics_storage: consent.analytics ? 'granted' : 'denied',
-      ad_storage: consent.analytics ? 'granted' : 'denied'
+      ad_storage: 'denied'
     });
   }
 

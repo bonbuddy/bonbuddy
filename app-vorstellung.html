@@ -1112,16 +1112,6 @@ body {
 
   window.addEventListener('scroll', onScroll, { passive: true });
   applyScrollState(0); // render initial state immediately
-
-  // Easter egg: replace city name based on visitor's IP location
-  (function() {
-    const el = document.getElementById('city-name');
-    if (!el) return;
-    fetch('https://ipapi.co/json/')
-      .then(r => r.json())
-      .then(d => { if (d && d.city) el.textContent = d.city; })
-      .catch(() => {});
-  })();
 </script>
 
 <script>
