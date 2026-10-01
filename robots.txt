@@ -1,9 +1,10 @@
 User-agent: *
 Allow: /
-Allow: /datenschutz-app.html
 Disallow: /impressum
 Disallow: /agb
 Disallow: /datenschutz
+Disallow: /datenschutz-app
+Disallow: /konto-loeschen
 Disallow: /datenschutz-beta.html
 Disallow: /beta-teilnahmebedingungen.html
 Disallow: /gender-hinweis.html
