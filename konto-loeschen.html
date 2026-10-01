@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+<!-- Google Consent Mode v2 – Standard: alles verweigert -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'wait_for_update': 500
+  });
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HFQWHP3ZHW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HFQWHP3ZHW');
+</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konto löschen - BonBuddy</title>
+  <link rel="canonical" href="https://www.bonbuddy.de/konto-loeschen.html" />
+  <link rel="icon" type="image/png" href="fotos/icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+
+
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="fotos/BB_Logo2.png" alt="BonBuddy Logo" class="logo">
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="app-vorstellung.html">App</a></li>
+          <li><a href="partner.html">Partner</a></li>
+          <li><a href="presse.html">Presse</a></li>
+          <li><a href="hilfe.html">Hilfe</a></li>
+          <li><a href="app-download.html" class="nav-cta">Herunterladen</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen">☰</button>
+    </div>
+  </header>
+
+  <main class="content" style="padding: 0 40px;">
+    <h1>BonBuddy-Konto löschen</h1>
+    <p>Hier erfährst du, wie du dein Konto in der App „BonBuddy“ (Anbieter: Bennett Rips) löschst und was mit deinen Daten passiert.</p>
+
+    <h2>In der App</h2>
+    <ol>
+      <li>Öffne BonBuddy und tippe auf den Tab „Profil“.</li>
+      <li>Scrolle zum Bereich „Konto“ und tippe auf „Account löschen“.</li>
+      <li>Bestätige die Löschung.</li>
+    </ol>
+
+    <h2>Ohne App</h2>
+    <p>Schreib eine E-Mail an <a href="mailto:info@bonbuddy.de?subject=Kontol%C3%B6schung">info@bonbuddy.de</a> mit dem Betreff „Kontolöschung“, und zwar von der E-Mail-Adresse, mit der du registriert bist. Wir löschen dein Konto innerhalb von 30 Tagen und bestätigen dir das per E-Mail.</p>
+
+    <h2>Welche Daten gelöscht werden</h2>
+    <p>Dein Nutzerkonto und Profil, deine Einkaufslisten (bei geteilten Listen deine Mitgliedschaft), Rezepte und Rezeptfotos, Kassenbons inklusive Fotos, deine Kaufhistorie und personalisierten Vorschläge sowie deine Geräte-Tokens für Benachrichtigungen.</p>
+
+    <h2>Was erhalten bleibt</h2>
+    <p>Zusammengefasste Statistiken ohne Bezug zu deiner Person (z. B. Anzahl von Anzeigen-Einblendungen). Daten, die wir aufgrund gesetzlicher Pflichten aufbewahren müssen, löschen wir nach Ablauf der jeweiligen Frist.</p>
+    <!-- PRÜFEN: Liste gegen delete-account abgleichen, bevor die Seite live geht. -->
+
+    <p>Weitere Informationen: <a href="datenschutz-app.html">Datenschutzerklärung der App</a></p>
+  </main>
+
+  <!-- Hier wird nun zentral der Footer inkl. Impressum/Datenschutz aus der footer.html geladen -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    // Footer dynamisch aus footer.html laden
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(error => console.error('Fehler beim Laden des Footers:', error));
+  </script>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.main-nav');
+
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+  </script>
+
+<script src="cookie-consent.js" defer></script>
+</body>
+</html>
