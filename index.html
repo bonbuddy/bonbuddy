@@ -591,6 +591,17 @@ hr.v2-divider { border: none; border-top: 1px solid #eef2f0; margin: 0; }
 .stat-v2-num em { font-style: normal; color: #519e8a; }
 .stat-v2-label { font-size: 0.82rem; color: #8aada7; font-weight: 600; }
 
+/* Lüdinghausen-Zähler: bleibt hidden, bis der Server eine Summe liefert */
+.city-savings {
+  max-width: 900px; margin: 0 auto 44px;
+  opacity: 0; transition: opacity 0.6s ease;
+}
+.city-savings.is-visible { opacity: 1; }
+.city-savings .stat-v2-num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .city-savings { transition: none; }
+}
+
 /* ════════════════════════════════════════════════
    SECTION: TESTIMONIALS
 ════════════════════════════════════════════════ */
@@ -905,6 +916,10 @@ hr.v2-divider { border: none; border-top: 1px solid #eef2f0; margin: 0; }
      STATS
 ══════════════════════════════════════════ -->
 <div class="stats-strip">
+  <div class="stat-v2 city-savings" id="city-savings" hidden>
+    <div class="stat-v2-num"><em id="city-savings-amount"></em></div>
+    <div class="stat-v2-label">Mit BonBuddy in Lüdinghausen gespart</div>
+  </div>
   <div class="stats-strip-inner">
     <div class="stat-v2 reveal">
       <div class="stat-v2-num">40<em>k+</em></div>
@@ -1013,6 +1028,85 @@ hr.v2-divider { border: none; border-top: 1px solid #eef2f0; margin: 0; }
     if (!t) return;
     t.innerHTML += t.innerHTML + t.innerHTML;
   });
+
+  // ── Lüdinghausen-Zähler ──
+  // Fragt einmal die BonBuddy-Funktion city-savings ab (kein API-Key im
+  // Browser) und blendet den Zähler nur ein, wenn sie live:true mit einer
+  // Summe über 0 liefert. Sonst und bei jedem Fehler bleibt er versteckt.
+  (function() {
+    var ENDPOINT = 'https://uxvjwzxvqvkanuudcnac.supabase.co/functions/v1/city-savings';
+    var CACHE_KEY = 'bb_city_savings_v1';
+    var CACHE_MS = 5 * 60 * 1000;
+    var box = document.getElementById('city-savings');
+    var amount = document.getElementById('city-savings-amount');
+    if (!box || !amount) return;
+
+    // Liefert den gemerkten Eintrag {v, t}, wenn er jünger als 5 Minuten ist.
+    function readCache() {
+      try {
+        var c = JSON.parse(sessionStorage.getItem(CACHE_KEY));
+        var age = c ? Date.now() - c.t : -1;
+        if (age >= 0 && age < CACHE_MS) return c;
+      } catch (e) { /* z. B. Safari Private Mode */ }
+      return null;
+    }
+
+    function writeCache(v) {
+      try {
+        sessionStorage.setItem(CACHE_KEY, JSON.stringify({ v: v, t: Date.now() }));
+      } catch (e) { /* z. B. Safari Private Mode */ }
+    }
+
+    function show(total) {
+      var fmt = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
+      // textContent: der Wert kommt vom Server und wird nie als HTML eingefuegt.
+      amount.textContent = fmt.format(total);
+      box.hidden = false;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) {
+        box.classList.add('is-visible');
+        return;
+      }
+      var io = new IntersectionObserver(function(entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        box.classList.add('is-visible');
+        var start = null;
+        requestAnimationFrame(function step(now) {
+          if (start === null) start = now;
+          var p = Math.min((now - start) / 1200, 1);
+          amount.textContent = fmt.format(total * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        });
+      }, { threshold: 0.3 });
+      io.observe(box);
+    }
+
+    function isShowable(v) {
+      return typeof v === 'number' && Number.isFinite(v) && v > 0;
+    }
+
+    var cached = readCache();
+    if (cached) {
+      if (isShowable(cached.v)) show(cached.v);
+      return;
+    }
+
+    try {
+      var controller = new AbortController();
+      var timeout = setTimeout(function() { controller.abort(); }, 8000);
+      fetch(ENDPOINT, { signal: controller.signal }).then(function(res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      }).then(function(data) {
+        var total = data && data.live === true && isShowable(data.total_eur) ? data.total_eur : null;
+        writeCache(total);
+        if (total !== null) show(total);
+      }).catch(function() { /* bleibt versteckt */ }).then(function() {
+        clearTimeout(timeout);
+      });
+    } catch (e) { /* bleibt versteckt */ }
+  })();
 
   // ── Footer laden ──
   fetch('footer.html?v=' + Date.now())
