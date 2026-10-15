@@ -166,7 +166,7 @@
 
       <p id="invite-no-code" hidden>
         Dieser Einladungslink ist unvollständig. Bitte die Person, die dich
-        eingeladen hat, dir den Link oder den 6-stelligen Code noch einmal zu schicken.
+        eingeladen hat, dir den Link noch einmal zu schicken.
       </p>
     </div>
   </main>
@@ -216,13 +216,15 @@
   </div>
 
   <script>
-    // Liefert fuer /l/<code> den normalisierten Code (Grossbuchstaben, nur
-    // A-Z0-9, genau 6 Zeichen), '' fuer einen Einladungspfad ohne gueltigen
-    // Code und null fuer jeden anderen Pfad.
+    // Liefert fuer /l/<code> den Code, '' fuer einen Einladungspfad ohne
+    // gueltigen Code und null fuer jeden anderen Pfad. Gueltig sind der
+    // 22-stellige Code (A-Za-z0-9, Gross-/Kleinschreibung bleibt erhalten)
+    // und – fuer aeltere Links – der 6-stellige (normalisiert auf A-Z0-9).
     function inviteCodeFromPath(pathname) {
       var match = /^\/l(?:\/([^\/]*))?\/?$/.exec(pathname);
       if (!match) return null;
       var raw = match[1] || '';
+      if (/^[A-Za-z0-9]{22}$/.test(raw)) return raw;
       try { raw = decodeURIComponent(raw); } catch (e) { /* roh weiterverwenden */ }
       var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '');
       return code.length === 6 ? code : '';
@@ -310,11 +312,12 @@
         document.title = 'Einladung zu einer Einkaufsliste - BonBuddy';
         document.getElementById('not-found').hidden = true;
         document.getElementById('invite').hidden = false;
-        if (code) {
+        if (code.length === 6) {
+          // Nur der alte 6-stellige Code laesst sich in der App eintippen.
           // textContent: der Code kommt aus der URL und wird nie als HTML eingefuegt.
           document.getElementById('invite-code').textContent = code;
           document.getElementById('invite-code-box').hidden = false;
-        } else {
+        } else if (!code) {
           document.getElementById('invite-no-code').hidden = false;
         }
       }
