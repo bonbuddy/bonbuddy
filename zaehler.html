@@ -44,6 +44,13 @@ html, body {
 }
 
 /* ── Zahl ── */
+.z-live {
+  margin-bottom: 2.5vh;
+  font-size: clamp(0.9rem, 1.4vw, 1.6rem);
+  gap: 0.6em;
+  padding: 0.35em 1em 0.35em 0.8em;
+}
+.z-live .bb-live-dot { width: 0.7em; height: 0.7em; }
 .z-label {
   margin: 0 0 3vh;
   font-size: clamp(1.4rem, 3.4vw, 4.2rem);
@@ -111,6 +118,7 @@ html, body {
   <div class="z-main">
     <!-- Ab 1 €: echte Zahl, aktualisiert alle 60 Sekunden -->
     <div data-savings-counter data-city="luedinghausen" data-refresh="60" data-savings-placeholder="#z-soon" hidden>
+      <span class="bb-live z-live"><span class="bb-live-dot" aria-hidden="true"></span>Live</span>
       <p class="z-label">So viel hat <strong>Lüdinghausen</strong> mit BonBuddy schon gespart:</p>
       <p class="z-amount"><span data-savings-anim aria-hidden="true"></span><span class="bb-sr-only" data-savings-text></span></p>
     </div>

@@ -4,6 +4,7 @@
    Einbinden (beliebig oft pro Seite):
 
    <div data-savings-counter data-city="luedinghausen" hidden>
+     <span class="bb-live"><span class="bb-live-dot" aria-hidden="true"></span>Live</span>
      <p>So viel hat Lüdinghausen mit BonBuddy schon gespart:</p>
      <p><span data-savings-anim aria-hidden="true"></span><span class="bb-sr-only" data-savings-text></span></p>
    </div>
@@ -30,7 +31,8 @@
 
   var MIN_EUR = 1;               // Zähler erst ab diesem Betrag zeigen
   var REQUEST_TIMEOUT_MS = 8000;
-  var ANIMATION_MS = 1200;
+  var ROLL_MS = 1600;            // Dauer, in der eine Ziffer rollt
+  var STAGGER_MS = 90;           // Versatz von Ziffer zu Ziffer (links startet zuerst)
 
   var numberFormat = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 });
   var reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
@@ -93,7 +95,8 @@
     this.placeholder = placeholder ? document.querySelector(placeholder) : null;
     this.refreshMs = (Number(el.getAttribute('data-refresh')) || 0) * 1000;
     this.current = null;   // aktuell angezeigter Euro-Betrag (null = nichts angezeigt)
-    this.frame = null;
+    this.layout = null;    // Zahlenformat des aufgebauten Zählwerks, z. B. „0.000 €“
+    this.digits = [];
   }
 
   Counter.prototype.load = function () {
@@ -117,45 +120,95 @@
     this.el.hidden = !visible;
     if (this.placeholder) this.placeholder.hidden = visible;
     if (!visible) {
-      this.stop();
       this.current = null;
+      this.layout = null;   // beim nächsten Erscheinen wieder komplett durchrollen
       return;
     }
 
     // Screenreader lesen nur den Endwert; kein aria-live, also keine Ansage bei Updates.
     this.text.textContent = formatEuro(euros);
-    this.animateTo(euros);
+    this.show(euros);
   };
 
-  Counter.prototype.animateTo = function (target) {
-    var self = this;
-    var from = this.current === null ? 0 : this.current;
-    this.stop();
-
-    if (from === target || (reducedMotion && reducedMotion.matches)) {
-      this.show(target);
-      return;
+  /* ── Zählwerk: jede Ziffer rollt auf einem Streifen 0–9 0–9 immer vorwärts ── */
+  function createDigit() {
+    var cell = document.createElement('span');
+    var strip = document.createElement('span');
+    cell.className = 'bb-odo-digit';
+    strip.className = 'bb-odo-strip';
+    for (var i = 0; i < 20; i++) {
+      var d = document.createElement('span');
+      d.textContent = i % 10;
+      strip.appendChild(d);
     }
+    cell.appendChild(strip);
+    return { cell: cell, strip: strip, row: 0, reset: null };
+  }
 
-    var start = null;
-    function step(now) {
-      if (start === null) start = now;
-      var t = Math.min(1, (now - start) / ANIMATION_MS);
-      var eased = 1 - Math.pow(1 - t, 3);
-      self.show(Math.round(from + (target - from) * eased));
-      self.frame = t < 1 ? requestAnimationFrame(step) : null;
+  function placeDigit(digit, row, transition) {
+    digit.row = row;
+    digit.strip.style.transition = transition;
+    digit.strip.style.transform = 'translateY(' + (-row * 5) + '%)';   // 20 Zeilen → 5 % pro Zeile
+  }
+
+  function rollDigit(digit, value, animate, delay) {
+    clearTimeout(digit.reset);
+    if (digit.row >= 10) placeDigit(digit, digit.row - 10, 'none');
+
+    if (!animate) { placeDigit(digit, value, 'none'); return; }
+
+    // Kleinere Ziffer → über die zweite Hälfte des Streifens weiterrollen statt rückwärts.
+    var row = value >= digit.row ? value : value + 10;
+    if (row === digit.row) return;
+    placeDigit(digit, row, 'transform ' + ROLL_MS + 'ms cubic-bezier(.2,.7,.2,1) ' + delay + 'ms');
+
+    // Danach unsichtbar auf die erste Hälfte zurückspringen, damit die nächste Änderung wieder vorwärts rollt.
+    if (row >= 10) {
+      digit.reset = setTimeout(function () { placeDigit(digit, row - 10, 'none'); }, ROLL_MS + delay);
     }
-    this.frame = requestAnimationFrame(step);
+  }
+
+  Counter.prototype.build = function (text, layout) {
+    this.anim.textContent = '';
+    this.digits = [];
+    for (var i = 0; i < text.length; i++) {
+      if (/\d/.test(text[i])) {
+        var digit = createDigit();
+        this.digits.push(digit);
+        this.anim.appendChild(digit.cell);
+      } else {
+        var char = document.createElement('span');
+        char.className = 'bb-odo-char';
+        char.textContent = text[i];
+        this.anim.appendChild(char);
+      }
+    }
+    this.layout = layout;
   };
 
   Counter.prototype.show = function (euros) {
-    this.current = euros;
-    this.anim.textContent = formatEuro(euros);
-  };
+    var text = formatEuro(euros);
+    var layout = text.replace(/\d/g, '0');
+    var animate = !(reducedMotion && reducedMotion.matches);
+    var fresh = layout !== this.layout;   // erstes Anzeigen oder neue Stellenzahl (z. B. 999 → 1.000)
 
-  Counter.prototype.stop = function () {
-    if (this.frame) cancelAnimationFrame(this.frame);
-    this.frame = null;
+    if (fresh) {
+      this.build(text, layout);
+      void this.anim.offsetHeight;        // Startposition 0 rendern, bevor gerollt wird
+    }
+
+    var values = text.replace(/\D/g, '');
+    for (var i = 0; i < this.digits.length; i++) {
+      var value = Number(values[i]);
+      // Beim ersten Anzeigen dreht jede Ziffer einmal komplett durch, dann bis zum Wert.
+      if (fresh && animate) {
+        placeDigit(this.digits[i], 0, 'none');
+        rollDigit(this.digits[i], value + 10, true, i * STAGGER_MS);
+      } else {
+        rollDigit(this.digits[i], value, animate, i * STAGGER_MS);
+      }
+    }
+    this.current = euros;
   };
 
   /* ── Start ── */

@@ -754,6 +754,13 @@ function bbDeclineCookies(){ localStorage.setItem('bb_cookie_consent','declined'
     <h2>Clever einkaufen. Zeit <span>sparen</span>. Angebote nutzen.</h2>
     <p>BonBuddy zeigt dir, wo du deine Einkaufsliste am günstigsten bekommst – in einem Markt oder clever auf mehrere verteilt.</p>
     <a href="app-download.html" class="btn">Jetzt herunterladen!</a>
+
+    <!-- Lüdinghausen-Zähler (erst ab 1 € sichtbar, siehe js/savings-counter.js) -->
+    <div class="savings-hero" data-savings-counter data-city="luedinghausen" hidden>
+      <span class="bb-live"><span class="bb-live-dot" aria-hidden="true"></span>Live</span>
+      <p class="savings-hero-label">So viel hat Lüdinghausen mit BonBuddy schon gespart:</p>
+      <p class="savings-hero-amount"><span data-savings-anim aria-hidden="true"></span><span class="bb-sr-only" data-savings-text></span></p>
+    </div>
   </div>
   <div class="hero-img">
     <img src="fotos/Startseite2Handys.png" alt="App Screenshot">
@@ -778,12 +785,6 @@ function bbDeclineCookies(){ localStorage.setItem('bb_cookie_consent','declined'
     </div>
   </div>
 </div>
-
-<!-- ── LÜDINGHAUSEN-ZÄHLER (erst ab 1 € sichtbar, siehe js/savings-counter.js) ── -->
-<section class="savings-band" data-savings-counter data-city="luedinghausen" hidden>
-  <p class="savings-band-label">So viel hat Lüdinghausen mit BonBuddy schon gespart:</p>
-  <p class="savings-band-amount"><span data-savings-anim aria-hidden="true"></span><span class="bb-sr-only" data-savings-text></span></p>
-</section>
 
 <hr class="v2-divider">
 
