@@ -220,6 +220,8 @@
 </script>
 <link href="fonts/jost.css" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="css/savings-counter.css" />
+<script src="js/savings-counter.js" defer></script>
 
 <style>
 /* ════════════════════════════════════════════════
@@ -776,6 +778,12 @@ function bbDeclineCookies(){ localStorage.setItem('bb_cookie_consent','declined'
     </div>
   </div>
 </div>
+
+<!-- ── LÜDINGHAUSEN-ZÄHLER (erst ab 1 € sichtbar, siehe js/savings-counter.js) ── -->
+<section class="savings-band" data-savings-counter data-city="luedinghausen" hidden>
+  <p class="savings-band-label">So viel hat Lüdinghausen mit BonBuddy schon gespart:</p>
+  <p class="savings-band-amount"><span data-savings-anim aria-hidden="true"></span><span class="bb-sr-only" data-savings-text></span></p>
+</section>
 
 <hr class="v2-divider">
 

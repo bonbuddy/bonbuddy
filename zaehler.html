@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>BonBuddy – Lüdinghausen-Zähler</title>
+<link rel="icon" href="fotos/icon.png" />
+<link href="fonts/jost.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/savings-counter.css" />
+
+<!-- Vollbild-Ansicht für den Messestand. Bewusst ohne Analytics und ohne Cookie-Banner. -->
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: #fff;
+  color: #2a2a2a;
+  font-family: 'Jost', sans-serif;
+  overflow: hidden;
+}
+
+.z-stage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5vh 5vw;
+  text-align: center;
+}
+
+.z-logo { height: clamp(48px, 11vh, 140px); width: auto; }
+
+.z-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ── Zahl ── */
+.z-label {
+  margin: 0 0 3vh;
+  font-size: clamp(1.4rem, 3.4vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.z-label strong { color: #519e8a; font-weight: 800; }
+.z-amount {
+  margin: 0;
+  font-size: min(19vw, 36vh);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+/* ── Vor dem Launch ── */
+.z-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6vw;
+}
+.z-mockup {
+  height: 58vh;
+  width: auto;
+  max-width: 40vw;
+  object-fit: contain;
+}
+.z-mockup-placeholder {
+  height: 58vh;
+  aspect-ratio: 9 / 19;
+  border: 3px dashed #519e8a;
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #519e8a;
+  font-size: clamp(1rem, 1.6vw, 1.6rem);
+  font-weight: 600;
+  padding: 1rem;
+}
+.z-soon-text {
+  margin: 0;
+  text-align: left;
+  font-size: clamp(2rem, 6vw, 7rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+.z-soon-text span { color: #519e8a; }
+
+.z-url {
+  margin: 0;
+  font-size: clamp(1.2rem, 3vw, 3.4rem);
+  font-weight: 700;
+  color: #519e8a;
+}
+</style>
+</head>
+<body>
+
+<main class="z-stage">
+  <img class="z-logo" src="fotos/BB_Logo2.png" alt="BonBuddy" />
+
+  <div class="z-main">
+    <!-- Ab 1 €: echte Zahl, aktualisiert alle 60 Sekunden -->
+    <div data-savings-counter data-city="luedinghausen" data-refresh="60" data-savings-placeholder="#z-soon" hidden>
+      <p class="z-label">So viel hat <strong>Lüdinghausen</strong> mit BonBuddy schon gespart:</p>
+      <p class="z-amount"><span data-savings-anim aria-hidden="true"></span><span class="bb-sr-only" data-savings-text></span></p>
+    </div>
+
+    <!-- Unter 1 €: Hinweis auf den Launch -->
+    <div class="z-soon" id="z-soon" hidden>
+      <!-- App-Mockup als fotos/zaehler-mockup.png ablegen; bis dahin erscheint der Platzhalter -->
+      <img class="z-mockup" src="fotos/zaehler-mockup.png" alt="Die BonBuddy-App auf einem Smartphone"
+           onerror="this.hidden = true; this.nextElementSibling.hidden = false;" />
+      <div class="z-mockup-placeholder" hidden>App-Mockup folgt</div>
+      <p class="z-soon-text">Ab <span data-launch-date></span><br />in Lüdinghausen</p>
+    </div>
+  </div>
+
+  <p class="z-url">bonbuddy.de</p>
+</main>
+
+<script>
+  var LAUNCH_DATE = '26.11.';  // Launch-Datum für den Hinweis vor dem Start
+  document.querySelector('[data-launch-date]').textContent = LAUNCH_DATE;
+</script>
+<script src="js/savings-counter.js" defer></script>
+</body>
+</html>
