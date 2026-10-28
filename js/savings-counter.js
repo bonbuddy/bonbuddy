@@ -30,20 +30,27 @@
   var SUPABASE_KEY = 'sb_publishable_O6JXEp2q7Nupzd3FBIUHqw_7AXO5zXR';
 
   var MIN_EUR = 1;               // Zähler erst ab diesem Betrag zeigen
+  var SHOW_CENTS = true;         // true: „1.234,56 €“, false: „1.234 €“
   var REQUEST_TIMEOUT_MS = 8000;
   var ROLL_MS = 1600;            // Dauer, in der eine Ziffer rollt
   var STAGGER_MS = 90;           // Versatz von Ziffer zu Ziffer (links startet zuerst)
 
-  var numberFormat = new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 });
+  var fractionDigits = SHOW_CENTS ? 2 : 0;
+  var numberFormat = new Intl.NumberFormat('de-DE', {
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits
+  });
   var reducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
 
   function formatEuro(euros) {
     return numberFormat.format(euros) + ' €';
   }
 
-  // Abrunden statt runden: 1.234,56 € → „1.234 €“, 0,99 € → 0 (ausgeblendet).
+  // Ohne Cent wird abgerundet statt gerundet: 1.234,56 € → „1.234 €“.
+  // Unter MIN_EUR (z. B. 0,99 €) bleibt der Zähler in beiden Fällen ausgeblendet.
   function centsToEuros(cents) {
-    return Math.floor(Math.max(0, cents) / 100);
+    var whole = Math.floor(Math.max(0, cents));
+    return SHOW_CENTS ? whole / 100 : Math.floor(whole / 100);
   }
 
   /* ── Testparameter ── */

@@ -139,6 +139,24 @@ html, body {
 <script>
   var LAUNCH_DATE = '26.11.';  // Launch-Datum für den Hinweis vor dem Start
   document.querySelector('[data-launch-date]').textContent = LAUNCH_DATE;
+
+  // Lange Beträge (z. B. „1.234.567,89 €“) verkleinern, bis sie in die Bildschirmbreite passen.
+  (function () {
+    var amount = document.querySelector('.z-amount');
+    var digits = amount.querySelector('[data-savings-anim]');
+    function fit() {
+      amount.style.fontSize = '';
+      var max = window.innerWidth * 0.9;
+      var width = digits.getBoundingClientRect().width;
+      if (width > max) {
+        amount.style.fontSize = (parseFloat(getComputedStyle(amount).fontSize) * max / width) + 'px';
+      }
+    }
+    new MutationObserver(fit).observe(amount.querySelector('[data-savings-text]'), { childList: true });
+    window.addEventListener('resize', fit);
+    // Jost ist breiter als die Ersatzschrift → nach dem Laden der Schrift neu messen.
+    if (document.fonts) document.fonts.ready.then(fit);
+  })();
 </script>
 <script src="js/savings-counter.js" defer></script>
 </body>
